@@ -176,8 +176,19 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   methods: {
     login: function login() {
-      console.log("Save login");
-      this.$router.push("/dashboard/profil"); // this.formData.append("email", this.email);
+      var _this = this;
+
+      console.log("Save login"); // var tokenReq = null;
+
+      this.formData.append("email", this.email);
+      this.formData.append("password", this.password);
+      axios.get("http://127.0.0.1:8004/api/v1/login/", this.formData).then(function (response) {
+        console.log("login", response.status);
+
+        if (response.status == 200) {
+          _this.$router.push("/dashboard/profil");
+        }
+      }); // this.formData.append("email", this.email);
       // this.formData.append("password", this.password);
       // axios
       //   .post("http://127.0.0.1:8000/api/v1/login", this.formData, this.headers)

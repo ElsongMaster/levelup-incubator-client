@@ -77,7 +77,19 @@ export default {
     methods: {
         login() {
             console.log("Save login");
-            this.$router.push("/dashboard/profil");
+
+            // var tokenReq = null;
+            this.formData.append("email", this.email);
+            this.formData.append("password", this.password);
+            axios
+                .get("http://127.0.0.1:8004/api/v1/login/", this.formData)
+                .then((response) => {
+                    console.log("login", response.status);
+
+                    if (response.status == 200) {
+                        this.$router.push("/dashboard/profil");
+                    }
+                });
             // this.formData.append("email", this.email);
             // this.formData.append("password", this.password);
 

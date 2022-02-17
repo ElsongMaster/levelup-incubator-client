@@ -26,7 +26,7 @@
       </div>
 
       <v-spacer></v-spacer>
-  <v-switch color="indigo" v-model="$vuetify.theme.dark" hide-details></v-switch>
+  <!-- <v-switch color="indigo" v-model="$vuetify.theme.dark" hide-details></v-switch> -->
       <!-- <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"

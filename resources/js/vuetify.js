@@ -4,5 +4,5 @@ import 'vuetify/dist/vuetify.min.css'
 Vue.use(Vuetify)
 
 export default new Vuetify({
-    theme:{dark:true},
+    theme:{dark:false},
 });

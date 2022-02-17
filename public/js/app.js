@@ -5496,7 +5496,7 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_1__["default"].use((vuetify__WEBPACK_IMPORTED_MODULE_2___default()));
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new (vuetify__WEBPACK_IMPORTED_MODULE_2___default())({
   theme: {
-    dark: true
+    dark: false
   }
 }));
 
@@ -28482,17 +28482,6 @@ var render = function () {
           ),
           _vm._v(" "),
           _c("v-spacer"),
-          _vm._v(" "),
-          _c("v-switch", {
-            attrs: { color: "indigo", "hide-details": "" },
-            model: {
-              value: _vm.$vuetify.theme.dark,
-              callback: function ($$v) {
-                _vm.$set(_vm.$vuetify.theme, "dark", $$v)
-              },
-              expression: "$vuetify.theme.dark",
-            },
-          }),
         ],
         1
       ),
