@@ -22,11 +22,13 @@
             </div>
 
             <v-spacer></v-spacer>
+            <v-btn v-if="isLoggin" succes class="mx-3" @click="logout">LOGOUT</v-btn>
             <v-switch
                 color="indigo"
                 v-model="$vuetify.theme.dark"
                 hide-details
             ></v-switch>
+
             <!-- <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
@@ -46,6 +48,31 @@
 <script>
 export default {
     name: "AppComponent",
+    data(){
+        return{
+            isLoggin:localStorage.getItem("connected")!="0"
+        }
+    },
+
+    methods: {
+        logout() {
+            let tokenReq = localStorage.getItem("tokenConnexion");
+        console.log(tokenReq);
+            axios
+                .get("http://127.0.0.1:8004/api/v1/logout", {
+                    headers: { Authorization: "Bearer " + tokenReq },
+                })
+                .then((response) => {
+                    console.log("logout", response.status);
+
+                    if (response.status == 200) {
+                        localStorage.removeItem("tokenConnexion");
+                        localStorage.setItem("connected", "0");
+                        this.$router.push("/");
+                    }
+                });
+        },
+    },
 };
 </script>
 

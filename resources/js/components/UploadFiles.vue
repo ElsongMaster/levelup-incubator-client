@@ -45,6 +45,7 @@
                 </v-list-item-group>
             </v-list>
         </v-card>
+        <v-btn class="mt-5" color="primary"> Demander un document </v-btn>
     </div>
 </template>
 
@@ -79,9 +80,10 @@ export default {
                 this.message = "Please select a file!";
                 return;
             }
+            let tokenReq = localStorage.getItem("tokenConnexion");
             this.message = "";
             UploadService.upload(
-                this.currentFile,
+                this.currentFile,tokenReq,
                 localStorage.getItem("email"),
                 (event) => {
                     this.progress = Math.round(

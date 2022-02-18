@@ -5307,8 +5307,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "AppComponent"
+  name: "AppComponent",
+  data: function data() {
+    return {
+      isLoggin: localStorage.getItem("connected") != "0"
+    };
+  },
+  methods: {
+    logout: function logout() {
+      var _this = this;
+
+      var tokenReq = localStorage.getItem("tokenConnexion");
+      console.log(tokenReq);
+      axios.get("http://127.0.0.1:8004/api/v1/logout", {
+        headers: {
+          Authorization: "Bearer " + tokenReq
+        }
+      }).then(function (response) {
+        console.log("logout", response.status);
+
+        if (response.status == 200) {
+          localStorage.removeItem("tokenConnexion");
+          localStorage.setItem("connected", "0");
+
+          _this.$router.push("/");
+        }
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -5363,6 +5392,25 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]({
   base: "/",
   mode: "history",
   routes: _routes__WEBPACK_IMPORTED_MODULE_2__.routes
+});
+router.beforeEach(function (to, from, next) {
+  if (to.matched.some(function (record) {
+    return record.meta.requiresAuth;
+  })) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    // console.log("dans mon before",);
+    if (localStorage.getItem("connected") == "0") {
+      next({
+        path: "/"
+      });
+    } else {
+      next();
+    }
+  } else {
+    console.log("skip");
+    next(); // does not require auth, make sure to always call next()!
+  }
 }); // const router = createRouter({
 //     history: createWebHistory(),
 //     routes
@@ -5430,8 +5478,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "routes": () => (/* binding */ routes)
 /* harmony export */ });
 var routes = [{
-  path: '/',
-  name: 'Home',
+  path: "/",
+  name: "Home",
   component: function component() {
     return __webpack_require__.e(/*! import() | profil */ "profil").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Home.vue */ "./resources/js/components/Home.vue"));
   }
@@ -5443,6 +5491,9 @@ var routes = [{
   // which is lazy-loaded when the route is visited.
   component: function component() {
     return __webpack_require__.e(/*! import() | profil */ "profil").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Profil2.vue */ "./resources/js/components/Profil2.vue"));
+  },
+  meta: {
+    requiresAuth: true
   }
 }, {
   path: "/dashboard/compte",
@@ -5452,6 +5503,9 @@ var routes = [{
   // which is lazy-loaded when the route is visited.
   component: function component() {
     return __webpack_require__.e(/*! import() | profil */ "profil").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Profil2.vue */ "./resources/js/components/Profil2.vue"));
+  },
+  meta: {
+    requiresAuth: true
   }
 }, {
   path: "/dashboard/tasks",
@@ -5461,6 +5515,9 @@ var routes = [{
   // which is lazy-loaded when the route is visited.
   component: function component() {
     return __webpack_require__.e(/*! import() | tasks */ "tasks").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Tasks.vue */ "./resources/js/components/Tasks.vue"));
+  },
+  meta: {
+    requiresAuth: true
   }
 }, {
   path: "/dashboard/formcontact",
@@ -5470,6 +5527,9 @@ var routes = [{
   // which is lazy-loaded when the route is visited.
   component: function component() {
     return __webpack_require__.e(/*! import() | tasks */ "tasks").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Formcontact.vue */ "./resources/js/components/Formcontact.vue"));
+  },
+  meta: {
+    requiresAuth: true
   }
 }, {
   path: "/dashboard/filelist",
@@ -5479,6 +5539,9 @@ var routes = [{
   // which is lazy-loaded when the route is visited.
   component: function component() {
     return __webpack_require__.e(/*! import() | tasks */ "tasks").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Filelist.vue */ "./resources/js/components/Filelist.vue"));
+  },
+  meta: {
+    requiresAuth: true
   }
 }];
 
@@ -28491,6 +28554,18 @@ var render = function () {
           ),
           _vm._v(" "),
           _c("v-spacer"),
+          _vm._v(" "),
+          _vm.isLoggin
+            ? _c(
+                "v-btn",
+                {
+                  staticClass: "mx-3",
+                  attrs: { succes: "" },
+                  on: { click: _vm.logout },
+                },
+                [_vm._v("LOGOUT")]
+              )
+            : _vm._e(),
           _vm._v(" "),
           _c("v-switch", {
             attrs: { color: "indigo", "hide-details": "" },

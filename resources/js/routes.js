@@ -1,10 +1,10 @@
 export const routes = [
     {
-        path: '/',
-        name: 'Home',
+        path: "/",
+        name: "Home",
         component: () =>
             import(/* webpackChunkName: "profil" */ "./components/Home.vue"),
-      },
+    },
 
     {
         path: "/dashboard/profil",
@@ -14,6 +14,9 @@ export const routes = [
         // which is lazy-loaded when the route is visited.
         component: () =>
             import(/* webpackChunkName: "profil" */ "./components/Profil2.vue"),
+        meta: {
+            requiresAuth: true,
+        },
     },
     {
         path: "/dashboard/compte",
@@ -23,6 +26,9 @@ export const routes = [
         // which is lazy-loaded when the route is visited.
         component: () =>
             import(/* webpackChunkName: "profil" */ "./components/Profil2.vue"),
+        meta: {
+            requiresAuth: true,
+        },
     },
     {
         path: "/dashboard/tasks",
@@ -32,6 +38,9 @@ export const routes = [
         // which is lazy-loaded when the route is visited.
         component: () =>
             import(/* webpackChunkName: "tasks" */ "./components/Tasks.vue"),
+        meta: {
+            requiresAuth: true,
+        },
     },
     {
         path: "/dashboard/formcontact",
@@ -43,6 +52,9 @@ export const routes = [
             import(
                 /* webpackChunkName: "tasks" */ "./components/Formcontact.vue"
             ),
+        meta: {
+            requiresAuth: true,
+        },
     },
     {
         path: "/dashboard/filelist",
@@ -52,5 +64,8 @@ export const routes = [
         // which is lazy-loaded when the route is visited.
         component: () =>
             import(/* webpackChunkName: "tasks" */ "./components/Filelist.vue"),
+        meta: {
+            requiresAuth: true,
+        },
     },
 ];

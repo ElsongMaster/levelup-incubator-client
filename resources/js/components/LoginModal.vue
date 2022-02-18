@@ -66,7 +66,7 @@ export default {
             userInfo: "",
             token: "",
             userID: "",
-            formData: new FormData(),
+
             headers: {
                 "Access-Control-Allow-Origin": "*",
                 "Content-Type": "multipart/form-data",
@@ -78,16 +78,21 @@ export default {
         login() {
             console.log("Save login");
 
-            // var tokenReq = null;
-            this.formData.append("email", this.email);
-            this.formData.append("password", this.password);
+            var formRequest = new FormData();
+            formRequest.append("email", this.email);
+            formRequest.append("password", this.password);
             axios
-                .get("http://127.0.0.1:8004/api/v1/login/", this.formData)
+                .post("http://127.0.0.1:8004/api/v1/login/", formRequest)
                 .then((response) => {
-                    console.log("login", response.status);
+                    console.log("login", response.data.token);
 
                     if (response.status == 200) {
                         this.$router.push("/dashboard/profil");
+                        localStorage.setItem("connected", "1");
+                        localStorage.setItem(
+                            "tokenConnexion",
+                            response.data.token
+                        );
                     }
                 });
             // this.formData.append("email", this.email);

@@ -28,7 +28,7 @@
                             <p
                                 class="py-2 px-8 flex hover:text-purple-700 cursor-pointer"
                             >
-                                <router-link
+                                <router-link v-if="isLoggin"
                                     :to="{ path: '/dashboard/profil' }"
                                 >
                                     Dashboard</router-link
@@ -1594,6 +1594,11 @@ export default {
     components: {
         LoginModal,
     },
+    data(){
+        return{
+            isLoggin:localStorage.getItem("connected")!="0"
+        }
+    }
 };
 </script>
 <style></style>

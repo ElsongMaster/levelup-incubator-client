@@ -556,6 +556,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
  // import axios from "axios";
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -589,8 +590,9 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
+      var tokenReq = localStorage.getItem("tokenConnexion");
       this.message = "";
-      _services_UploadFilesService__WEBPACK_IMPORTED_MODULE_0__["default"].upload(this.currentFile, localStorage.getItem("email"), function (event) {
+      _services_UploadFilesService__WEBPACK_IMPORTED_MODULE_0__["default"].upload(this.currentFile, tokenReq, localStorage.getItem("email"), function (event) {
         _this2.progress = Math.round(100 * event.loaded / event.total);
       }).then(function (response) {
         _this2.message = response.data.message;
@@ -634,13 +636,14 @@ var UploadFilesService = /*#__PURE__*/function () {
 
   _createClass(UploadFilesService, [{
     key: "upload",
-    value: function upload(file, email, onUploadProgress) {
+    value: function upload(file, email, tokenReq, onUploadProgress) {
       var formData = new FormData();
       formData.append("file", file);
       formData.append("email", email);
       return _http_common__WEBPACK_IMPORTED_MODULE_0__["default"].post("/api/v1/upload", formData, {
         headers: {
-          "Content-Type": "multipart/form-data"
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + tokenReq
         },
         onUploadProgress: onUploadProgress
       });
@@ -2225,6 +2228,10 @@ var render = function () {
         ],
         1
       ),
+      _vm._v(" "),
+      _c("v-btn", { staticClass: "mt-5", attrs: { color: "primary" } }, [
+        _vm._v(" Demander un document "),
+      ]),
     ],
     1
   )

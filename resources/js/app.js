@@ -6,12 +6,12 @@
 
 require("./bootstrap");
 // import Alpine from 'alpine.js';
-import vuetify from './vuetify';
+import vuetify from "./vuetify";
 // import '../../node_modules/vuetify/dist/vuetify.min.css'
-import 'vuetify/dist/vuetify.min.css'
+import "vuetify/dist/vuetify.min.css";
 import VueRouter from "vue-router";
 // import {createRouter, createWebHistory} from "vue-router";
-import Vuex from 'vuex'
+import Vuex from "vuex";
 // window.Alpine = Alpine;
 
 window.Vue = require("vue").default;
@@ -34,14 +34,29 @@ Vue.component(
     require("./components/AppComponent.vue").default
 );
 
-Vue.use(VueRouter)
- Vue.use(Vuex)
- Vue.use(vuetify)
+Vue.use(VueRouter);
+Vue.use(Vuex);
+Vue.use(vuetify);
 // Register Routes
 const router = new VueRouter({
     base: "/",
     mode: "history",
     routes,
+});
+router.beforeEach((to, from, next) => {
+    if (to.matched.some((record) => record.meta.requiresAuth)) {
+        // this route requires auth, check if logged in
+        // if not, redirect to login page.
+        // console.log("dans mon before",);
+        if (localStorage.getItem("connected") == "0") {
+            next({ path: "/" });
+        } else {
+            next();
+        }
+    } else {
+        console.log("skip");
+        next(); // does not require auth, make sure to always call next()!
+    }
 });
 // const router = createRouter({
 //     history: createWebHistory(),
@@ -56,7 +71,7 @@ const router = new VueRouter({
 const app = new Vue({
     el: "#app",
     router,
-    vuetify
+    vuetify,
 });
 
 // Alpine.start();
