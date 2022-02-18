@@ -16,6 +16,15 @@ export const routes = [
             import(/* webpackChunkName: "profil" */ "./components/Profil2.vue"),
     },
     {
+        path: "/dashboard/compte",
+        name: "Compte",
+        // route level code-splitting
+        // this generates a separate chunk (profile.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import(/* webpackChunkName: "profil" */ "./components/Profil2.vue"),
+    },
+    {
         path: "/dashboard/tasks",
         name: "Tasks",
         // route level code-splitting

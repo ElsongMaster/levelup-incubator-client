@@ -1,9 +1,10 @@
 import http from "./http-common";
 class UploadFilesService {
-  upload(file, onUploadProgress) {
+  upload(file,email, onUploadProgress) {
     let formData = new FormData();
     formData.append("file", file);
-    return http.post("/upload", formData, {
+    formData.append("email", email);
+    return http.post("/api/v1/upload", formData, {
       headers: {
         "Content-Type": "multipart/form-data"
       },
@@ -11,7 +12,7 @@ class UploadFilesService {
     });
   }
   getFiles() {
-    return http.get("/files");
+    return http.get("/api/v1/files");
   }
 }
 export default new UploadFilesService();

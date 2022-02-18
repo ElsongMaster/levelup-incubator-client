@@ -266,32 +266,90 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
  // import AvatarPicker from '~/components/AvatarPicker'
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Profil2",
-  pageTitle: 'My Profile',
+  pageTitle: "My Profile",
   components: {
     SideBar: _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  mounted: function mounted() {
+    localStorage.setItem("email", this.form.contactEmail);
+  },
   data: function data() {
     return {
+      formData: new FormData(),
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "multipart/form-data"
+      },
+      currentFile: null,
       loading: false,
       form: {
-        firstName: 'John',
-        lastName: 'Doe',
-        contactEmail: 'john@doe.com' // avatar: 'MALE_CAUCASIAN_BLOND_BEARD'
+        firstName: "John",
+        lastName: "Doe",
+        contactEmail: "userStartup@userstartup.com",
+        lastemail: "userStartup@userstartup.com" // avatar: 'MALE_CAUCASIAN_BLOND_BEARD'
 
       },
       showAvatarPicker: false
     };
   },
   methods: {
+    selectFile: function selectFile(file) {
+      // this.progress = 0;
+      this.currentFile = file;
+    },
     openAvatarPicker: function openAvatarPicker() {
       this.showAvatarPicker = true;
     },
     selectAvatar: function selectAvatar(avatar) {
       this.form.avatar = avatar;
+    },
+    update: function update() {
+      var _this = this;
+
+      this.formData.append("firstname", this.form.firstName);
+      this.formData.append("lastname", this.form.lastName);
+      this.formData.append("email", this.form.contactEmail);
+      this.formData.append("lastemail", this.form.lastemail);
+      this.formData.append("file", this.currentFile);
+      axios.get("http://127.0.0.1:8004/api/v1/login/", this.formData).then(function (response) {
+        console.log("login", response.status);
+
+        if (response.status == 200) {
+          _this.$router.push("/dashboard/profil");
+        }
+      });
     }
   }
 });
@@ -810,10 +868,13 @@ var render = function () {
                       "py-2 px-8 flex hover:text-purple-700 cursor-pointer",
                   },
                   [
-                    _vm._v(
-                      "\n                        Dashboard\n                    "
+                    _c(
+                      "router-link",
+                      { attrs: { to: { path: "/dashboard/profil" } } },
+                      [_vm._v(" Dashboard")]
                     ),
-                  ]
+                  ],
+                  1
                 ),
               ]
             ),
@@ -3039,12 +3100,55 @@ var render = function () {
                     "v-card-text",
                     [
                       _c(
-                        "v-flex",
+                        "v-col",
                         { staticClass: "mb-4" },
                         [
-                          _c("v-btn", { on: { click: _vm.openAvatarPicker } }, [
-                            _vm._v("Change Logo"),
-                          ]),
+                          !_vm.showAvatarPicker
+                            ? _c("v-img", {
+                                attrs: {
+                                  "lazy-src":
+                                    "https://picsum.photos/id/11/10/6",
+                                  "max-height": "150",
+                                  "max-width": "250",
+                                  src: "https://picsum.photos/id/11/500/300",
+                                },
+                              })
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.showAvatarPicker
+                            ? _c(
+                                "v-row",
+                                { attrs: { "no-gutters": "" } },
+                                [
+                                  _c(
+                                    "v-col",
+                                    { attrs: { cols: "8" } },
+                                    [
+                                      _c("v-file-input", {
+                                        attrs: {
+                                          "show-size": "",
+                                          label: "File input",
+                                        },
+                                        on: { change: _vm.selectFile },
+                                      }),
+                                    ],
+                                    1
+                                  ),
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          !_vm.showAvatarPicker
+                            ? _c(
+                                "v-btn",
+                                {
+                                  staticClass: "mt-3",
+                                  on: { click: _vm.openAvatarPicker },
+                                },
+                                [_vm._v("Change Logo")]
+                              )
+                            : _vm._e(),
                         ],
                         1
                       ),
@@ -3100,7 +3204,7 @@ var render = function () {
                         },
                         [
                           _vm._v(
-                            "\n                    Save Changes\n                "
+                            "\n                        Save Changes\n                    "
                           ),
                         ]
                       ),

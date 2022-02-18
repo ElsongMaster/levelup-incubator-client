@@ -157,6 +157,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Formcontact",
@@ -167,6 +176,7 @@ __webpack_require__.r(__webpack_exports__);
     var defaultForm = Object.freeze({
       first: "",
       last: "",
+      object: "",
       bio: "",
       favoriteAnimal: "",
       age: null,
@@ -175,12 +185,6 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: Object.assign({}, defaultForm),
       rules: {
-        age: [function (val) {
-          return val < 10 || "I don't believe you!";
-        }],
-        animal: [function (val) {
-          return (val || "").length > 0 || "This field is required";
-        }],
         name: [function (val) {
           return (val || "").length > 0 || "This field is required";
         }]
@@ -194,7 +198,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     formIsValid: function formIsValid() {
-      return this.form.first && this.form.last && this.form.terms;
+      return this.form.first && this.form.last && this.form.object && this.form.terms;
     }
   },
   methods: {
@@ -547,6 +551,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
  // import axios from "axios";
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -563,7 +572,8 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     _services_UploadFilesService__WEBPACK_IMPORTED_MODULE_0__["default"].getFiles().then(function (response) {
-      _this.fileInfos = response.data;
+      console.log("getFiles", response.data);
+      _this.fileInfos = response.data.data;
     });
   },
   methods: {
@@ -580,7 +590,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.message = "";
-      _services_UploadFilesService__WEBPACK_IMPORTED_MODULE_0__["default"].upload(this.currentFile, function (event) {
+      _services_UploadFilesService__WEBPACK_IMPORTED_MODULE_0__["default"].upload(this.currentFile, localStorage.getItem("email"), function (event) {
         _this2.progress = Math.round(100 * event.loaded / event.total);
       }).then(function (response) {
         _this2.message = response.data.message;
@@ -624,10 +634,11 @@ var UploadFilesService = /*#__PURE__*/function () {
 
   _createClass(UploadFilesService, [{
     key: "upload",
-    value: function upload(file, onUploadProgress) {
+    value: function upload(file, email, onUploadProgress) {
       var formData = new FormData();
       formData.append("file", file);
-      return _http_common__WEBPACK_IMPORTED_MODULE_0__["default"].post("/upload", formData, {
+      formData.append("email", email);
+      return _http_common__WEBPACK_IMPORTED_MODULE_0__["default"].post("/api/v1/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
         },
@@ -637,7 +648,7 @@ var UploadFilesService = /*#__PURE__*/function () {
   }, {
     key: "getFiles",
     value: function getFiles() {
-      return _http_common__WEBPACK_IMPORTED_MODULE_0__["default"].get("/files");
+      return _http_common__WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/v1/files");
     }
   }]);
 
@@ -1309,6 +1320,29 @@ var render = function () {
                                     _vm.$set(_vm.form, "last", $$v)
                                   },
                                   expression: "form.last",
+                                },
+                              }),
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  rules: _vm.rules.name,
+                                  color: "blue darken-2",
+                                  label: "Object",
+                                  required: "",
+                                },
+                                model: {
+                                  value: _vm.form.object,
+                                  callback: function ($$v) {
+                                    _vm.$set(_vm.form, "object", $$v)
+                                  },
+                                  expression: "form.object",
                                 },
                               }),
                             ],
@@ -2134,7 +2168,7 @@ var render = function () {
                   on: { click: _vm.upload },
                 },
                 [
-                  _vm._v("\n        Upload\n        "),
+                  _vm._v("\n                Upload\n                "),
                   _c("v-icon", { attrs: { right: "", dark: "" } }, [
                     _vm._v("mdi-cloud-upload"),
                   ]),
@@ -2152,39 +2186,45 @@ var render = function () {
         ? _c(
             "v-alert",
             { attrs: { border: "left", color: "blue-grey", dark: "" } },
-            [_vm._v("\n    " + _vm._s(_vm.message) + "\n  ")]
+            [_vm._v("\n        " + _vm._s(_vm.message) + "\n    ")]
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.fileInfos.length > 0
-        ? _c(
-            "v-card",
-            { staticClass: "mx-auto" },
+      _c(
+        "v-card",
+        { staticClass: "mx-auto" },
+        [
+          _c(
+            "v-list",
+            { staticClass: "bg-red" },
             [
+              _c("v-subheader", [_vm._v("List of Files ")]),
+              _vm._v(" "),
               _c(
-                "v-list",
-                [
-                  _c("v-subheader", [_vm._v("List of Files")]),
-                  _vm._v(" "),
-                  _c(
-                    "v-list-item-group",
-                    { attrs: { color: "primary" } },
-                    _vm._l(_vm.fileInfos, function (file, index) {
-                      return _c("v-list-item", { key: index }, [
-                        _c("a", { attrs: { href: file.url } }, [
-                          _vm._v(_vm._s(file.name)),
+                "v-list-item-group",
+                { attrs: { color: "primary" } },
+                _vm._l(_vm.fileInfos, function (file, index) {
+                  return _c(
+                    "v-list-item",
+                    { key: index },
+                    [
+                      _c("v-list-item-content", [
+                        _c("a", { attrs: { href: file.filepath } }, [
+                          _vm._v(_vm._s(file.filepath)),
                         ]),
-                      ])
-                    }),
+                      ]),
+                    ],
                     1
-                  ),
-                ],
+                  )
+                }),
                 1
               ),
             ],
             1
-          )
-        : _vm._e(),
+          ),
+        ],
+        1
+      ),
     ],
     1
   )

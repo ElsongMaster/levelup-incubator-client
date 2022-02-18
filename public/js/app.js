@@ -5445,6 +5445,15 @@ var routes = [{
     return __webpack_require__.e(/*! import() | profil */ "profil").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Profil2.vue */ "./resources/js/components/Profil2.vue"));
   }
 }, {
+  path: "/dashboard/compte",
+  name: "Compte",
+  // route level code-splitting
+  // this generates a separate chunk (profile.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: function component() {
+    return __webpack_require__.e(/*! import() | profil */ "profil").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Profil2.vue */ "./resources/js/components/Profil2.vue"));
+  }
+}, {
   path: "/dashboard/tasks",
   name: "Tasks",
   // route level code-splitting
@@ -28482,6 +28491,17 @@ var render = function () {
           ),
           _vm._v(" "),
           _c("v-spacer"),
+          _vm._v(" "),
+          _c("v-switch", {
+            attrs: { color: "indigo", "hide-details": "" },
+            model: {
+              value: _vm.$vuetify.theme.dark,
+              callback: function ($$v) {
+                _vm.$set(_vm.$vuetify.theme, "dark", $$v)
+              },
+              expression: "$vuetify.theme.dark",
+            },
+          }),
         ],
         1
       ),

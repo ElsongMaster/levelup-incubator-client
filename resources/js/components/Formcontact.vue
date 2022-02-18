@@ -30,6 +30,15 @@
                   required
                 ></v-text-field>
               </v-col>
+              <v-col cols="12" >
+                <v-text-field
+                  v-model="form.object"
+                  :rules="rules.name"
+                  color="blue darken-2"
+                  label="Object"
+                  required
+                ></v-text-field>
+              </v-col>
               <v-col cols="12">
                 <v-textarea v-model="form.bio" color="teal">
                   <template v-slot:label>
@@ -119,6 +128,7 @@ export default {
     const defaultForm = Object.freeze({
       first: "",
       last: "",
+      object: "",
       bio: "",
       favoriteAnimal: "",
       age: null,
@@ -128,8 +138,7 @@ export default {
     return {
       form: Object.assign({}, defaultForm),
       rules: {
-        age: [(val) => val < 10 || `I don't believe you!`],
-        animal: [(val) => (val || "").length > 0 || "This field is required"],
+
         name: [(val) => (val || "").length > 0 || "This field is required"],
       },
 
@@ -144,7 +153,7 @@ export default {
 
   computed: {
     formIsValid() {
-      return this.form.first && this.form.last && this.form.terms;
+      return this.form.first && this.form.last && this.form.object && this.form.terms;
     },
   },
 
