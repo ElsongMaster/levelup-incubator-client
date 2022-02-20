@@ -80,10 +80,11 @@ export default {
                 this.message = "Please select a file!";
                 return;
             }
-            let tokenReq = localStorage.getItem("tokenConnexion");
+            var tokenReq = localStorage.getItem("tokenConnexion");
             this.message = "";
             UploadService.upload(
-                this.currentFile,tokenReq,
+                this.currentFile,
+                tokenReq,
                 localStorage.getItem("email"),
                 (event) => {
                     this.progress = Math.round(
@@ -92,8 +93,9 @@ export default {
                 }
             )
                 .then((response) => {
+                    var tokenReq = localStorage.getItem("tokenConnexion");
                     this.message = response.data.message;
-                    return UploadService.getFiles();
+                    return UploadService.getFiles(tokenReq);
                 })
                 .then((files) => {
                     this.fileInfos = files.data;

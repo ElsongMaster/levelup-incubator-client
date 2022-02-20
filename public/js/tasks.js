@@ -595,8 +595,9 @@ __webpack_require__.r(__webpack_exports__);
       _services_UploadFilesService__WEBPACK_IMPORTED_MODULE_0__["default"].upload(this.currentFile, tokenReq, localStorage.getItem("email"), function (event) {
         _this2.progress = Math.round(100 * event.loaded / event.total);
       }).then(function (response) {
+        var tokenReq = localStorage.getItem("tokenConnexion");
         _this2.message = response.data.message;
-        return _services_UploadFilesService__WEBPACK_IMPORTED_MODULE_0__["default"].getFiles();
+        return _services_UploadFilesService__WEBPACK_IMPORTED_MODULE_0__["default"].getFiles(tokenReq);
       }).then(function (files) {
         _this2.fileInfos = files.data;
       })["catch"](function () {
@@ -637,6 +638,7 @@ var UploadFilesService = /*#__PURE__*/function () {
   _createClass(UploadFilesService, [{
     key: "upload",
     value: function upload(file, email, tokenReq, onUploadProgress) {
+      console.log(tokenReq);
       var formData = new FormData();
       formData.append("file", file);
       formData.append("email", email);
@@ -650,8 +652,13 @@ var UploadFilesService = /*#__PURE__*/function () {
     }
   }, {
     key: "getFiles",
-    value: function getFiles() {
-      return _http_common__WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/v1/files");
+    value: function getFiles(tokenReq) {
+      return _http_common__WEBPACK_IMPORTED_MODULE_0__["default"].get("/api/v1/files", {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + tokenReq
+        }
+      });
     }
   }]);
 

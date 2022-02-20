@@ -18,17 +18,34 @@
                                 <v-text-field
                                     v-model="email"
                                     label="Email*"
+                                    :rules="rules.email"
                                     required
                                 ></v-text-field>
                             </v-col>
                             <!-- Password -->
                             <v-col cols="12">
                                 <v-text-field
+                                    :append-icon="
+                                        show4 ? 'mdi-eye' : 'mdi-eye-off'
+                                    "
                                     label="Password*"
-                                    type="password"
+                                    :type="show4 ? 'text' : 'password'"
+                                    :rules="rules.email"
                                     required
                                     v-model="password"
+                                    @click:append="show4 = !show4"
                                 ></v-text-field>
+                                <!-- <v-text-field
+                                    :append-icon="
+                                        show4 ? 'mdi-eye' : 'mdi-eye-off'
+                                    "
+                                    :rules="[rules.email, rules.emailMatch]"
+                                    :type="show4 ? 'text' : 'password'"
+                                    name="input-10-2"
+                                    label="Password*"
+                                    @click:append="show4 = !show4"
+                                    class="border-none"
+                                ></v-text-field> -->
                             </v-col>
                         </v-row>
                     </v-container>
@@ -53,23 +70,32 @@
 </template>
 
 <script>
-// import { mapFields } from "vuex-map-fields";
+import { mapFields } from "vuex-map-fields";
 // import axios from "axios";
+// import {mapState} from 'vuex';
 
 export default {
     name: "LoginModal",
     data() {
         return {
-            email: "",
-            password: "",
-            dialogLogin: "",
-            userInfo: "",
-            token: "",
-            userID: "",
+            // email: "",
+            // password: "",
+            // dialogLogin: "",
+            // userInfo: "",
+            // token: "",
+            // userID: "",
+            show4: false,
 
             headers: {
                 "Access-Control-Allow-Origin": "*",
                 "Content-Type": "multipart/form-data",
+            },
+            rules: {
+                email: [
+                    (val) => (val || "").length > 0 || "This field is required",
+                ],
+                emailMatch: () =>
+                    `The email and password you entered don't match`,
             },
         };
     },
@@ -77,7 +103,6 @@ export default {
     methods: {
         login() {
             console.log("Save login");
-
             var formRequest = new FormData();
             formRequest.append("email", this.email);
             formRequest.append("password", this.password);
@@ -87,39 +112,36 @@ export default {
                     console.log("login", response.data.token);
 
                     if (response.status == 200) {
-                        this.$router.push("/dashboard/profil");
+                        this.$store.dispatch("updateIsLoggin", true);
                         localStorage.setItem("connected", "1");
                         localStorage.setItem(
                             "tokenConnexion",
                             response.data.token
                         );
+                        this.token = response.data.token;
+                        this.$router.push("/dashboard/profil").catch(() => {});
                     }
                 });
-            // this.formData.append("email", this.email);
-            // this.formData.append("password", this.password);
-
-            // axios
-            //   .post("http://127.0.0.1:8000/api/v1/login", this.formData, this.headers)
-            //   .then((response) => {
-            //     console.log(response.data);
-            //     this.userInfo = response.data.user;
-            //     this.token = response.data.token;
-            //     this.userID = response.data.user.id;
-            //   })
-            //   .catch((error) => {
-            //     console.log(error.response);
-            //   });
         },
     },
     computed: {
-        // ...mapFields([
-        //     "email",
-        //     "password",
-        //     "dialogLogin",
-        //     "userInfo",
-        //     "token",
-        //     "userID",
+        // ...mapState([
+        //   'isLoggin'
         // ]),
+        ...mapFields([
+            "email",
+            "password",
+            "dialogLogin",
+            "userInfo",
+            "token",
+            "userID",
+        ]),
     },
 };
 </script>
+
+<style scoped>
+.border-none:focus {
+    border-color: none !important;
+}
+</style>

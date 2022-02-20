@@ -22,7 +22,13 @@
             </div>
 
             <v-spacer></v-spacer>
-            <v-btn v-if="isLoggin" succes class="mx-3" @click="logout">LOGOUT</v-btn>
+            <v-btn
+                v-if="this.$store.state.isLoggin"
+                succes
+                class="mx-3"
+                @click="logout"
+                >LOGOUT</v-btn
+            >
             <v-switch
                 color="indigo"
                 v-model="$vuetify.theme.dark"
@@ -46,18 +52,24 @@
 </template>
 
 <script>
+// import {mapState} from 'vuex';
 export default {
     name: "AppComponent",
-    data(){
-        return{
-            isLoggin:localStorage.getItem("connected")!="0"
-        }
+    data() {
+        return {
+            // isLoggin:localStorage.getItem("connected")!="0"
+        };
+    },
+    computed: {
+        // ...mapState([
+        //   'isLoggin'
+        // ]),
     },
 
     methods: {
         logout() {
             let tokenReq = localStorage.getItem("tokenConnexion");
-        console.log(tokenReq);
+            console.log(tokenReq);
             axios
                 .get("http://127.0.0.1:8004/api/v1/logout", {
                     headers: { Authorization: "Bearer " + tokenReq },
@@ -68,6 +80,7 @@ export default {
                     if (response.status == 200) {
                         localStorage.removeItem("tokenConnexion");
                         localStorage.setItem("connected", "0");
+                        this.$store.dispatch("updateIsLoggin", false);
                         this.$router.push("/");
                     }
                 });
