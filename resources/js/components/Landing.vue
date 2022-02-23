@@ -1,36 +1,21 @@
 <template>
-    <v-main class="pa-0 p-0" style="padding: 0 !important;">
-        <main class="bg-gray-100 font-montserrat" style="margin: 0; padding: 0 !important;">
+    <v-main class="pa-0 p-0 bg-gray-100" style="padding: 0 !important; ">
+        <main
+            class="bg-gray-100 font-montserrat"
+            style="margin: 0; padding: 0 !important;background-color: #F3F4F6 !important;"
+        >
             <link
                 href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700,900&display=swap"
                 rel="stylesheet"
             />
-            <header class="h-24 sm:h-32 flex items-center" style="position: relative; top: 50px">
+            <!-- <header class="h-24 sm:h-32 flex items-center" style="position: relative; top: 50px">
                 <div class="container mx-auto px-6 sm:px-12 flex items-center justify-between">
                     <div class="font-black text-blue-900 text-2xl flex items-start">
                         Your Startup
                         <span class="w-3 h-3 rounded-full bg-purple-600 ml-2"></span>
                     </div>
-                    <div class="flex items-center">
-                        <nav class="text-purple-900 text-lg hidden lg:flex items-center">
-                            <p class="py-2 px-8 flex hover:text-purple-700 cursor-pointer">
-                                <LoginModal v-if="!this.$store.state.isLoggin" />
-                            </p>
-                            <p class="py-2 px-8 flex hover:text-purple-700 cursor-pointer">
-                                <router-link
-                                    v-if="this.$store.state.isLoggin"
-                                    :to="{ path: '/dashboard/profil' }"
-                                >Dashboard</router-link>
-                            </p>
-                        </nav>
-                        <button class="flex flex-col ml-4">
-                            <span class="w-6 h-1 rounded-full bg-purple-800 mb-1"></span>
-                            <span class="w-6 h-1 rounded-full bg-purple-800 mb-1"></span>
-                            <span class="w-6 h-1 rounded-full bg-purple-800 mb-1"></span>
-                        </button>
-                    </div>
                 </div>
-            </header>
+            </header> -->
             <div class="container mx-auto px-6 sm:px-12 flex flex-col-reverse sm:flex-row relative">
                 <div class="sm:w-6/12 relative z-10">
                     <svg
@@ -442,11 +427,12 @@
                         dignissim, nec tincidunt neque condimentum. Nam nec
                         ligula pretium mi interdum hendrerit in sit.
                     </p>
-                    <a
+                    <!-- <a
                         href="#"
                         class="font-semibold text-lg bg-purple-600 hover:bg-blue-400 text-white py-3 px-12 rounded-full"
                         style="color: #F3F4F6 !important;"
-                    >Learn more</a>
+                    >Learn more</a>-->
+                    <LoginModal v-if="!this.$store.state.isLoggin" />
                 </div>
                 <svg
                     class="w-full absolute bottom-0 left-0"
@@ -1169,6 +1155,9 @@ export default {
 </script>
 <style>
 .theme--dark input {
-    background-color: #1E1E1E !important;
+    background-color: #1e1e1e !important;
+}
+main {
+    background-color: #f3f4f6 !important;
 }
 </style>
