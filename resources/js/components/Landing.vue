@@ -1,60 +1,37 @@
 <template>
-    <v-main>
-        <main class="bg-gray-100 font-montserrat">
+    <v-main class="pa-0 p-0" style="padding: 0 !important;">
+        <main class="bg-gray-100 font-montserrat" style="margin: 0; padding: 0 !important;">
             <link
                 href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700,900&display=swap"
                 rel="stylesheet"
             />
-            <header class="h-24 sm:h-32 flex items-center">
-                <div
-                    class="container mx-auto px-6 sm:px-12 flex items-center justify-between"
-                >
-                    <div
-                        class="font-black text-blue-900 text-2xl flex items-start"
-                    >
-                        Your Startup<span
-                            class="w-3 h-3 rounded-full bg-purple-600 ml-2"
-                        ></span>
+            <header class="h-24 sm:h-32 flex items-center" style="position: relative; top: 50px">
+                <div class="container mx-auto px-6 sm:px-12 flex items-center justify-between">
+                    <div class="font-black text-blue-900 text-2xl flex items-start">
+                        Your Startup
+                        <span class="w-3 h-3 rounded-full bg-purple-600 ml-2"></span>
                     </div>
                     <div class="flex items-center">
-                        <nav
-                            class="text-purple-900 text-lg hidden lg:flex items-center"
-                        >
-                            <p
-                                class="py-2 px-8 flex hover:text-purple-700 cursor-pointer"
-                            >
-                                <LoginModal
-                                    v-if="!this.$store.state.isLoggin"
-                                />
+                        <nav class="text-purple-900 text-lg hidden lg:flex items-center">
+                            <p class="py-2 px-8 flex hover:text-purple-700 cursor-pointer">
+                                <LoginModal v-if="!this.$store.state.isLoggin" />
                             </p>
-                            <p
-                                class="py-2 px-8 flex hover:text-purple-700 cursor-pointer"
-                            >
+                            <p class="py-2 px-8 flex hover:text-purple-700 cursor-pointer">
                                 <router-link
                                     v-if="this.$store.state.isLoggin"
                                     :to="{ path: '/dashboard/profil' }"
-                                >
-                                    Dashboard</router-link
-                                >
+                                >Dashboard</router-link>
                             </p>
                         </nav>
                         <button class="flex flex-col ml-4">
-                            <span
-                                class="w-6 h-1 rounded-full bg-purple-800 mb-1"
-                            ></span>
-                            <span
-                                class="w-6 h-1 rounded-full bg-purple-800 mb-1"
-                            ></span>
-                            <span
-                                class="w-6 h-1 rounded-full bg-purple-800 mb-1"
-                            ></span>
+                            <span class="w-6 h-1 rounded-full bg-purple-800 mb-1"></span>
+                            <span class="w-6 h-1 rounded-full bg-purple-800 mb-1"></span>
+                            <span class="w-6 h-1 rounded-full bg-purple-800 mb-1"></span>
                         </button>
                     </div>
                 </div>
             </header>
-            <div
-                class="container mx-auto px-6 sm:px-12 flex flex-col-reverse sm:flex-row relative"
-            >
+            <div class="container mx-auto px-6 sm:px-12 flex flex-col-reverse sm:flex-row relative">
                 <div class="sm:w-6/12 relative z-10">
                     <svg
                         class="w-full"
@@ -111,11 +88,7 @@
                                 y2="103.45"
                                 gradientUnits="userSpaceOnUse"
                             >
-                                <stop
-                                    offset="0"
-                                    stop-color="#fff"
-                                    stop-opacity="0"
-                                />
+                                <stop offset="0" stop-color="#fff" stop-opacity="0" />
                                 <stop offset="1" stop-color="#d1b6cb" />
                             </linearGradient>
                             <linearGradient
@@ -462,9 +435,7 @@
                 >
                     <h1
                         class="text-4xl lg:text-5xl text-blue-900 leading-none mb-4 font-black"
-                    >
-                        Business Landing Page
-                    </h1>
+                    >Business Landing Page</h1>
                     <p class="lg:text-lg mb-4 sm:mb-12 text-blue-900">
                         Lorem ipsum dolor sit amet, consectetur adipiscing
                         adipiselit. Pellentesque suscipit tellus vitae purus
@@ -474,8 +445,8 @@
                     <a
                         href="#"
                         class="font-semibold text-lg bg-purple-600 hover:bg-blue-400 text-white py-3 px-12 rounded-full"
-                        >Learn more</a
-                    >
+                        style="color: #F3F4F6 !important;"
+                    >Learn more</a>
                 </div>
                 <svg
                     class="w-full absolute bottom-0 left-0"
@@ -517,13 +488,7 @@
                         d="M331.32,40.45v20.7h2.57V40.45Zm1.46,9.1h.34V60.26h-.34Zm-.69,0h.35V60.26h-.35Z"
                         style="fill: #bebcdb"
                     />
-                    <rect
-                        x="190.33"
-                        y="100.21"
-                        width="13.96"
-                        height="48.65"
-                        style="fill: #bebcdb"
-                    />
+                    <rect x="190.33" y="100.21" width="13.96" height="48.65" style="fill: #bebcdb" />
                     <polygon
                         points="279.77 148.86 279.77 55.81 245.96 40.11 233.42 40.11 233.42 37.34 232.94 37.34 232.94 61.91 230.37 61.91 230.37 45.39 216.55 45.39 216.55 61.91 214.24 61.91 214.24 87.38 211.64 87.38 211.64 148.86 279.77 148.86"
                         style="fill: #bebcdb"
@@ -532,34 +497,10 @@
                         points="65.25 148.86 65.25 94.66 45.56 85.52 38.26 85.52 28.43 88.59 28.43 98.22 27.08 98.22 27.08 113.05 25.57 113.05 25.57 148.86 65.25 148.86"
                         style="fill: #bebcdb"
                     />
-                    <rect
-                        x="164.44"
-                        y="95.42"
-                        width="9.07"
-                        height="53.44"
-                        style="fill: #bebcdb"
-                    />
-                    <rect
-                        x="153.67"
-                        y="87.02"
-                        width="16.77"
-                        height="61.84"
-                        style="fill: #bebcdb"
-                    />
-                    <rect
-                        x="138.3"
-                        y="98.85"
-                        width="12.5"
-                        height="49.2"
-                        style="fill: #bebcdb"
-                    />
-                    <rect
-                        x="162.49"
-                        y="41.08"
-                        width="21.7"
-                        height="106.97"
-                        style="fill: #bebcdb"
-                    />
+                    <rect x="164.44" y="95.42" width="9.07" height="53.44" style="fill: #bebcdb" />
+                    <rect x="153.67" y="87.02" width="16.77" height="61.84" style="fill: #bebcdb" />
+                    <rect x="138.3" y="98.85" width="12.5" height="49.2" style="fill: #bebcdb" />
+                    <rect x="162.49" y="41.08" width="21.7" height="106.97" style="fill: #bebcdb" />
                     <rect
                         x="320.95"
                         y="50.58"
@@ -568,13 +509,7 @@
                         transform="translate(660.35 193.6) rotate(180)"
                         style="fill: #bebcdb"
                     />
-                    <rect
-                        x="329.51"
-                        y="67.95"
-                        width="18.44"
-                        height="80.8"
-                        style="fill: #bebcdb"
-                    />
+                    <rect x="329.51" y="67.95" width="18.44" height="80.8" style="fill: #bebcdb" />
                     <path
                         d="M322,39.93V56.22H309.5V49.94h-6.85V47.33H299v2.61H281.78c-.06.1-.11.2-.18.3V78.18h-7.21v70.68h48.8V39.93Z"
                         style="fill: #bebcdb"
@@ -583,13 +518,7 @@
                         points="64.67 148.86 64.67 95.61 67.3 99.1 74.48 99.1 74.48 85.03 74.76 85.03 74.76 99.1 76.23 99.1 76.23 89.64 84.13 89.64 84.13 99.1 85.46 99.1 85.46 113.68 86.94 113.68 86.94 148.86 64.67 148.86"
                         style="fill: #bebcdb"
                     />
-                    <rect
-                        x="89.35"
-                        y="56.43"
-                        width="13.96"
-                        height="92.43"
-                        style="fill: #bebcdb"
-                    />
+                    <rect x="89.35" y="56.43" width="13.96" height="92.43" style="fill: #bebcdb" />
                     <polygon
                         points="103.21 148.86 103.21 79.28 116.61 79.28 123.81 86.73 123.81 148.86 103.21 148.86"
                         style="fill: #bebcdb"
@@ -598,20 +527,8 @@
                         points="218.96 100.21 218.96 103.08 219.97 103.08 219.97 108.84 223.37 108.84 223.37 148.86 205.56 148.86 205.56 100.21 218.96 100.21"
                         style="fill: #ada7ce"
                     />
-                    <rect
-                        x="179.43"
-                        y="66.54"
-                        width="5.85"
-                        height="0.52"
-                        style="fill: #fffffc"
-                    />
-                    <rect
-                        x="177.96"
-                        y="67.07"
-                        width="8.77"
-                        height="8.79"
-                        style="fill: #d0d4ea"
-                    />
+                    <rect x="179.43" y="66.54" width="5.85" height="0.52" style="fill: #fffffc" />
+                    <rect x="177.96" y="67.07" width="8.77" height="8.79" style="fill: #d0d4ea" />
                     <rect
                         x="195.68"
                         y="50.74"
@@ -628,49 +545,19 @@
                         transform="translate(397.74 144.97) rotate(180)"
                         style="fill: #d5daee"
                     />
-                    <rect
-                        x="183.81"
-                        y="63.4"
-                        width="18.68"
-                        height="48.45"
-                        style="fill: #e6f1f5"
-                    />
+                    <rect x="183.81" y="63.4" width="18.68" height="48.45" style="fill: #e6f1f5" />
                     <polygon
                         points="214.42 95.41 193.43 95.41 193.43 80.82 214.42 95.41"
                         style="fill: #f3f8f5"
                     />
-                    <rect
-                        x="170.01"
-                        y="76.18"
-                        width="25.26"
-                        height="72.68"
-                        style="fill: #e6f1f5"
-                    />
-                    <rect
-                        x="192.35"
-                        y="94.21"
-                        width="23.15"
-                        height="54.65"
-                        style="fill: #d5daee"
-                    />
+                    <rect x="170.01" y="76.18" width="25.26" height="72.68" style="fill: #e6f1f5" />
+                    <rect x="192.35" y="94.21" width="23.15" height="54.65" style="fill: #d5daee" />
                     <polygon
                         points="494.06 113.31 494.06 115.55 494.84 115.55 494.84 120.04 497.5 120.04 497.5 151.26 483.6 151.26 483.6 113.31 494.06 113.31"
                         style="fill: #ada7ce"
                     />
-                    <rect
-                        x="463.22"
-                        y="87.05"
-                        width="4.56"
-                        height="0.41"
-                        style="fill: #fffffc"
-                    />
-                    <rect
-                        x="462.08"
-                        y="87.46"
-                        width="6.84"
-                        height="6.85"
-                        style="fill: #d0d4ea"
-                    />
+                    <rect x="463.22" y="87.05" width="4.56" height="0.41" style="fill: #fffffc" />
+                    <rect x="462.08" y="87.46" width="6.84" height="6.85" style="fill: #d0d4ea" />
                     <rect
                         x="475.89"
                         y="74.73"
@@ -687,31 +574,13 @@
                         transform="translate(956.77 183.37) rotate(180)"
                         style="fill: #d5daee"
                     />
-                    <rect
-                        x="466.64"
-                        y="84.61"
-                        width="14.57"
-                        height="37.79"
-                        style="fill: #e6f1f5"
-                    />
+                    <rect x="466.64" y="84.61" width="14.57" height="37.79" style="fill: #e6f1f5" />
                     <polygon
                         points="490.51 109.57 474.14 109.57 474.14 98.19 490.51 109.57"
                         style="fill: #f3f8f5"
                     />
-                    <rect
-                        x="455.88"
-                        y="94.57"
-                        width="19.7"
-                        height="56.69"
-                        style="fill: #e6f1f5"
-                    />
-                    <rect
-                        x="473.3"
-                        y="108.63"
-                        width="18.06"
-                        height="42.62"
-                        style="fill: #d5daee"
-                    />
+                    <rect x="455.88" y="94.57" width="19.7" height="56.69" style="fill: #e6f1f5" />
+                    <rect x="473.3" y="108.63" width="18.06" height="42.62" style="fill: #d5daee" />
                     <polygon
                         points="2.64 122.08 2.64 123.8 2.04 123.8 2.04 127.26 0 127.26 0 151.26 10.68 151.26 10.68 122.08 2.64 122.08"
                         style="fill: #ada7ce"
@@ -732,20 +601,8 @@
                         transform="translate(49.2 209.69) rotate(180)"
                         style="fill: #d0d4ea"
                     />
-                    <rect
-                        x="15.9"
-                        y="92.42"
-                        width="0.7"
-                        height="26.08"
-                        style="fill: #d5daee"
-                    />
-                    <rect
-                        x="14.34"
-                        y="92.42"
-                        width="0.7"
-                        height="26.08"
-                        style="fill: #d5daee"
-                    />
+                    <rect x="15.9" y="92.42" width="0.7" height="26.08" style="fill: #d5daee" />
+                    <rect x="14.34" y="92.42" width="0.7" height="26.08" style="fill: #d5daee" />
                     <rect
                         x="12.52"
                         y="100.01"
@@ -758,34 +615,10 @@
                         points="5.37 119.2 17.95 119.2 17.95 110.46 5.37 119.2"
                         style="fill: #f3f8f5"
                     />
-                    <rect
-                        x="16.85"
-                        y="107.67"
-                        width="15.15"
-                        height="43.58"
-                        style="fill: #e6f1f5"
-                    />
-                    <rect
-                        x="4.72"
-                        y="118.49"
-                        width="13.88"
-                        height="32.77"
-                        style="fill: #d5daee"
-                    />
-                    <rect
-                        x="247.54"
-                        y="10"
-                        width="9.43"
-                        height="62.81"
-                        style="fill: #afaacf"
-                    />
-                    <rect
-                        x="240.25"
-                        y="12.37"
-                        width="34.36"
-                        height="77.61"
-                        style="fill: #d5daee"
-                    />
+                    <rect x="16.85" y="107.67" width="15.15" height="43.58" style="fill: #e6f1f5" />
+                    <rect x="4.72" y="118.49" width="13.88" height="32.77" style="fill: #d5daee" />
+                    <rect x="247.54" y="10" width="9.43" height="62.81" style="fill: #afaacf" />
+                    <rect x="240.25" y="12.37" width="34.36" height="77.61" style="fill: #d5daee" />
                     <rect
                         x="236.38"
                         y="70.31"
@@ -814,62 +647,14 @@
                         points="252.98 43.37 252.98 148.86 279.77 148.86 279.77 55.81 252.98 43.37"
                         style="fill: #d5daee"
                     />
-                    <rect
-                        x="231.1"
-                        y="66.23"
-                        width="15.96"
-                        height="82.63"
-                        style="fill: #afaacf"
-                    />
-                    <rect
-                        x="242.99"
-                        y="74.34"
-                        width="1.31"
-                        height="52.62"
-                        style="fill: #b9b5d6"
-                    />
-                    <rect
-                        x="240.08"
-                        y="74.34"
-                        width="1.31"
-                        height="52.62"
-                        style="fill: #b9b5d6"
-                    />
-                    <rect
-                        x="237.16"
-                        y="74.34"
-                        width="1.31"
-                        height="52.62"
-                        style="fill: #b9b5d6"
-                    />
-                    <rect
-                        x="234.25"
-                        y="74.34"
-                        width="1.31"
-                        height="52.62"
-                        style="fill: #b9b5d6"
-                    />
-                    <rect
-                        x="253.24"
-                        y="64.52"
-                        width="9.22"
-                        height="9.79"
-                        style="fill: #d5daee"
-                    />
-                    <rect
-                        x="393.32"
-                        y="42.47"
-                        width="7.23"
-                        height="48.12"
-                        style="fill: #afaacf"
-                    />
-                    <rect
-                        x="387.74"
-                        y="44.28"
-                        width="26.33"
-                        height="59.47"
-                        style="fill: #d5daee"
-                    />
+                    <rect x="231.1" y="66.23" width="15.96" height="82.63" style="fill: #afaacf" />
+                    <rect x="242.99" y="74.34" width="1.31" height="52.62" style="fill: #b9b5d6" />
+                    <rect x="240.08" y="74.34" width="1.31" height="52.62" style="fill: #b9b5d6" />
+                    <rect x="237.16" y="74.34" width="1.31" height="52.62" style="fill: #b9b5d6" />
+                    <rect x="234.25" y="74.34" width="1.31" height="52.62" style="fill: #b9b5d6" />
+                    <rect x="253.24" y="64.52" width="9.22" height="9.79" style="fill: #d5daee" />
+                    <rect x="393.32" y="42.47" width="7.23" height="48.12" style="fill: #afaacf" />
+                    <rect x="387.74" y="44.28" width="26.33" height="59.47" style="fill: #d5daee" />
                     <rect
                         x="384.77"
                         y="88.67"
@@ -898,48 +683,12 @@
                         points="397.49 68.03 397.49 148.86 418.02 148.86 418.02 77.56 397.49 68.03"
                         style="fill: #d5daee"
                     />
-                    <rect
-                        x="380.73"
-                        y="85.55"
-                        width="12.23"
-                        height="63.31"
-                        style="fill: #bebcdb"
-                    />
-                    <rect
-                        x="389.84"
-                        y="91.76"
-                        width="1"
-                        height="40.32"
-                        style="fill: #b9b5d6"
-                    />
-                    <rect
-                        x="387.61"
-                        y="91.76"
-                        width="1"
-                        height="40.32"
-                        style="fill: #b9b5d6"
-                    />
-                    <rect
-                        x="385.38"
-                        y="91.76"
-                        width="1"
-                        height="40.32"
-                        style="fill: #b9b5d6"
-                    />
-                    <rect
-                        x="383.14"
-                        y="91.76"
-                        width="1"
-                        height="40.32"
-                        style="fill: #b9b5d6"
-                    />
-                    <rect
-                        x="397.69"
-                        y="84.24"
-                        width="7.06"
-                        height="7.5"
-                        style="fill: #d5daee"
-                    />
+                    <rect x="380.73" y="85.55" width="12.23" height="63.31" style="fill: #bebcdb" />
+                    <rect x="389.84" y="91.76" width="1" height="40.32" style="fill: #b9b5d6" />
+                    <rect x="387.61" y="91.76" width="1" height="40.32" style="fill: #b9b5d6" />
+                    <rect x="385.38" y="91.76" width="1" height="40.32" style="fill: #b9b5d6" />
+                    <rect x="383.14" y="91.76" width="1" height="40.32" style="fill: #b9b5d6" />
+                    <rect x="397.69" y="84.24" width="7.06" height="7.5" style="fill: #d5daee" />
                     <rect
                         x="144.5"
                         y="83.05"
@@ -1040,42 +789,18 @@
                         transform="translate(278.88 280.78) rotate(180)"
                         style="fill: #bebcdb"
                     />
-                    <rect
-                        x="373.55"
-                        y="100.21"
-                        width="13.96"
-                        height="48.65"
-                        style="fill: #bebcdb"
-                    />
+                    <rect x="373.55" y="100.21" width="13.96" height="48.65" style="fill: #bebcdb" />
                     <polygon
                         points="457.44 148.86 457.44 77.56 431.54 65.53 421.93 65.53 421.93 63.41 421.56 63.41 421.56 82.24 419.59 82.24 419.59 69.58 409.01 69.58 409.01 82.24 407.23 82.24 407.23 101.76 405.24 101.76 405.24 148.86 457.44 148.86"
                         style="fill: #bebcdb"
                     />
-                    <rect
-                        x="345.71"
-                        y="41.08"
-                        width="21.7"
-                        height="106.97"
-                        style="fill: #bebcdb"
-                    />
+                    <rect x="345.71" y="41.08" width="21.7" height="106.97" style="fill: #bebcdb" />
                     <polygon
                         points="402.18 100.21 402.18 103.08 403.19 103.08 403.19 108.84 406.59 108.84 406.59 148.86 388.77 148.86 388.77 100.21 402.18 100.21"
                         style="fill: #ada7ce"
                     />
-                    <rect
-                        x="362.65"
-                        y="66.54"
-                        width="5.85"
-                        height="0.52"
-                        style="fill: #fffffc"
-                    />
-                    <rect
-                        x="361.18"
-                        y="67.07"
-                        width="8.77"
-                        height="8.79"
-                        style="fill: #d0d4ea"
-                    />
+                    <rect x="362.65" y="66.54" width="5.85" height="0.52" style="fill: #fffffc" />
+                    <rect x="361.18" y="67.07" width="8.77" height="8.79" style="fill: #d0d4ea" />
                     <rect
                         x="378.9"
                         y="50.74"
@@ -1092,45 +817,15 @@
                         transform="translate(764.18 144.97) rotate(180)"
                         style="fill: #d5daee"
                     />
-                    <rect
-                        x="367.03"
-                        y="63.4"
-                        width="18.68"
-                        height="48.45"
-                        style="fill: #e6f1f5"
-                    />
+                    <rect x="367.03" y="63.4" width="18.68" height="48.45" style="fill: #e6f1f5" />
                     <polygon
                         points="397.64 95.41 376.65 95.41 376.65 80.82 397.64 95.41"
                         style="fill: #f3f8f5"
                     />
-                    <rect
-                        x="353.23"
-                        y="76.18"
-                        width="25.26"
-                        height="72.68"
-                        style="fill: #e6f1f5"
-                    />
-                    <rect
-                        x="375.57"
-                        y="94.21"
-                        width="23.15"
-                        height="54.65"
-                        style="fill: #d5daee"
-                    />
-                    <rect
-                        x="434.21"
-                        y="62.03"
-                        width="4.84"
-                        height="32.25"
-                        style="fill: #afaacf"
-                    />
-                    <rect
-                        x="430.47"
-                        y="63.25"
-                        width="17.64"
-                        height="39.85"
-                        style="fill: #d5daee"
-                    />
+                    <rect x="353.23" y="76.18" width="25.26" height="72.68" style="fill: #e6f1f5" />
+                    <rect x="375.57" y="94.21" width="23.15" height="54.65" style="fill: #d5daee" />
+                    <rect x="434.21" y="62.03" width="4.84" height="32.25" style="fill: #afaacf" />
+                    <rect x="430.47" y="63.25" width="17.64" height="39.85" style="fill: #d5daee" />
                     <rect
                         x="428.48"
                         y="93"
@@ -1159,48 +854,12 @@
                         points="437 79.16 437 133.33 450.76 133.33 450.76 85.55 437 79.16"
                         style="fill: #d5daee"
                     />
-                    <rect
-                        x="425.77"
-                        y="90.9"
-                        width="8.19"
-                        height="42.42"
-                        style="fill: #d5daee"
-                    />
-                    <rect
-                        x="431.87"
-                        y="95.07"
-                        width="0.67"
-                        height="27.02"
-                        style="fill: #b9b5d6"
-                    />
-                    <rect
-                        x="430.38"
-                        y="95.07"
-                        width="0.67"
-                        height="27.02"
-                        style="fill: #b9b5d6"
-                    />
-                    <rect
-                        x="428.88"
-                        y="95.07"
-                        width="0.67"
-                        height="27.02"
-                        style="fill: #b9b5d6"
-                    />
-                    <rect
-                        x="427.39"
-                        y="95.07"
-                        width="0.67"
-                        height="27.02"
-                        style="fill: #b9b5d6"
-                    />
-                    <rect
-                        x="437.14"
-                        y="90.03"
-                        width="4.73"
-                        height="5.03"
-                        style="fill: #d5daee"
-                    />
+                    <rect x="425.77" y="90.9" width="8.19" height="42.42" style="fill: #d5daee" />
+                    <rect x="431.87" y="95.07" width="0.67" height="27.02" style="fill: #b9b5d6" />
+                    <rect x="430.38" y="95.07" width="0.67" height="27.02" style="fill: #b9b5d6" />
+                    <rect x="428.88" y="95.07" width="0.67" height="27.02" style="fill: #b9b5d6" />
+                    <rect x="427.39" y="95.07" width="0.67" height="27.02" style="fill: #b9b5d6" />
+                    <rect x="437.14" y="90.03" width="4.73" height="5.03" style="fill: #d5daee" />
                     <rect
                         x="357.25"
                         y="31.75"
@@ -1285,52 +944,16 @@
                         transform="translate(645.32 280.78) rotate(180)"
                         style="fill: #bebcdb"
                     />
-                    <rect
-                        x="304.77"
-                        y="105.65"
-                        width="18.73"
-                        height="43.12"
-                        style="fill: #d5daee"
-                    />
+                    <rect x="304.77" y="105.65" width="18.73" height="43.12" style="fill: #d5daee" />
                     <path
                         d="M314.26,80.81V30.35h-4V28h-.9v-.37H309v-.66h-.67v-5h-.43l-.23-4.37h-.19l-.24,4.37h-.43v5h-.67v.66h-.37V28h-.9v2.4h-11.1l-6.4,7.79V80.81Zm-6.79-54.08h-.2V22.25h.2Zm.41,0h-.21V22.25h.21Z"
                         style="fill: #d0d4ea"
                     />
-                    <rect
-                        x="275.03"
-                        y="60.26"
-                        width="23.57"
-                        height="58.18"
-                        style="fill: #afaacf"
-                    />
-                    <rect
-                        x="88.41"
-                        y="88.48"
-                        width="3.57"
-                        height="0.95"
-                        style="fill: #f3f8f5"
-                    />
-                    <rect
-                        x="87.95"
-                        y="89.23"
-                        width="4.48"
-                        height="0.41"
-                        style="fill: #f3f8f5"
-                    />
-                    <rect
-                        x="86.83"
-                        y="89.64"
-                        width="6.72"
-                        height="6.92"
-                        style="fill: #afaacf"
-                    />
-                    <rect
-                        x="77.83"
-                        y="101.57"
-                        width="9.13"
-                        height="47.29"
-                        style="fill: #bebcdb"
-                    />
+                    <rect x="275.03" y="60.26" width="23.57" height="58.18" style="fill: #afaacf" />
+                    <rect x="88.41" y="88.48" width="3.57" height="0.95" style="fill: #f3f8f5" />
+                    <rect x="87.95" y="89.23" width="4.48" height="0.41" style="fill: #f3f8f5" />
+                    <rect x="86.83" y="89.64" width="6.72" height="6.92" style="fill: #afaacf" />
+                    <rect x="77.83" y="101.57" width="9.13" height="47.29" style="fill: #bebcdb" />
                     <rect
                         x="79.41"
                         y="100.91"
@@ -1391,34 +1014,10 @@
                         transform="translate(136.89 188.55) rotate(180)"
                         style="fill: #fffffc"
                     />
-                    <rect
-                        x="48.56"
-                        y="77.9"
-                        width="1.15"
-                        height="70.56"
-                        style="fill: #ada7ce"
-                    />
-                    <rect
-                        x="51.11"
-                        y="77.9"
-                        width="1.15"
-                        height="70.56"
-                        style="fill: #ada7ce"
-                    />
-                    <rect
-                        x="53.67"
-                        y="113.39"
-                        width="1.15"
-                        height="35.07"
-                        style="fill: #ada7ce"
-                    />
-                    <rect
-                        x="56.22"
-                        y="113.39"
-                        width="1.15"
-                        height="35.07"
-                        style="fill: #ada7ce"
-                    />
+                    <rect x="48.56" y="77.9" width="1.15" height="70.56" style="fill: #ada7ce" />
+                    <rect x="51.11" y="77.9" width="1.15" height="70.56" style="fill: #ada7ce" />
+                    <rect x="53.67" y="113.39" width="1.15" height="35.07" style="fill: #ada7ce" />
+                    <rect x="56.22" y="113.39" width="1.15" height="35.07" style="fill: #ada7ce" />
                     <rect
                         x="75.93"
                         y="78.3"
@@ -1427,13 +1026,7 @@
                         transform="translate(157.13 162.2) rotate(180)"
                         style="fill: #d5daee"
                     />
-                    <rect
-                        x="52.55"
-                        y="111.74"
-                        width="7.7"
-                        height="37.12"
-                        style="fill: #ada7ce"
-                    />
+                    <rect x="52.55" y="111.74" width="7.7" height="37.12" style="fill: #ada7ce" />
                     <rect
                         x="107.48"
                         y="49.53"
@@ -1546,45 +1139,15 @@
                         height="50.47"
                         style="fill: #f3f8f5; opacity: 0.43"
                     />
-                    <rect
-                        x="142.49"
-                        y="94.03"
-                        width="15.84"
-                        height="7.24"
-                        style="fill: #e6f1f5"
-                    />
-                    <rect
-                        x="290.15"
-                        y="56.21"
-                        width="33.03"
-                        height="92.65"
-                        style="fill: #e6f1f5"
-                    />
-                    <rect
-                        x="296.18"
-                        y="74.5"
-                        width="20.03"
-                        height="74.05"
-                        style="fill: #d5daee"
-                    />
+                    <rect x="142.49" y="94.03" width="15.84" height="7.24" style="fill: #e6f1f5" />
+                    <rect x="290.15" y="56.21" width="33.03" height="92.65" style="fill: #e6f1f5" />
+                    <rect x="296.18" y="74.5" width="20.03" height="74.05" style="fill: #d5daee" />
                     <polygon
                         points="76.2 83.19 74.22 95.03 74.22 122.74 72.51 122.74 72.51 109.53 67.38 109.53 67.38 94.7 61.92 94.7 61.92 73.07 52.9 73.07 52.9 68.82 51.01 68.82 51.01 73.07 47.45 73.07 47.45 77.88 45.56 77.88 45.56 65.4 41.86 65.4 41.86 148.86 84.56 148.86 84.56 91.25 83.2 83.39 76.2 83.19"
                         style="fill: #d9e0f0"
                     />
-                    <rect
-                        x="99.45"
-                        y="100.12"
-                        width="8.02"
-                        height="48.74"
-                        style="fill: #e6f1f5"
-                    />
-                    <rect
-                        x="123.42"
-                        y="86.3"
-                        width="6.05"
-                        height="62.56"
-                        style="fill: #e6f1f5"
-                    />
+                    <rect x="99.45" y="100.12" width="8.02" height="48.74" style="fill: #e6f1f5" />
+                    <rect x="123.42" y="86.3" width="6.05" height="62.56" style="fill: #e6f1f5" />
                 </svg>
             </div>
         </main>
@@ -1597,7 +1160,7 @@ export default {
     components: {
         LoginModal,
     },
-    data() {
+    data () {
         return {
             // isLoggin:localStorage.getItem("connected")!="0"
         };
