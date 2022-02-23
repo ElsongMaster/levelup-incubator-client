@@ -80,7 +80,7 @@
 
                                         <v-list-item-group>
                                             <v-list-item
-                                                v-for="(todo, i) in todos"
+                                                v-for="(todo, i) in todoList"
                                                 :key="i"
                                             >
                                                 <template
@@ -160,21 +160,21 @@ export default {
     },
 
     created() {
-        // let tokenConnexion = localStorage.getItem("tokenConnexion");
-        // //recup des tâches
-        // axios
-        //     .get("http://127.0.0.1:8004/api/v1/tasks", {
-        //         headers: {
-        //             "Access-Control-Allow-Origin": "*",
-        //             "Content-type": "application/json",
-        //             Authorization: "Bearer " + tokenConnexion,
-        //         },
-        //     })
-        //     .then((response) => {
-        //         var todoList = response.data.data;
-        //         console.log("task", response.data.data);
-        //         this.$store.dispatch("updateTodoList", todoList);
-        //     });
+        let tokenConnexion = localStorage.getItem("tokenConnexion");
+        //recup des tâches
+        axios
+            .get("http://127.0.0.1:8004/api/v1/tasks", {
+                headers: {
+                    "Access-Control-Allow-Origin": "*",
+                    "Content-type": "application/json",
+                    Authorization: "Bearer " + tokenConnexion,
+                },
+            })
+            .then((response) => {
+                var todoList = response.data.data;
+                console.log("task", response.data.data);
+                this.$store.dispatch("updateTodoList", todoList);
+            });
     },
 
     mounted() {

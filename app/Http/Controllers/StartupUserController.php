@@ -7,22 +7,23 @@ use Illuminate\Http\Request;
 
 class StartupUserController extends Controller
 {
-    public function getUser(Request $rq){
-       $user =  $rq->user();
+    public function getUser(Request $rq)
+    {
+        $user =  $rq->user();
 
-       if(!$user){
-           return[
-               "msg"=>"Vous n'êtes pas connecté",
-               "status"=>401
-           ];
-       }
-        return[
-            "data"=>[
-                "email"=>$user->email,
-                "fisrtname"=>$user->first_name,
-                "lastname"=>$user->last_name,
+        if (!$user) {
+            return [
+                "msg" => "Vous n'êtes pas connecté",
+                "status" => 401
+            ];
+        }
+        return [
+            "data" => [
+                "email" => $user->email,
+                "firstname" => $user->first_name,
+                "lastname" => $user->last_name,
             ],
-            "status"=>200
+            "status" => 200
         ];
     }
     public function updateProfile(Request $rq)
@@ -38,10 +39,10 @@ class StartupUserController extends Controller
 
         $user = $rq->user();
         // $user = StartupUser::where('email', '=', $rq->lastemail)->get();
-        if(!$user){
-            return[
-                "msg"=>"l'utulisateur n'existe pas",
-                "status"=>401
+        if (!$user) {
+            return [
+                "msg" => "l'utulisateur n'existe pas",
+                "status" => 401
             ];
         }
         $user->first_name = $rq->firstname;
@@ -58,9 +59,9 @@ class StartupUserController extends Controller
 
         $user->save();
 
-        return[
-            "msg"=>"profil correctement modifié",
-            "status"=>200
+        return [
+            "msg" => "profil correctement modifié",
+            "status" => 200
         ];
     }
 }

@@ -33,15 +33,15 @@
                             >
                         </v-col>
                         <v-text-field
-                            v-model="form.firstName"
+                            v-model="userData.firstname"
                             label="FirstName"
                         ></v-text-field>
                         <v-text-field
-                            v-model="form.lastName"
+                            v-model="userData.lastname"
                             label="Last Name"
                         ></v-text-field>
                         <v-text-field
-                            v-model="form.contactEmail"
+                            v-model="userData.email"
                             label="Email Address"
                         ></v-text-field>
                     </v-card-text>
@@ -77,9 +77,9 @@ export default {
     mounted() {
         localStorage.setItem("email", this.form.contactEmail);
 
-        this.form.firstName = this.$store.state.userData.firstname;
-        this.form.lastName = this.$store.state.userData.lastname;
-        this.form.contactEmail = this.$store.state.userData.email;
+        // this.form.firstName = this.$store.state.userData.firstname;
+        // this.form.lastName = this.$store.state.userData.lastname;
+        // this.form.contactEmail = this.$store.state.userData.email;
 
         // avatar: 'MALE_CAUCASIAN_BLOND_BEARD'
     },

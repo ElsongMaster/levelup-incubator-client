@@ -1360,8 +1360,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function (response) {
         console.log("user", response.data);
 
-        _this2.$store.dispatch("updateUserData", response.data.data); // this.userData = null;
-        // if (response.status == 200) {
+        _this2.$store.dispatch("updateUserData", response.data.data);
+
+        _this2.userData = response.data.data; // if (response.status == 200) {
         //     this.$store.dispatch("updateIsLoggin", true);
         //     localStorage.setItem("connected", "1");
         //     localStorage.setItem(
@@ -1371,11 +1372,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         //     this.token = response.data.token;
         //     this.$router.push("/dashboard/profil").catch(() => {});
         // }
-
       });
     }
   },
-  computed: _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.mapFields)(["email", "password", "dialogLogin", "userInfo", "token", "userID", "userData"]))
+  computed: _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.mapFields)(["email", "password", "dialogLogin", "userInfo", "token", "userData"]))
 });
 
 /***/ }),
@@ -1475,10 +1475,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     SideBar: _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   mounted: function mounted() {
-    localStorage.setItem("email", this.form.contactEmail);
-    this.form.firstName = this.$store.state.userData.firstname;
-    this.form.lastName = this.$store.state.userData.lastname;
-    this.form.contactEmail = this.$store.state.userData.email; // avatar: 'MALE_CAUCASIAN_BLOND_BEARD'
+    localStorage.setItem("email", this.form.contactEmail); // this.form.firstName = this.$store.state.userData.firstname;
+    // this.form.lastName = this.$store.state.userData.lastname;
+    // this.form.contactEmail = this.$store.state.userData.email;
+    // avatar: 'MALE_CAUCASIAN_BLOND_BEARD'
   },
   data: function data() {
     return {
@@ -4820,33 +4820,33 @@ var render = function () {
                       _c("v-text-field", {
                         attrs: { label: "FirstName" },
                         model: {
-                          value: _vm.form.firstName,
+                          value: _vm.userData.firstname,
                           callback: function ($$v) {
-                            _vm.$set(_vm.form, "firstName", $$v)
+                            _vm.$set(_vm.userData, "firstname", $$v)
                           },
-                          expression: "form.firstName",
+                          expression: "userData.firstname",
                         },
                       }),
                       _vm._v(" "),
                       _c("v-text-field", {
                         attrs: { label: "Last Name" },
                         model: {
-                          value: _vm.form.lastName,
+                          value: _vm.userData.lastname,
                           callback: function ($$v) {
-                            _vm.$set(_vm.form, "lastName", $$v)
+                            _vm.$set(_vm.userData, "lastname", $$v)
                           },
-                          expression: "form.lastName",
+                          expression: "userData.lastname",
                         },
                       }),
                       _vm._v(" "),
                       _c("v-text-field", {
                         attrs: { label: "Email Address" },
                         model: {
-                          value: _vm.form.contactEmail,
+                          value: _vm.userData.email,
                           callback: function ($$v) {
-                            _vm.$set(_vm.form, "contactEmail", $$v)
+                            _vm.$set(_vm.userData, "email", $$v)
                           },
-                          expression: "form.contactEmail",
+                          expression: "userData.email",
                         },
                       }),
                     ],

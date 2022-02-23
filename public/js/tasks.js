@@ -477,21 +477,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   components: {
     SideBar: _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  created: function created() {// let tokenConnexion = localStorage.getItem("tokenConnexion");
-    // //recup des tâches
-    // axios
-    //     .get("http://127.0.0.1:8004/api/v1/tasks", {
-    //         headers: {
-    //             "Access-Control-Allow-Origin": "*",
-    //             "Content-type": "application/json",
-    //             Authorization: "Bearer " + tokenConnexion,
-    //         },
-    //     })
-    //     .then((response) => {
-    //         var todoList = response.data.data;
-    //         console.log("task", response.data.data);
-    //         this.$store.dispatch("updateTodoList", todoList);
-    //     });
+  created: function created() {
+    var _this = this;
+
+    var tokenConnexion = localStorage.getItem("tokenConnexion"); //recup des tâches
+
+    axios.get("http://127.0.0.1:8004/api/v1/tasks", {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-type": "application/json",
+        Authorization: "Bearer " + tokenConnexion
+      }
+    }).then(function (response) {
+      var todoList = response.data.data;
+      console.log("task", response.data.data);
+
+      _this.$store.dispatch("updateTodoList", todoList);
+    });
   },
   mounted: function mounted() {
     this.getAllTask();
@@ -514,7 +516,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     getAllTask: function getAllTask() {
-      var _this = this;
+      var _this2 = this;
 
       var tokenConnexion = localStorage.getItem("tokenConnexion"); //recup des tâches
 
@@ -525,13 +527,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           Authorization: "Bearer " + tokenConnexion
         }
       }).then(function (response) {
-        _this.todoList = response.data.data;
+        _this2.todoList = response.data.data;
         console.log("task", response.data.data); // this.$store.dispatch("updateTodoList", todoList);
 
-        console.log("mounted", _this.todoList);
+        console.log("mounted", _this2.todoList);
 
-        _this.todoList.forEach(function (elt) {
-          _this.todos.push({
+        _this2.todoList.forEach(function (elt) {
+          _this2.todos.push({
             id: elt.id,
             title: elt.title,
             done: elt.status == "done",
@@ -679,7 +681,8 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    _services_UploadFilesService__WEBPACK_IMPORTED_MODULE_0__["default"].getFiles().then(function (response) {
+    var tokenReq = localStorage.getItem("tokenConnexion");
+    _services_UploadFilesService__WEBPACK_IMPORTED_MODULE_0__["default"].getFiles(tokenReq).then(function (response) {
       console.log("getFiles", response.data);
       _this.fileInfos = response.data.data;
     });
@@ -699,12 +702,16 @@ __webpack_require__.r(__webpack_exports__);
 
       var tokenReq = localStorage.getItem("tokenConnexion");
       this.message = "";
-      _services_UploadFilesService__WEBPACK_IMPORTED_MODULE_0__["default"].upload(this.currentFile, tokenReq, localStorage.getItem("email"), function (event) {
+      console.log("token", tokenReq);
+      _services_UploadFilesService__WEBPACK_IMPORTED_MODULE_0__["default"].upload(this.currentFile, tokenReq, function (event) {
         _this2.progress = Math.round(100 * event.loaded / event.total);
       }).then(function (response) {
         var tokenReq = localStorage.getItem("tokenConnexion");
         _this2.message = response.data.message;
-        return _services_UploadFilesService__WEBPACK_IMPORTED_MODULE_0__["default"].getFiles(tokenReq);
+        return _services_UploadFilesService__WEBPACK_IMPORTED_MODULE_0__["default"].getFiles(tokenReq).then(function (response) {
+          console.log("getFiles", response.data);
+          _this2.fileInfos = response.data.data;
+        });
       }).then(function (files) {
         _this2.fileInfos = files.data;
       })["catch"](function () {
@@ -744,11 +751,10 @@ var UploadFilesService = /*#__PURE__*/function () {
 
   _createClass(UploadFilesService, [{
     key: "upload",
-    value: function upload(file, email, tokenReq, onUploadProgress) {
+    value: function upload(file, tokenReq, onUploadProgress) {
       console.log(tokenReq);
       var formData = new FormData();
       formData.append("file", file);
-      formData.append("email", email);
       return _http_common__WEBPACK_IMPORTED_MODULE_0__["default"].post("/api/v1/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -2079,7 +2085,7 @@ var render = function () {
                                     _vm._v(" "),
                                     _c(
                                       "v-list-item-group",
-                                      _vm._l(_vm.todos, function (todo, i) {
+                                      _vm._l(_vm.todoList, function (todo, i) {
                                         return _c("v-list-item", {
                                           key: i,
                                           scopedSlots: _vm._u(

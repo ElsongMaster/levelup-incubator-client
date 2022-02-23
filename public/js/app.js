@@ -5616,7 +5616,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   //Seul le token et le userID sont enregistrés automatiqument
   plugins: [(0,vuex_persistedstate__WEBPACK_IMPORTED_MODULE_1__["default"])({
-    paths: ["token", "userID"]
+    paths: ["token", "userData"]
   })]
 });
 

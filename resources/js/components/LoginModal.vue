@@ -133,7 +133,7 @@ export default {
                 .then((response) => {
                     console.log("user", response.data);
                     this.$store.dispatch("updateUserData", response.data.data);
-                    // this.userData = null;
+                    this.userData = response.data.data;
 
                     // if (response.status == 200) {
                     //     this.$store.dispatch("updateIsLoggin", true);
@@ -158,7 +158,6 @@ export default {
             "dialogLogin",
             "userInfo",
             "token",
-            "userID",
             "userData",
         ]),
     },

@@ -48,7 +48,7 @@ export default {
     //Seul le token et le userID sont enregistrés automatiqument
     plugins: [
         createPersistedState({
-            paths: ["token", "userID"],
+            paths: ["token", "userData"],
         }),
     ],
 };
