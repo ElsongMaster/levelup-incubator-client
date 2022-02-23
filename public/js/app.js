@@ -5573,9 +5573,6 @@ __webpack_require__.r(__webpack_exports__);
   state: {
     token: null,
     userID: null,
-    email: null,
-    password: null,
-    userInfo: {},
     dialogLogin: false,
     isLoggin: localStorage.getItem("connected") == "1",
     todoList: [],
