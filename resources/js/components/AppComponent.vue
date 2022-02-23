@@ -90,7 +90,7 @@ export default {
 </script>
 
 <style>
-.theme--dark input[type="text"] {
+.theme--dark input {
     background-color: #1E1E1E !important;
 }
 </style>

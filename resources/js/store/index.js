@@ -6,8 +6,6 @@ export default {
     state: {
         token: null,
         userID: null,
-        email: null,
-        password: null,
         dialogLogin: false,
         isLoggin: localStorage.getItem("connected") == "1",
         todoList: [],
