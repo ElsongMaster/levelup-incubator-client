@@ -78,12 +78,7 @@ export default {
     name: "LoginModal",
     data() {
         return {
-            // email: "",
-            // password: "",
-            // dialogLogin: "",
-            // userInfo: "",
-            // token: "",
-            // userID: "",
+
             show4: false,
 
             headers: {
@@ -153,10 +148,7 @@ export default {
         //   'isLoggin'
         // ]),
         ...mapFields([
-            "email",
-            "password",
             "dialogLogin",
-            "userInfo",
             "token",
             "userData",
         ]),

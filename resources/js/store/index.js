@@ -8,7 +8,6 @@ export default {
         userID: null,
         email: null,
         password: null,
-        userInfo: {},
         dialogLogin: false,
         isLoggin: localStorage.getItem("connected") == "1",
         todoList: [],
