@@ -2583,7 +2583,7 @@ var render = function () {
         "v-card",
         [
           _c("v-card-title", [
-            _c("span", { staticClass: "text-h5" }, [_vm._v("User Profile")]),
+            _c("span", { staticClass: "text-h5" }, [_vm._v("User Profile ")]),
           ]),
           _vm._v(" "),
           _c(
