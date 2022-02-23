@@ -42,13 +42,17 @@ class DocumentController extends Controller
         $user = StartupUser::where('email', '=', $rq->email)->first();
 
         $startup = $user->startup;
-        $path = public_path('Incubator/startup_' . $startup->name);
+
+        // Format the name of the startup for find the correct folder
+        $folderName = str_replace(' ', '_', $startup->name);
+
+        $path = public_path('modules/incubator/' . $folderName);
         if (!File::isDirectory($path)) {
             File::makeDirectory($path, 0777, true, true);
         }
 
         $newDocument = new Document;
-        $rq->file('file')->storePublicly('Incubator/startup_' . $startup->name, 'public');
+        $rq->file('file')->storePublicly('modules/incubator/' . $folderName, 'public');
         $newDocument->filepath = $rq->file('file')->hashName();
         $newDocument->startup_id = $startup->id;
         $newDocument->save();
