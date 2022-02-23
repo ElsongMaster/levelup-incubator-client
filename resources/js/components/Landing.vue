@@ -433,13 +433,13 @@
                         style="color: #F3F4F6 !important;"
                     >Learn more</a>-->
                     <div class="flex">
-                            <LoginModal v-if="!this.$store.state.isLoggin" />
-                            <p
-                                v-if="this.$store.state.isLoggin"
-                                class="py-2 px-8 flex hover:text-purple-700 cursor-pointer"
-                            >
-                                <router-link :to="{ path: '/dashboard/profil' }">Dashboard</router-link>
-                            </p>
+                        <LoginModal v-if="!this.$store.state.isLoggin" />
+                        <p
+                            v-if="this.$store.state.isLoggin"
+                            class="py-2 px-8 flex hover:text-purple-700 cursor-pointer"
+                        >
+                            <router-link :to="{ path: '/dashboard/profil' }">Dashboard</router-link>
+                        </p>
                     </div>
                 </div>
                 <svg
@@ -1162,11 +1162,10 @@ export default {
 };
 </script>
 <style>
-.theme- .theme--dark input {
-    bac
-.theme- .theme--dark input {
+.theme--dark input {
     background-color: #1e1e1e !important;
 }
+
 main {
     background-color: #f3f4f6 !important;
 }
