@@ -68,12 +68,20 @@
 <script>
 import SideBar from "../components/SideBar.vue";
 // import AvatarPicker from '~/components/AvatarPicker'
+import { mapFields } from "vuex-map-fields";
+
 export default {
     name: "Profil2",
     pageTitle: "My Profile",
     components: { SideBar },
     mounted() {
         localStorage.setItem("email", this.form.contactEmail);
+
+        this.form.firstName = this.$store.state.userData.firstname;
+        this.form.lastName = this.$store.state.userData.lastname;
+        this.form.contactEmail = this.$store.state.userData.email;
+
+        // avatar: 'MALE_CAUCASIAN_BLOND_BEARD'
     },
     data() {
         return {
@@ -86,10 +94,9 @@ export default {
 
             loading: false,
             form: {
-                firstName: "John",
-                lastName: "Doe",
-                contactEmail: "userStartup@userstartup.com",
-                lastemail: "userStartup@userstartup.com",
+                firstName: null,
+                lastName: null,
+                contactEmail: null,
 
                 // avatar: 'MALE_CAUCASIAN_BLOND_BEARD'
             },
@@ -109,21 +116,35 @@ export default {
         },
 
         update() {
+            let tokenReq = localStorage.getItem("tokenConnexion");
             this.formData.append("firstname", this.form.firstName);
             this.formData.append("lastname", this.form.lastName);
             this.formData.append("email", this.form.contactEmail);
-            this.formData.append("lastemail", this.form.lastemail);
-            this.formData.append("file", this.currentFile);
-            axios
-                .get("http://127.0.0.1:8004/api/v1/login/", this.formData)
-                .then((response) => {
-                    console.log("login", response.status);
 
-                    if (response.status == 200) {
-                        this.$router.push("/dashboard/profil");
+            // this.formData.append("file", this.currentFile);
+            axios
+                .put(
+                    "http://127.0.0.1:8004/api/v1/startupuser/update",
+                    {
+                        firstname: this.form.firstName,
+                        lastname: this.form.lastName,
+                        email: this.form.contactEmail,
+                    },
+                    {
+                        headers: { Authorization: "Bearer " + tokenReq },
+                    }
+                )
+                .then((response) => {
+                    console.log("login", response.data);
+
+                    if (response.data.status == 200) {
+                        // this.$router.push("/dashboard/profil");
                     }
                 });
         },
+    },
+    computed: {
+        ...mapFields(["userData"]),
     },
 };
 </script>

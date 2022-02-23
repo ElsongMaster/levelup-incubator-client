@@ -70,7 +70,7 @@ return [
             'model' => App\Models\User::class,
         ],
 
-        'admins' => [
+        'startup_users' => [
             'driver' => 'eloquent',
             'model' => App\Models\StartupUser::class,
         ],

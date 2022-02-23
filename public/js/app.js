@@ -5577,7 +5577,9 @@ __webpack_require__.r(__webpack_exports__);
     password: null,
     userInfo: {},
     dialogLogin: false,
-    isLoggin: localStorage.getItem("connected") == "1"
+    isLoggin: localStorage.getItem("connected") == "1",
+    todoList: [],
+    userData: null
   },
   getters: {
     getField: vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.getField
@@ -5586,12 +5588,30 @@ __webpack_require__.r(__webpack_exports__);
     updateField: vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.updateField,
     setIsLoggin: function setIsLoggin(state, isLoggin) {
       state.isLoggin = isLoggin;
+    },
+    setTodoList: function setTodoList(state, todoList) {
+      console.log("todoList", todoList);
+      state.todoList = todoList;
+    },
+    setUserData: function setUserData(state, userData) {
+      console.log("todoList", userData);
+      state.userData = userData;
     }
   },
   actions: {
     updateIsLoggin: function updateIsLoggin(_ref, isLoggin) {
       var commit = _ref.commit;
       commit("setIsLoggin", isLoggin);
+    },
+    updateTodoList: function updateTodoList(_ref2, todoList) {
+      var commit = _ref2.commit;
+      console.log("dans mon dispatch", todoList);
+      commit("setTodoList", todoList);
+    },
+    updateUserData: function updateUserData(_ref3, userData) {
+      var commit = _ref3.commit;
+      console.log("dans mon dispatch user", userData);
+      commit("setUserData", userData);
     }
   },
   //Seul le token et le userID sont enregistrés automatiqument

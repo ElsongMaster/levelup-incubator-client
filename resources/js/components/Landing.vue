@@ -23,7 +23,9 @@
                             <p
                                 class="py-2 px-8 flex hover:text-purple-700 cursor-pointer"
                             >
-                                <LoginModal />
+                                <LoginModal
+                                    v-if="!this.$store.state.isLoggin"
+                                />
                             </p>
                             <p
                                 class="py-2 px-8 flex hover:text-purple-700 cursor-pointer"

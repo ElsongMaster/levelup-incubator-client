@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Startup;
 use App\Models\StartupUser;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\File;
 
-class StartupController extends Controller
+class AuthController extends Controller
 {
     public function login(Request $rq)
     {
@@ -32,7 +29,6 @@ class StartupController extends Controller
         ];
     }
 
-
     public function logout(Request $rq)
     {
         // Getting the current connected user
@@ -51,34 +47,5 @@ class StartupController extends Controller
             'status' => 200,
             'error' => []
         ];
-    }
-
-
-
-    public function updateProfile(Request $rq)
-    {
-        $rq->validate([
-            "firstname" => "required||string",
-            "lastname" => "required||string",
-            "email" => "required||string|unique:startup_user",
-            // "logo" => "required|max:2048||mimes:jpeg,jpg,png",
-        ]);
-
-        dd($rq->user());
-        $user = StartupUser::where('email', '=', $rq->lastemail)->get();
-
-        $user->first_name = $rq->firstname;
-        $user->last_name = $rq->lastname;
-        $user->email = $rq->email;
-
-        //pas nécessaire pour l'instant 
-
-        // $path = public_path('Incubator/startup/' + $rq->user() . 'imageProfil/');
-        // if (!File::isDirectory($path)) {
-        //     File::makeDirectory($path, 0777, true, true);
-        //     $rq->file('cover')->storePublicly('img/uploads', 'public');
-        // }
-
-        $user->save();
     }
 }

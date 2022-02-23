@@ -11,6 +11,8 @@ export default {
         userInfo: {},
         dialogLogin: false,
         isLoggin: localStorage.getItem("connected") == "1",
+        todoList: [],
+        userData: null,
     },
 
     getters: {
@@ -21,10 +23,26 @@ export default {
         setIsLoggin(state, isLoggin) {
             state.isLoggin = isLoggin;
         },
+        setTodoList(state, todoList) {
+            console.log("todoList", todoList);
+            state.todoList = todoList;
+        },
+        setUserData(state, userData) {
+            console.log("todoList", userData);
+            state.userData = userData;
+        },
     },
     actions: {
         updateIsLoggin({ commit }, isLoggin) {
             commit("setIsLoggin", isLoggin);
+        },
+        updateTodoList({ commit }, todoList) {
+            console.log("dans mon dispatch", todoList);
+            commit("setTodoList", todoList);
+        },
+        updateUserData({ commit }, userData) {
+            console.log("dans mon dispatch user", userData);
+            commit("setUserData", userData);
         },
     },
     //Seul le token et le userID sont enregistrés automatiqument
