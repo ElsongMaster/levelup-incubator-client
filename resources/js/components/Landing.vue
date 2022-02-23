@@ -15,7 +15,7 @@
                         <span class="w-3 h-3 rounded-full bg-purple-600 ml-2"></span>
                     </div>
                 </div>
-            </header> -->
+            </header>-->
             <div class="container mx-auto px-6 sm:px-12 flex flex-col-reverse sm:flex-row relative">
                 <div class="sm:w-6/12 relative z-10">
                     <svg
@@ -432,7 +432,15 @@
                         class="font-semibold text-lg bg-purple-600 hover:bg-blue-400 text-white py-3 px-12 rounded-full"
                         style="color: #F3F4F6 !important;"
                     >Learn more</a>-->
-                    <LoginModal v-if="!this.$store.state.isLoggin" />
+                    <div class="flex">
+                            <LoginModal v-if="!this.$store.state.isLoggin" />
+                            <p
+                                v-if="this.$store.state.isLoggin"
+                                class="py-2 px-8 flex hover:text-purple-700 cursor-pointer"
+                            >
+                                <router-link :to="{ path: '/dashboard/profil' }">Dashboard</router-link>
+                            </p>
+                    </div>
                 </div>
                 <svg
                     class="w-full absolute bottom-0 left-0"
@@ -1154,10 +1162,11 @@ export default {
 };
 </script>
 <style>
-.theme--dark input {
+.theme- .theme--dark input {
+    bac
+.theme- .theme--dark input {
     background-color: #1e1e1e !important;
 }
 main {
     background-color: #f3f4f6 !important;
 }
-</style>
