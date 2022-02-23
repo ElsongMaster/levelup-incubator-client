@@ -5305,16 +5305,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 // import {mapState} from 'vuex';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AppComponent",
@@ -10714,7 +10704,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.theme--dark input {\n    background-color: #1E1E1E !important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.theme--dark input {\n    background-color: #1e1e1e !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
