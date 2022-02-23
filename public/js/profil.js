@@ -1294,12 +1294,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "LoginModal",
   data: function data() {
     return {
-      // email: "",
-      // password: "",
-      // dialogLogin: "",
-      // userInfo: "",
-      // token: "",
-      // userID: "",
       show4: false,
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -1365,7 +1359,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     }
   },
-  computed: _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.mapFields)(["email", "password", "dialogLogin", "userInfo", "token", "userData"]))
+  computed: _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.mapFields)(["dialogLogin", "token", "userData"]))
 });
 
 /***/ }),
