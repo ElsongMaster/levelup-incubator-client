@@ -63,7 +63,8 @@ export default {
         };
     },
     mounted() {
-        UploadService.getFiles().then((response) => {
+        let tokenReq = localStorage.getItem("tokenConnexion");
+        UploadService.getFiles(tokenReq).then((response) => {
             console.log("getFiles", response.data);
             this.fileInfos = response.data.data;
         });
@@ -82,10 +83,11 @@ export default {
             }
             var tokenReq = localStorage.getItem("tokenConnexion");
             this.message = "";
+            console.log("token", tokenReq);
             UploadService.upload(
                 this.currentFile,
                 tokenReq,
-                localStorage.getItem("email"),
+
                 (event) => {
                     this.progress = Math.round(
                         (100 * event.loaded) / event.total
@@ -95,7 +97,10 @@ export default {
                 .then((response) => {
                     var tokenReq = localStorage.getItem("tokenConnexion");
                     this.message = response.data.message;
-                    return UploadService.getFiles(tokenReq);
+                    return UploadService.getFiles(tokenReq).then((response) => {
+                        console.log("getFiles", response.data);
+                        this.fileInfos = response.data.data;
+                    });
                 })
                 .then((files) => {
                     this.fileInfos = files.data;

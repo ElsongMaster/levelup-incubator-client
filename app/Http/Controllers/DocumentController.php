@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Validator;
 class DocumentController extends Controller
 {
 
-    public function index()
+    public function index(Request $rq)
     {
+
         return [
             "data" => Document::all()
         ];
@@ -39,7 +40,7 @@ class DocumentController extends Controller
                 ]
             ]);
         }
-        $user = StartupUser::where('email', '=', $rq->email)->first();
+        $user = $rq->user();
 
         $startup = $user->startup;
         $path = public_path('Incubator/startup_' . $startup->name);
@@ -58,6 +59,7 @@ class DocumentController extends Controller
 
         return [
             "message" => "le document a été correctement stocké",
+            "nameFile"=>$newDocument->filepath,
             "status" => 200,
         ];
     }
