@@ -310,7 +310,54 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/SideBar.vue */ "./resources/js/components/SideBar.vue");
+/* harmony import */ var vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex-map-fields */ "./node_modules/vuex-map-fields/dist/index.esm.js");
+/* harmony import */ var _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/SideBar.vue */ "./resources/js/components/SideBar.vue");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -424,20 +471,41 @@ __webpack_require__.r(__webpack_exports__);
 //
 // import AddTasksModal from "../components/AddTaskModal.vue";
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Tasks",
   components: {
-    SideBar: _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    SideBar: _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  created: function created() {// let tokenConnexion = localStorage.getItem("tokenConnexion");
+    // //recup des tâches
+    // axios
+    //     .get("http://127.0.0.1:8004/api/v1/tasks", {
+    //         headers: {
+    //             "Access-Control-Allow-Origin": "*",
+    //             "Content-type": "application/json",
+    //             Authorization: "Bearer " + tokenConnexion,
+    //         },
+    //     })
+    //     .then((response) => {
+    //         var todoList = response.data.data;
+    //         console.log("task", response.data.data);
+    //         this.$store.dispatch("updateTodoList", todoList);
+    //     });
+  },
+  mounted: function mounted() {
+    this.getAllTask();
   },
   data: function data() {
     return {
       isDark: true,
       show: true,
       newTodo: "",
-      todos: [{
-        title: "oklm",
-        done: false
-      }],
+      todos: [// {
+        //     title: "oklm",
+        //     done: false,
+        // },
+      ],
       day: this.todoDay(),
       date: new Date().getDate(),
       ord: this.nth(new Date().getDate()),
@@ -445,6 +513,44 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    getAllTask: function getAllTask() {
+      var _this = this;
+
+      var tokenConnexion = localStorage.getItem("tokenConnexion"); //recup des tâches
+
+      axios.get("http://127.0.0.1:8004/api/v1/tasks", {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-type": "application/json",
+          Authorization: "Bearer " + tokenConnexion
+        }
+      }).then(function (response) {
+        _this.todoList = response.data.data;
+        console.log("task", response.data.data); // this.$store.dispatch("updateTodoList", todoList);
+
+        console.log("mounted", _this.todoList);
+
+        _this.todoList.forEach(function (elt) {
+          _this.todos.push({
+            id: elt.id,
+            title: elt.title,
+            done: elt.status == "done",
+            status: elt.status
+          });
+        });
+      });
+    },
+    updateStatus: function updateStatus(id, status) {
+      var tokenReq = localStorage.getItem("tokenConnexion");
+      axios.put("http://127.0.0.1:8004/api/v1/task/status", {
+        id: id,
+        status: status
+      }, {
+        headers: {
+          Authorization: "Bearer " + tokenReq
+        }
+      });
+    },
     addTodo: function addTodo() {
       var value = this.newTodo && this.newTodo.trim();
 
@@ -484,6 +590,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
   },
+  computed: _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.mapFields)(["todoList"])),
   filters: {
     capitalize: function capitalize(value) {
       if (!value) return "";
@@ -730,7 +837,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.done[data-v-43ab059a] {\r\n  text-decoration: line-through;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.done[data-v-43ab059a] {\r\n    text-decoration: line-through;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1894,13 +2001,13 @@ var render = function () {
                                         _vm._v(" "),
                                         _c("span", [
                                           _vm._v(
-                                            "\n                      " +
+                                            "\n                                            " +
                                               _vm._s(
                                                 _vm.isDark
                                                   ? "light mode"
                                                   : "dark mode"
                                               ) +
-                                              "\n                    "
+                                              "\n                                        "
                                           ),
                                         ]),
                                       ]
@@ -1922,7 +2029,7 @@ var render = function () {
                                             ", " +
                                             _vm._s(_vm.date) +
                                             _vm._s(_vm.ord) +
-                                            " " +
+                                            "\n                                        " +
                                             _vm._s(_vm.year)
                                         ),
                                       ]
@@ -1935,7 +2042,9 @@ var render = function () {
                                         _c("b", [
                                           _vm._v(_vm._s(_vm.todos.length)),
                                         ]),
-                                        _vm._v(" Tasks\n                  "),
+                                        _vm._v(
+                                          " Tasks\n                                    "
+                                        ),
                                       ]
                                     ),
                                   ],
@@ -1956,7 +2065,11 @@ var render = function () {
                                       ? _c(
                                           "v-subheader",
                                           { staticClass: "subheading" },
-                                          [_vm._v("You have 0 Tasks, add some")]
+                                          [
+                                            _vm._v(
+                                              "You have 0 Tasks, add\n                                        some"
+                                            ),
+                                          ]
                                         )
                                       : _c(
                                           "v-subheader",
@@ -1978,7 +2091,23 @@ var render = function () {
                                                   return [
                                                     _c(
                                                       "v-list-item-action",
-                                                      [_c("v-checkbox")],
+                                                      [
+                                                        _c("v-checkbox", {
+                                                          attrs: {
+                                                            active: todo.done,
+                                                          },
+                                                          on: {
+                                                            click: function (
+                                                              $event
+                                                            ) {
+                                                              return _vm.updateStatus(
+                                                                todo.id,
+                                                                "done"
+                                                              )
+                                                            },
+                                                          },
+                                                        }),
+                                                      ],
                                                       1
                                                     ),
                                                     _vm._v(" "),
@@ -1989,7 +2118,9 @@ var render = function () {
                                                           "v-list-item-title",
                                                           {
                                                             class: {
-                                                              done: active,
+                                                              done: todo.done
+                                                                ? true
+                                                                : active,
                                                             },
                                                           },
                                                           [
@@ -2014,11 +2145,11 @@ var render = function () {
                                                                 _vm._s(
                                                                   _vm.ord
                                                                 ) +
-                                                                " " +
+                                                                "\n                                                        " +
                                                                 _vm._s(
                                                                   _vm.day
                                                                 ) +
-                                                                "\n                            " +
+                                                                "\n                                                        " +
                                                                 _vm._s(_vm.year)
                                                             ),
                                                           ]

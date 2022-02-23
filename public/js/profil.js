@@ -1630,6 +1630,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Landing",
@@ -1779,12 +1781,38 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           localStorage.setItem("tokenConnexion", response.data.token);
           _this.token = response.data.token;
 
+          _this.getDataUser(_this.token);
+
           _this.$router.push("/dashboard/profil")["catch"](function () {});
         }
       });
+    },
+    getDataUser: function getDataUser(token) {
+      var _this2 = this;
+
+      axios.get("http://127.0.0.1:8004/api/v1/startupuser/user", {
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      }).then(function (response) {
+        console.log("user", response.data);
+
+        _this2.$store.dispatch("updateUserData", response.data.data); // this.userData = null;
+        // if (response.status == 200) {
+        //     this.$store.dispatch("updateIsLoggin", true);
+        //     localStorage.setItem("connected", "1");
+        //     localStorage.setItem(
+        //         "tokenConnexion",
+        //         response.data.token
+        //     );
+        //     this.token = response.data.token;
+        //     this.$router.push("/dashboard/profil").catch(() => {});
+        // }
+
+      });
     }
   },
-  computed: _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.mapFields)(["email", "password", "dialogLogin", "userInfo", "token", "userID"]))
+  computed: _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.mapFields)(["email", "password", "dialogLogin", "userInfo", "token", "userID", "userData"]))
 });
 
 /***/ }),
@@ -1800,6 +1828,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/SideBar.vue */ "./resources/js/components/SideBar.vue");
+/* harmony import */ var vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex-map-fields */ "./node_modules/vuex-map-fields/dist/index.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -1869,6 +1904,7 @@ __webpack_require__.r(__webpack_exports__);
 //
  // import AvatarPicker from '~/components/AvatarPicker'
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Profil2",
   pageTitle: "My Profile",
@@ -1877,6 +1913,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     localStorage.setItem("email", this.form.contactEmail);
+    this.form.firstName = this.$store.state.userData.firstname;
+    this.form.lastName = this.$store.state.userData.lastname;
+    this.form.contactEmail = this.$store.state.userData.email; // avatar: 'MALE_CAUCASIAN_BLOND_BEARD'
   },
   data: function data() {
     return {
@@ -1888,10 +1927,9 @@ __webpack_require__.r(__webpack_exports__);
       currentFile: null,
       loading: false,
       form: {
-        firstName: "John",
-        lastName: "Doe",
-        contactEmail: "userStartup@userstartup.com",
-        lastemail: "userStartup@userstartup.com" // avatar: 'MALE_CAUCASIAN_BLOND_BEARD'
+        firstName: null,
+        lastName: null,
+        contactEmail: null // avatar: 'MALE_CAUCASIAN_BLOND_BEARD'
 
       },
       showAvatarPicker: false
@@ -1909,22 +1947,28 @@ __webpack_require__.r(__webpack_exports__);
       this.form.avatar = avatar;
     },
     update: function update() {
-      var _this = this;
-
+      var tokenReq = localStorage.getItem("tokenConnexion");
       this.formData.append("firstname", this.form.firstName);
       this.formData.append("lastname", this.form.lastName);
-      this.formData.append("email", this.form.contactEmail);
-      this.formData.append("lastemail", this.form.lastemail);
-      this.formData.append("file", this.currentFile);
-      axios.get("http://127.0.0.1:8004/api/v1/login/", this.formData).then(function (response) {
-        console.log("login", response.status);
+      this.formData.append("email", this.form.contactEmail); // this.formData.append("file", this.currentFile);
 
-        if (response.status == 200) {
-          _this.$router.push("/dashboard/profil");
+      axios.put("http://127.0.0.1:8004/api/v1/startupuser/update", {
+        firstname: this.form.firstName,
+        lastname: this.form.lastName,
+        email: this.form.contactEmail
+      }, {
+        headers: {
+          Authorization: "Bearer " + tokenReq
+        }
+      }).then(function (response) {
+        console.log("login", response.data);
+
+        if (response.data.status == 200) {// this.$router.push("/dashboard/profil");
         }
       });
     }
-  }
+  },
+  computed: _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__.mapFields)(["userData"]))
 });
 
 /***/ }),
@@ -2509,7 +2553,7 @@ var render = function () {
                       staticClass:
                         "py-2 px-8 flex hover:text-purple-700 cursor-pointer",
                     },
-                    [_c("LoginModal")],
+                    [!this.$store.state.isLoggin ? _c("LoginModal") : _vm._e()],
                     1
                   ),
                   _vm._v(" "),

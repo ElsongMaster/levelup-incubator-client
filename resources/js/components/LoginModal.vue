@@ -119,8 +119,32 @@ export default {
                             response.data.token
                         );
                         this.token = response.data.token;
+                        this.getDataUser(this.token);
                         this.$router.push("/dashboard/profil").catch(() => {});
                     }
+                });
+        },
+
+        getDataUser(token) {
+            axios
+                .get("http://127.0.0.1:8004/api/v1/startupuser/user", {
+                    headers: { Authorization: "Bearer " + token },
+                })
+                .then((response) => {
+                    console.log("user", response.data);
+                    this.$store.dispatch("updateUserData", response.data.data);
+                    // this.userData = null;
+
+                    // if (response.status == 200) {
+                    //     this.$store.dispatch("updateIsLoggin", true);
+                    //     localStorage.setItem("connected", "1");
+                    //     localStorage.setItem(
+                    //         "tokenConnexion",
+                    //         response.data.token
+                    //     );
+                    //     this.token = response.data.token;
+                    //     this.$router.push("/dashboard/profil").catch(() => {});
+                    // }
                 });
         },
     },
@@ -135,6 +159,7 @@ export default {
             "userInfo",
             "token",
             "userID",
+            "userData",
         ]),
     },
 };
