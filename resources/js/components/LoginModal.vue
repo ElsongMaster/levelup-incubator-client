@@ -2,9 +2,13 @@
     <v-row justify="center">
         <v-dialog v-model="dialogLogin" persistent max-width="600px">
             <template v-slot:activator="{ on, attrs }">
-                <v-btn color="primary" dark v-bind="attrs" v-on="on">
-                    Login
-                </v-btn>
+                <!-- <v-btn color="primary" dark v-bind="attrs" v-on="on">Login</v-btn> -->
+                <button
+                    v-bind="attrs"
+                    v-on="on"
+                    class="mt-2 font-semibold text-lg bg-purple-600 hover:bg-blue-400 text-white pt-2 pb-3 px-12 rounded-full"
+                    style="color: rgb(243, 244, 246) !important; height: 47px;vertical-align: baseline;"
+                >Login</button>
             </template>
             <v-card>
                 <v-card-title>
@@ -45,7 +49,7 @@
                                     label="Password*"
                                     @click:append="show4 = !show4"
                                     class="border-none"
-                                ></v-text-field> -->
+                                ></v-text-field>-->
                             </v-col>
                         </v-row>
                     </v-container>
@@ -53,16 +57,8 @@
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn
-                        color="blue darken-1"
-                        text
-                        @click="dialogLogin = false"
-                    >
-                        Close
-                    </v-btn>
-                    <v-btn color="blue darken-1" text @click="login">
-                        Save
-                    </v-btn>
+                    <v-btn color="blue darken-1" text @click="dialogLogin = false">Close</v-btn>
+                    <v-btn color="blue darken-1" text @click="login">Save</v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -76,7 +72,7 @@ import { mapFields } from "vuex-map-fields";
 
 export default {
     name: "LoginModal",
-    data() {
+    data () {
         return {
 
             show4: false,
@@ -94,9 +90,9 @@ export default {
             },
         };
     },
-    mounted() {},
+    mounted () { },
     methods: {
-        login() {
+        login () {
             console.log("Save login");
             var formRequest = new FormData();
             formRequest.append("email", this.email);
@@ -115,12 +111,12 @@ export default {
                         );
                         this.token = response.data.token;
                         this.getDataUser(this.token);
-                        this.$router.push("/dashboard/profil").catch(() => {});
+                        this.$router.push("/dashboard/profil").catch(() => { });
                     }
                 });
         },
 
-        getDataUser(token) {
+        getDataUser (token) {
             axios
                 .get("http://127.0.0.1:8004/api/v1/startupuser/user", {
                     headers: { Authorization: "Bearer " + token },

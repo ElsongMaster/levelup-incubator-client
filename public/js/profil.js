@@ -1181,20 +1181,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Landing",
@@ -1226,10 +1212,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
-//
-//
-//
 //
 //
 //
@@ -1631,7 +1613,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.theme--dark input {\r\n    background-color: #1E1E1E !important;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.theme--dark input {\r\n    background-color: #1e1e1e !important;\n}\nmain {\r\n    background-color: #f3f4f6 !important;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2133,13 +2115,20 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "v-main",
-    { staticClass: "pa-0 p-0", staticStyle: { padding: "0 !important" } },
+    {
+      staticClass: "pa-0 p-0 bg-gray-100",
+      staticStyle: { padding: "0 !important" },
+    },
     [
       _c(
         "main",
         {
           staticClass: "bg-gray-100 font-montserrat",
-          staticStyle: { margin: "0", padding: "0 !important" },
+          staticStyle: {
+            margin: "0",
+            padding: "0 !important",
+            "background-color": "#F3F4F6 !important",
+          },
         },
         [
           _c("link", {
@@ -2148,101 +2137,6 @@ var render = function () {
               rel: "stylesheet",
             },
           }),
-          _vm._v(" "),
-          _c(
-            "header",
-            {
-              staticClass: "h-24 sm:h-32 flex items-center",
-              staticStyle: { position: "relative", top: "50px" },
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "container mx-auto px-6 sm:px-12 flex items-center justify-between",
-                },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "font-black text-blue-900 text-2xl flex items-start",
-                    },
-                    [
-                      _vm._v(
-                        "\n                    Your Startup\n                    "
-                      ),
-                      _c("span", {
-                        staticClass: "w-3 h-3 rounded-full bg-purple-600 ml-2",
-                      }),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "flex items-center" }, [
-                    _c(
-                      "nav",
-                      {
-                        staticClass:
-                          "text-purple-900 text-lg hidden lg:flex items-center",
-                      },
-                      [
-                        _c(
-                          "p",
-                          {
-                            staticClass:
-                              "py-2 px-8 flex hover:text-purple-700 cursor-pointer",
-                          },
-                          [
-                            !this.$store.state.isLoggin
-                              ? _c("LoginModal")
-                              : _vm._e(),
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "p",
-                          {
-                            staticClass:
-                              "py-2 px-8 flex hover:text-purple-700 cursor-pointer",
-                          },
-                          [
-                            this.$store.state.isLoggin
-                              ? _c(
-                                  "router-link",
-                                  {
-                                    attrs: {
-                                      to: { path: "/dashboard/profil" },
-                                    },
-                                  },
-                                  [_vm._v("Dashboard")]
-                                )
-                              : _vm._e(),
-                          ],
-                          1
-                        ),
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("button", { staticClass: "flex flex-col ml-4" }, [
-                      _c("span", {
-                        staticClass: "w-6 h-1 rounded-full bg-purple-800 mb-1",
-                      }),
-                      _vm._v(" "),
-                      _c("span", {
-                        staticClass: "w-6 h-1 rounded-full bg-purple-800 mb-1",
-                      }),
-                      _vm._v(" "),
-                      _c("span", {
-                        staticClass: "w-6 h-1 rounded-full bg-purple-800 mb-1",
-                      }),
-                    ]),
-                  ]),
-                ]
-              ),
-            ]
-          ),
           _vm._v(" "),
           _c(
             "div",
@@ -2960,17 +2854,9 @@ var render = function () {
                     ]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "font-semibold text-lg bg-purple-600 hover:bg-blue-400 text-white py-3 px-12 rounded-full",
-                      staticStyle: { color: "#F3F4F6 !important" },
-                      attrs: { href: "#" },
-                    },
-                    [_vm._v("Learn more")]
-                  ),
-                ]
+                  !this.$store.state.isLoggin ? _c("LoginModal") : _vm._e(),
+                ],
+                1
               ),
               _vm._v(" "),
               _c(
@@ -4636,17 +4522,25 @@ var render = function () {
                 var attrs = ref.attrs
                 return [
                   _c(
-                    "v-btn",
+                    "button",
                     _vm._g(
                       _vm._b(
-                        { attrs: { color: "primary", dark: "" } },
-                        "v-btn",
+                        {
+                          staticClass:
+                            "mt-2 font-semibold text-lg bg-purple-600 hover:bg-blue-400 text-white pt-2 pb-3 px-12 rounded-full",
+                          staticStyle: {
+                            color: "rgb(243, 244, 246) !important",
+                            height: "47px",
+                            "vertical-align": "baseline",
+                          },
+                        },
+                        "button",
                         attrs,
                         false
                       ),
                       on
                     ),
-                    [_vm._v("\n                Login\n            ")]
+                    [_vm._v("Login")]
                   ),
                 ]
               },
@@ -4757,7 +4651,7 @@ var render = function () {
                         },
                       },
                     },
-                    [_vm._v("\n                    Close\n                ")]
+                    [_vm._v("Close")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -4766,7 +4660,7 @@ var render = function () {
                       attrs: { color: "blue darken-1", text: "" },
                       on: { click: _vm.login },
                     },
-                    [_vm._v("\n                    Save\n                ")]
+                    [_vm._v("Save")]
                   ),
                 ],
                 1

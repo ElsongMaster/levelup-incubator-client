@@ -20,6 +20,7 @@ class DocumentController extends Controller
             "data" => Document::all()
         ];
     }
+
     public function uploadFile(Request $rq)
     {
         $validate = Validator::make($params = $rq->all(), [
@@ -66,5 +67,11 @@ class DocumentController extends Controller
             "nameFile"=>$newDocument->filepath,
             "status" => 200,
         ];
+    }
+
+    public function askDocument(Request $rq){
+        $rq->validate([
+            "document_title"=>"required"
+        ]);
     }
 }
