@@ -38,12 +38,12 @@
         </v-list-item>
         <!--  -->
         <!-- Goals-->
-        <v-list-item to="/dashboard/tasks">
+        <v-list-item to="/dashboard/goals">
           <v-list-item-icon>
-            <v-icon>mdi-clipboard-edit-outline</v-icon>
+            <v-icon>mdi-clipboard-list-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-list-item-title>Tâches</v-list-item-title>
+            <v-list-item-title>Goals</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <!--  -->

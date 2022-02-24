@@ -1,17 +1,17 @@
 <template>
-<!-- component -->
-<div>
-<Landing/>
-</div>
+  <!-- component -->
+  <div>
+    <Landing />
+  </div>
 </template>
 
 <script>
 import Landing from '../components/Landing.vue'
-  export default {
-    name: 'Home',
+export default {
+  name: 'Home',
 
-    components: {
-     Landing
-    },
-  }
+  components: {
+    Landing
+  },
+}
 </script>
