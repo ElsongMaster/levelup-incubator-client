@@ -12,4 +12,8 @@ class DocumentDemand extends Model
     public function startup(){
         return $this->belongsTo(Startup::class);
     }
+
+    public function StartupNotifications () {
+        return $this->morphMany(StartupNotifications::class, 'startupNotifiable');
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AskHelp;
+use App\Models\StartupNotifications;
 use Illuminate\Http\Request;
 
 class AskHelpController extends Controller
