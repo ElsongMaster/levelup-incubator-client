@@ -148,6 +148,8 @@ export default {
             "dialogLogin",
             "token",
             "userData",
+            "email",
+            "password"
         ]),
     },
 };

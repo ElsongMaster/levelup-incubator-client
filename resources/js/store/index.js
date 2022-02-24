@@ -12,6 +12,9 @@ export default {
         userData: null,
         requestDocument:null,
         notifications:null,
+        email: null,
+        password:null,
+        askedDocs:[]
     },
 
     getters: {
