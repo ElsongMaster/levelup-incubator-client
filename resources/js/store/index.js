@@ -11,6 +11,7 @@ export default {
         todoList: [],
         userData: null,
         requestDocument:null,
+        notifications:null,
     },
 
     getters: {

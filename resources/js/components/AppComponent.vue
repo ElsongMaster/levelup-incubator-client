@@ -21,7 +21,6 @@
                 />
             </div>
             <v-spacer></v-spacer>
-<<<<<<< HEAD
             <Notifications  />
             <v-btn
                 v-if="this.$store.state.isLoggin"
@@ -36,10 +35,6 @@
                 v-model="$vuetify.theme.dark"
                 hide-details
             ></v-switch>
-=======
-            <v-btn v-if="this.$store.state.isLoggin" succes class="mx-3" @click="logout">LOGOUT</v-btn>
-            <v-switch color="indigo" v-model="$vuetify.theme.dark" hide-details></v-switch>
->>>>>>> c3397d2caea11985207aefecd615a11a39a9302e
 
             <!-- <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
@@ -62,14 +57,10 @@
 import Notifications from "./Notifications.vue";
 export default {
     name: "AppComponent",
-<<<<<<< HEAD
     components: {
         Notifications,
     },
     data() {
-=======
-    data () {
->>>>>>> c3397d2caea11985207aefecd615a11a39a9302e
         return {
             items: ["Foo", "Bar", "Fizz", "Buzz"],
         };

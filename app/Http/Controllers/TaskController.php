@@ -14,6 +14,14 @@ class TaskController extends Controller
             "data" => Task::all(),
         ];
     }
+    public function getTask($id)
+    {
+
+
+        return [
+            "data" => Task::find($id),
+        ];
+    }
 
     public function changeStatus(Request $rq)
     {
