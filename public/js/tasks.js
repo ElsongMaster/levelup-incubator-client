@@ -299,6 +299,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "SideBar",
   data: function data() {
@@ -1020,7 +1029,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.title[data-v-269e1fc1] {\r\n  font-size: 30px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.title[data-v-269e1fc1] {\n  font-size: 30px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1043,7 +1052,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.done[data-v-43ab059a] {\r\n    text-decoration: line-through;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.done[data-v-43ab059a] {\n    text-decoration: line-through;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2109,7 +2118,7 @@ var render = function () {
                     { staticClass: "text-h6" },
                     [
                       _c("router-link", { attrs: { to: "/" } }, [
-                        _vm._v(" Home"),
+                        _vm._v("Home"),
                       ]),
                     ],
                     1
@@ -2216,6 +2225,25 @@ var render = function () {
                   _c(
                     "v-list-item-content",
                     [_c("v-list-item-title", [_vm._v("Documents")])],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-item",
+                { attrs: { to: "/dashboard/help" } },
+                [
+                  _c(
+                    "v-list-item-icon",
+                    [_c("v-icon", [_vm._v("mdi-account-question-outline")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item-content",
+                    [_c("v-list-item-title", [_vm._v("Help")])],
                     1
                   ),
                 ],
@@ -3036,14 +3064,7 @@ var render = function () {
                               _c(
                                 "v-expansion-panel-content",
                                 [
-                                  _c("p", [
-                                    _vm._v(
-                                      _vm._s(
-                                        item.description.substring(0, 60) +
-                                          "..."
-                                      )
-                                    ),
-                                  ]),
+                                  _c("p", [_vm._v(_vm._s(item.description))]),
                                   _vm._v(" "),
                                   _c(
                                     "v-container",

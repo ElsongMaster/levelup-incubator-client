@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AskHelpController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\GoalController;
@@ -49,4 +50,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // Goals
     Route::get('/v1/goals', [GoalController::class, 'index']);
     Route::get('/v1/goals/tasks/{goalTaskId}', [GoalController::class, 'validateTask']);
+
+    // Help
+    Route::post('/v1/user-help', [AskHelpController::class, 'store' ]);
 });

@@ -19,7 +19,7 @@
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
                     <!-- Description -->
-                    <p>{{ item.description.substring(0, 60) + '...' }}</p>
+                    <p>{{ item.description }}</p>
                     <v-container>
                       <v-row>
                         <v-col>

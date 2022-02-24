@@ -92,4 +92,16 @@ export const routes = [
             requiresAuth: true,
         },
     },
+    {
+        path: "/dashboard/help",
+        name: "AdminHelp",
+        // route level code-splitting
+        // this generates a separate chunk (profile.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import(/* webpackChunkName: "AdminHelp" */ "./components/pages/AdminHelp.vue"),
+        meta: {
+            requiresAuth: true,
+        },
+    },
 ];

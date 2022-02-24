@@ -1,15 +1,14 @@
 <template>
   <v-card height="900" width="256">
-    
     <v-navigation-drawer permanent>
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="text-h6">
-            <router-link to="/"> Home</router-link>
+            <router-link to="/">Home</router-link>
           </v-list-item-title>
           <!-- <v-list-item-subtitle>
             
-          </v-list-item-subtitle> -->
+          </v-list-item-subtitle>-->
         </v-list-item-content>
       </v-list-item>
 
@@ -67,6 +66,16 @@
           </v-list-item-content>
         </v-list-item>
         <!--  -->
+        <!-- Admin Help-->
+        <v-list-item to="/dashboard/help">
+          <v-list-item-icon>
+            <v-icon>mdi-account-question-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Help</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <!--  -->
       </v-list>
     </v-navigation-drawer>
   </v-card>
@@ -75,7 +84,7 @@
 <script>
 export default {
   name: "SideBar",
-  data() {
+  data () {
     return {
       right: null,
     };

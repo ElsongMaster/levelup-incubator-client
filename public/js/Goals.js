@@ -85,6 +85,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "SideBar",
   data: function data() {
@@ -390,7 +399,7 @@ var render = function () {
                     { staticClass: "text-h6" },
                     [
                       _c("router-link", { attrs: { to: "/" } }, [
-                        _vm._v(" Home"),
+                        _vm._v("Home"),
                       ]),
                     ],
                     1
@@ -502,6 +511,25 @@ var render = function () {
                 ],
                 1
               ),
+              _vm._v(" "),
+              _c(
+                "v-list-item",
+                { attrs: { to: "/dashboard/help" } },
+                [
+                  _c(
+                    "v-list-item-icon",
+                    [_c("v-icon", [_vm._v("mdi-account-question-outline")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item-content",
+                    [_c("v-list-item-title", [_vm._v("Help")])],
+                    1
+                  ),
+                ],
+                1
+              ),
             ],
             1
           ),
@@ -575,14 +603,7 @@ var render = function () {
                               _c(
                                 "v-expansion-panel-content",
                                 [
-                                  _c("p", [
-                                    _vm._v(
-                                      _vm._s(
-                                        item.description.substring(0, 60) +
-                                          "..."
-                                      )
-                                    ),
-                                  ]),
+                                  _c("p", [_vm._v(_vm._s(item.description))]),
                                   _vm._v(" "),
                                   _c(
                                     "v-container",
