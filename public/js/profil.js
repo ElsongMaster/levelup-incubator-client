@@ -1286,6 +1286,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "LoginModal",
   data: function data() {
     return {
+      // email:null,
+      // password:null,
       show4: false,
       headers: {
         "Access-Control-Allow-Origin": "*",

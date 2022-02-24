@@ -20,8 +20,8 @@
                     width="100"
                 />
             </div>
-
             <v-spacer></v-spacer>
+            <Notifications  />
             <v-btn
                 v-if="this.$store.state.isLoggin"
                 succes
@@ -29,6 +29,7 @@
                 @click="logout"
                 >LOGOUT</v-btn
             >
+
             <v-switch
                 color="indigo"
                 v-model="$vuetify.theme.dark"
@@ -53,11 +54,15 @@
 
 <script>
 // import {mapState} from 'vuex';
+import Notifications from "./Notifications.vue";
 export default {
     name: "AppComponent",
+    components: {
+        Notifications,
+    },
     data() {
         return {
-            // isLoggin:localStorage.getItem("connected")!="0"
+            items: ["Foo", "Bar", "Fizz", "Buzz"],
         };
     },
     computed: {
@@ -91,6 +96,10 @@ export default {
 
 <style>
 .theme--dark input {
-    background-color: #1E1E1E !important;
+    background-color: #1e1e1e !important;
+}
+
+.width {
+    width: 20px !important;
 }
 </style>

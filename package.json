@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
+        "vue-notification-bell": "^0.9.12",
         "vue-router": "^3.2.0",
         "vuetify": "^2.4.0",
         "vuex": "^3.4.0",

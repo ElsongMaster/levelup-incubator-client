@@ -64,7 +64,6 @@ class StartupController extends Controller
             // "logo" => "required|max:2048||mimes:jpeg,jpg,png",
         ]);
 
-        dd($rq->user());
         $user = StartupUser::where('email', '=', $rq->lastemail)->get();
 
         $user->first_name = $rq->firstname;

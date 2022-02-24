@@ -40,8 +40,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //document
     Route::post('/v1/upload', [DocumentController::class, 'uploadFile']);
     Route::get('/v1/files', [DocumentController::class, 'index']);
+    Route::post('/v1/files/ask', [DocumentController::class, 'askFiles']);
+
 
     //task
     Route::get('/v1/tasks', [TaskController::class, 'index']);
     Route::put('/v1/task/status', [TaskController::class, 'changeStatus']);
+
 });
