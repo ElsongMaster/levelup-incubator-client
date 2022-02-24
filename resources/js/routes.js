@@ -68,4 +68,16 @@ export const routes = [
             requiresAuth: true,
         },
     },
+    {
+        path: "/dashboard/goals",
+        name: "Goals",
+        // route level code-splitting
+        // this generates a separate chunk (profile.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import(/* webpackChunkName: "tasks" */ "./components/pages/Goals.vue"),
+        meta: {
+            requiresAuth: true,
+        },
+    },
 ];

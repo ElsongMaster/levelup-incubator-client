@@ -4919,17 +4919,17 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-list-item",
-                { attrs: { to: "/dashboard/tasks" } },
+                { attrs: { to: "/dashboard/goals" } },
                 [
                   _c(
                     "v-list-item-icon",
-                    [_c("v-icon", [_vm._v("mdi-clipboard-edit-outline")])],
+                    [_c("v-icon", [_vm._v("mdi-clipboard-list-outline")])],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "v-list-item-content",
-                    [_c("v-list-item-title", [_vm._v("Tâches")])],
+                    [_c("v-list-item-title", [_vm._v("Objectifs")])],
                     1
                   ),
                 ],

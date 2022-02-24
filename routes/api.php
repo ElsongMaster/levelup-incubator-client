@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\GoalController;
 use App\Http\Controllers\StartupController;
 use App\Http\Controllers\StartupUserController;
 use App\Http\Controllers\TaskController;
@@ -44,4 +45,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //task
     Route::get('/v1/tasks', [TaskController::class, 'index']);
     Route::put('/v1/task/status', [TaskController::class, 'changeStatus']);
+
+    //Goal
+    Route::get('/v1/goals', [GoalController::class, 'index']);
 });

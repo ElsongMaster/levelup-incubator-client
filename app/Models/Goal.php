@@ -9,7 +9,8 @@ class Goal extends Model
 {
     use HasFactory;
 
-    public function startup(){
-        return $this->belongsTo(Startup::class);
+    public function goalTasks()
+    {
+        return $this->belongsToMany(GoalTask::class, 'pivot_goal_tasks')->using(PivotGoalTask::class);
     }
 }
