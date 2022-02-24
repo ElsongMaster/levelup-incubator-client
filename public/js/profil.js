@@ -1294,6 +1294,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "LoginModal",
   data: function data() {
     return {
+      // email:null,
+      // password:null,
       show4: false,
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -1613,6 +1615,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "SideBar",
   data: function data() {
@@ -1640,7 +1652,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.border-none[data-v-5a9eff6f]:focus {\n    border-color: none !important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.border-none[data-v-5a9eff6f]:focus {\r\n    border-color: none !important;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -4947,7 +4959,7 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-list-item",
-                { attrs: { to: "/dashboard/tasks" } },
+                { attrs: { to: "/dashboard/tasks2" } },
                 [
                   _c(
                     "v-list-item-icon",
@@ -4996,6 +5008,25 @@ var render = function () {
                   _c(
                     "v-list-item-content",
                     [_c("v-list-item-title", [_vm._v("Help")])],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-item",
+                { attrs: { to: "/dashboard/notifications" } },
+                [
+                  _c(
+                    "v-list-item-icon",
+                    [_c("v-icon", [_vm._v("mdi-bell-circle")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item-content",
+                    [_c("v-list-item-title", [_vm._v("Notifications")])],
                     1
                   ),
                 ],

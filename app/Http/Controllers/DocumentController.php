@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Document;
+use App\Models\DocumentDemand;
 use App\Models\Startup;
 use App\Models\StartupUser;
 
@@ -69,9 +70,35 @@ class DocumentController extends Controller
         ];
     }
 
-    public function askDocument(Request $rq){
+    public function askFiles(Request $rq){
         $rq->validate([
             "document_title"=>"required"
         ]);
+
+        $user = $rq->user();
+        if (!$user) {
+            return [
+                "msg" => "Vous n'êtes pas connecté",
+                "status" => 401
+            ];
+        }
+
+        $newAskingDocument = new DocumentDemand;
+        $newAskingDocument->startup_id = $user->startup->id;
+        $newAskingDocument->by_startup = true;
+        $newAskingDocument->document_title = $rq->document_title;
+        $newAskingDocument->description = $rq->description;
+        $newAskingDocument->save();
+
+        return[
+            "msg" => "Demande reçu avec succès",
+            "status" => 200
+        ];
+
+
+
+        
     }
+
+    
 }

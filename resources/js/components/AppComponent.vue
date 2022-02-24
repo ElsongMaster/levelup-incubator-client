@@ -20,10 +20,21 @@
                     width="100"
                 />
             </div>
-
             <v-spacer></v-spacer>
-            <v-btn v-if="this.$store.state.isLoggin" succes class="mx-3" @click="logout">LOGOUT</v-btn>
-            <v-switch color="indigo" v-model="$vuetify.theme.dark" hide-details></v-switch>
+            <Notifications  />
+            <v-btn
+                v-if="this.$store.state.isLoggin"
+                succes
+                class="mx-3"
+                @click="logout"
+                >LOGOUT</v-btn
+            >
+
+            <v-switch
+                color="indigo"
+                v-model="$vuetify.theme.dark"
+                hide-details
+            ></v-switch>
 
             <!-- <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
@@ -43,11 +54,15 @@
 
 <script>
 // import {mapState} from 'vuex';
+import Notifications from "./Notifications.vue";
 export default {
     name: "AppComponent",
-    data () {
+    components: {
+        Notifications,
+    },
+    data() {
         return {
-            // isLoggin:localStorage.getItem("connected")!="0"
+            items: ["Foo", "Bar", "Fizz", "Buzz"],
         };
     },
     computed: {
@@ -82,5 +97,9 @@ export default {
 <style>
 .theme--dark input {
     background-color: #1e1e1e !important;
+}
+
+.width {
+    width: 20px !important;
 }
 </style>

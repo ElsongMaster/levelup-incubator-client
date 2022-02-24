@@ -37,7 +37,9 @@ export const routes = [
         // this generates a separate chunk (profile.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () =>
-            import(/* webpackChunkName: "Goals" */ "./components/pages/Goals.vue"),
+            import(
+                /* webpackChunkName: "Goals" */ "./components/pages/Goals.vue"
+            ),
         meta: {
             requiresAuth: true,
         },
@@ -87,7 +89,9 @@ export const routes = [
         // this generates a separate chunk (profile.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () =>
-            import(/* webpackChunkName: "tasks" */ "./components/pages/Goals.vue"),
+            import(
+                /* webpackChunkName: "tasks" */ "./components/pages/Goals.vue"
+            ),
         meta: {
             requiresAuth: true,
         },
@@ -99,7 +103,51 @@ export const routes = [
         // this generates a separate chunk (profile.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () =>
-            import(/* webpackChunkName: "AdminHelp" */ "./components/pages/AdminHelp.vue"),
+            import(
+                /* webpackChunkName: "AdminHelp" */ "./components/pages/AdminHelp.vue"
+            ),
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
+        path: "/dashboard/notifications",
+        name: "NotifLayout",
+        // route level code-splitting
+        // this generates a separate chunk (profile.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import(
+                /* webpackChunkName: "AdminHelp" */ "./components/pages/NotificationsLayout.vue"
+            ),
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
+        path: "/dashboard/tasks2",
+        name: "Tasks2",
+        // route level code-splitting
+        // this generates a separate chunk (profile.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import(
+                /* webpackChunkName: "AdminHelp" */ "./components/pages/Tasks2.vue"
+            ),
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
+        path: "/dashboard/task/:id/edit",
+        name: "TaskEdit",
+        // route level code-splitting
+        // this generates a separate chunk (profile.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import(
+                /* webpackChunkName: "AdminHelp" */ "./components/TaskEdit.vue"
+            ),
         meta: {
             requiresAuth: true,
         },

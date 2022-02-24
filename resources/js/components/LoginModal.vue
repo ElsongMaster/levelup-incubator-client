@@ -74,7 +74,8 @@ export default {
     name: "LoginModal",
     data () {
         return {
-
+            // email:null,
+            // password:null,
             show4: false,
 
             headers: {

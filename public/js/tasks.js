@@ -308,6 +308,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "SideBar",
   data: function data() {
@@ -745,6 +755,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex-map-fields */ "./node_modules/vuex-map-fields/dist/index.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -801,13 +818,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      dialog: false
+      dialog: false,
+      document_title: null,
+      description: null
     };
-  }
+  },
+  methods: {
+    submit: function submit() {
+      axios.post("http://127.0.0.1:8004/api/v1/files/ask", {
+        document_title: this.document_title,
+        description: this.description
+      }, {
+        headers: {
+          Authorization: "Bearer " + this.token
+        }
+      }).then(function (response) {
+        console.log("demande de doc", response);
+      });
+    }
+  },
+  computed: _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.mapFields)(["token"]))
 });
 
 /***/ }),
@@ -1029,7 +1063,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.title[data-v-269e1fc1] {\n  font-size: 30px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.title[data-v-269e1fc1] {\r\n  font-size: 30px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -1052,7 +1086,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.done[data-v-43ab059a] {\n    text-decoration: line-through;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.done[data-v-43ab059a] {\r\n    text-decoration: line-through;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2195,7 +2229,7 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-list-item",
-                { attrs: { to: "/dashboard/tasks" } },
+                { attrs: { to: "/dashboard/tasks2" } },
                 [
                   _c(
                     "v-list-item-icon",
@@ -2244,6 +2278,25 @@ var render = function () {
                   _c(
                     "v-list-item-content",
                     [_c("v-list-item-title", [_vm._v("Help")])],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-item",
+                { attrs: { to: "/dashboard/notifications" } },
+                [
+                  _c(
+                    "v-list-item-icon",
+                    [_c("v-icon", [_vm._v("mdi-bell-circle")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item-content",
+                    [_c("v-list-item-title", [_vm._v("Notifications")])],
                     1
                   ),
                 ],
@@ -2831,7 +2884,9 @@ var render = function () {
         "v-card",
         [
           _c("v-card-title", [
-            _c("span", { staticClass: "text-h5" }, [_vm._v("User Profile")]),
+            _c("span", { staticClass: "text-h5" }, [
+              _vm._v("Formulaire demande de document"),
+            ]),
           ]),
           _vm._v(" "),
           _c(
@@ -2845,39 +2900,19 @@ var render = function () {
                     [
                       _c(
                         "v-col",
-                        { attrs: { cols: "12", sm: "6", md: "4" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: { label: "Legal first name*", required: "" },
-                          }),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", sm: "6", md: "4" } },
+                        { attrs: { cols: "12" } },
                         [
                           _c("v-text-field", {
                             attrs: {
-                              label: "Legal middle name",
-                              hint: "example of helper text only on focus",
-                            },
-                          }),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", sm: "6", md: "4" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Legal last name*",
-                              hint: "example of persistent helper text",
-                              "persistent-hint": "",
+                              label: "Titre du document*",
                               required: "",
+                            },
+                            model: {
+                              value: _vm.document_title,
+                              callback: function ($$v) {
+                                _vm.document_title = $$v
+                              },
+                              expression: "document_title",
                             },
                           }),
                         ],
@@ -2888,62 +2923,18 @@ var render = function () {
                         "v-col",
                         { attrs: { cols: "12" } },
                         [
-                          _c("v-text-field", {
-                            attrs: { label: "Email*", required: "" },
-                          }),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12" } },
-                        [
-                          _c("v-text-field", {
+                          _c("v-textarea", {
+                            staticClass: "p-2",
                             attrs: {
-                              label: "Password*",
-                              type: "password",
-                              required: "",
+                              autocomplete: "Description(optionnel)",
+                              label: "Description",
                             },
-                          }),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", sm: "6" } },
-                        [
-                          _c("v-select", {
-                            attrs: {
-                              items: ["0-17", "18-29", "30-54", "54+"],
-                              label: "Age*",
-                              required: "",
-                            },
-                          }),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", sm: "6" } },
-                        [
-                          _c("v-autocomplete", {
-                            attrs: {
-                              items: [
-                                "Skiing",
-                                "Ice hockey",
-                                "Soccer",
-                                "Basketball",
-                                "Hockey",
-                                "Reading",
-                                "Writing",
-                                "Coding",
-                                "Basejump",
-                              ],
-                              label: "Interests",
-                              multiple: "",
+                            model: {
+                              value: _vm.description,
+                              callback: function ($$v) {
+                                _vm.description = $$v
+                              },
+                              expression: "description",
                             },
                           }),
                         ],
@@ -2984,12 +2975,13 @@ var render = function () {
                 {
                   attrs: { color: "blue darken-1", text: "" },
                   on: {
-                    click: function ($event) {
+                    click: function () {
+                      _vm.submit()
                       _vm.dialog = false
                     },
                   },
                 },
-                [_vm._v("Save")]
+                [_vm._v("Submit")]
               ),
             ],
             1
