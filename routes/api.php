@@ -40,6 +40,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     //document
     Route::post('/v1/upload', [DocumentController::class, 'uploadFile']);
     Route::get('/v1/files', [DocumentController::class, 'index']);
+    //download
+    Route::get("/v1/files/{docId}/download", [DocumentController::class, "download"]);
+    //Demande de Document
+    Route::post("/v1/asking-docs", [DocumentController::class, "askDoc"]);
+    //Voir Les documents demandés
+    Route::get("/v1/asking-docs", [DocumentController::class, "seeAskedDocs"]);
 
     //task
     Route::get('/v1/tasks', [TaskController::class, 'index']);

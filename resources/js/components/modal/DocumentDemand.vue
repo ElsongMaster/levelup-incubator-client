@@ -6,49 +6,27 @@
     </template>
     <v-card>
       <v-card-title>
-        <span class="text-h5">User Profile</span>
+        <span class="text-h5">Demande de document</span>
       </v-card-title>
       <v-card-text>
         <v-container>
           <v-row>
-            <v-col cols="12" sm="6" md="4">
-              <v-text-field label="Legal first name*" required></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="4">
-              <v-text-field label="Legal middle name" hint="example of helper text only on focus"></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6" md="4">
-              <v-text-field
-                label="Legal last name*"
-                hint="example of persistent helper text"
-                persistent-hint
-                required
-              ></v-text-field>
+            
+            <v-col cols="12">
+              <v-text-field label="Titre*" v-model="ask.titre" required></v-text-field>
             </v-col>
             <v-col cols="12">
-              <v-text-field label="Email*" required></v-text-field>
+              <v-text-field label="Description*" v-model="ask.description" required></v-text-field>
             </v-col>
-            <v-col cols="12">
-              <v-text-field label="Password*" type="password" required></v-text-field>
-            </v-col>
-            <v-col cols="12" sm="6">
-              <v-select :items="['0-17', '18-29', '30-54', '54+']" label="Age*" required></v-select>
-            </v-col>
-            <v-col cols="12" sm="6">
-              <v-autocomplete
-                :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                label="Interests"
-                multiple
-              ></v-autocomplete>
-            </v-col>
+           
           </v-row>
         </v-container>
         <small>*indicates required field</small>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
+        <v-btn color="blue darken-1" text @click="sendDemand">Save</v-btn>
         <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-        <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -56,10 +34,69 @@
 </template>
 
 <script>
+import axios from "axios";
+import { mapFields } from "vuex-map-fields";
+
 export default {
   data: () => ({
     dialog: false,
+    ask:{
+      titre:null,
+      description: null,
+    }
   }),
+  mounted() {
+    this.seeAskedDocs()
+  },
+  methods: {
+    sendDemand(){
+      this.dialog = false;
+      axios
+        .post(
+          `/api/v1/asking-docs`,
+          this.ask,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("tokenConnexion"),
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+            this.seeAskedDocs()
+
+        })
+        .catch((error) => {
+          console.log(error.response);
+       
+        });
+    },
+
+    seeAskedDocs(){
+      axios
+        .get(
+          `/api/v1/asking-docs`,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("tokenConnexion"),
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+          this.askedDocs=response.data.data
+        
+        })
+        .catch((error) => {
+          console.log(error.response);
+       
+        });
+    }
+  },
+  computed:{
+        ...mapFields(['askedDocs'])
+
+  }
 
 }
 </script>

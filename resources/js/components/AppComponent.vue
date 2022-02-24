@@ -22,18 +22,8 @@
             </div>
 
             <v-spacer></v-spacer>
-            <v-btn
-                v-if="this.$store.state.isLoggin"
-                succes
-                class="mx-3"
-                @click="logout"
-                >LOGOUT</v-btn
-            >
-            <v-switch
-                color="indigo"
-                v-model="$vuetify.theme.dark"
-                hide-details
-            ></v-switch>
+            <v-btn v-if="this.$store.state.isLoggin" succes class="mx-3" @click="logout">LOGOUT</v-btn>
+            <v-switch color="indigo" v-model="$vuetify.theme.dark" hide-details></v-switch>
 
             <!-- <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
@@ -42,7 +32,7 @@
       >
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
-      </v-btn> -->
+            </v-btn>-->
         </v-app-bar>
 
         <v-main>
@@ -55,7 +45,7 @@
 // import {mapState} from 'vuex';
 export default {
     name: "AppComponent",
-    data() {
+    data () {
         return {
             // isLoggin:localStorage.getItem("connected")!="0"
         };
@@ -67,7 +57,7 @@ export default {
     },
 
     methods: {
-        logout() {
+        logout () {
             let tokenReq = localStorage.getItem("tokenConnexion");
             console.log(tokenReq);
             axios
@@ -91,6 +81,6 @@ export default {
 
 <style>
 .theme--dark input {
-    background-color: #1E1E1E !important;
+    background-color: #1e1e1e !important;
 }
 </style>

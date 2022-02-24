@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AskingDocs;
 use App\Models\Document;
 use App\Models\Startup;
 use App\Models\StartupUser;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class DocumentController extends Controller
@@ -57,14 +59,14 @@ class DocumentController extends Controller
         $rq->file('file')->storePublicly('modules/incubator/' . $folderName, 'public');
         $newDocument->filepath = $rq->file('file')->hashName();
         $newDocument->startup_id = $startup->id;
+        $newDocument->name= $rq->name;
         $newDocument->save();
 
 
-
-
-        return [
+        return  [
             "message" => "le document a été correctement stocké",
             "nameFile"=>$newDocument->filepath,
+            "docId"=>$newDocument->id,
             "status" => 200,
         ];
     }
@@ -73,5 +75,60 @@ class DocumentController extends Controller
         $rq->validate([
             "document_title"=>"required"
         ]);
+    }
+
+    //Download
+    public function download($docId,Request $rq)
+    {
+        // dd($docId);
+        $user = $rq->user();
+        $startupId = $user->startup->id;
+
+        $startup = Startup::where('id', $startupId)->get();
+        $startupName = $startup[0]->name;
+        $folderName = str_replace(' ', '_', $startupName);
+
+        $download = Document::find($docId);
+        return response()->download('modules/incubator/' . $folderName . '/' . $download->filepath);
+    }
+
+    //Demande de document
+    public function askDoc( Request $rq)
+    {
+        $user = $rq->user();
+        $startupId = $user->startup->id;
+
+        $store = new AskingDocs;
+
+        $store->by_startup = true;
+        $store->startup_id = $startupId;
+
+        // $store->helper_user_id = $request->helper_user_id;
+        $store->document_title = $rq->titre;
+        $store->document_description = $rq->description;
+
+        $store->save();
+        return response()->json([
+            'message' =>'Demande Ajoutée avec succès',
+            'data' => $store
+        ],201);
+    }
+
+    //Voir les documents demandés
+    public function seeAskedDocs(Request $rq){
+        $user = $rq->user();
+        $startupId = $user->startup->id;
+
+        // $startup = Startup::find($startupId);
+
+        $askedStartupDocs = AskingDocs::where('startup_id', $startupId)->get();
+
+        // $documents = Document::where('startup_id', $startupId)->get();
+
+        return response()->json([
+            "message"=>"Documents demandés récupérés avec succès",
+            "data"=>$askedStartupDocs
+        ]);
+
     }
 }

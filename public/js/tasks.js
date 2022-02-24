@@ -289,6 +289,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "SideBar",
   data: function data() {
@@ -616,6 +626,70 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _services_UploadFilesService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/UploadFilesService */ "./resources/js/services/UploadFilesService.js");
 /* harmony import */ var _modal_DocumentDemand_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal/DocumentDemand.vue */ "./resources/js/components/modal/DocumentDemand.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vuex_map_fields__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex-map-fields */ "./node_modules/vuex-map-fields/dist/index.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -654,7 +728,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
- // import axios from "axios";
+
+
+ // import {saveAs} from 'file-saver';
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "upload-files",
@@ -663,7 +739,8 @@ __webpack_require__.r(__webpack_exports__);
       currentFile: null,
       progress: 0,
       message: "",
-      fileInfos: []
+      fileInfos: [],
+      name: null
     };
   },
   mounted: function mounted() {
@@ -691,7 +768,7 @@ __webpack_require__.r(__webpack_exports__);
       var tokenReq = localStorage.getItem("tokenConnexion");
       this.message = "";
       console.log("token", tokenReq);
-      _services_UploadFilesService__WEBPACK_IMPORTED_MODULE_0__["default"].upload(this.currentFile, tokenReq, function (event) {
+      _services_UploadFilesService__WEBPACK_IMPORTED_MODULE_0__["default"].upload(this.currentFile, this.name, tokenReq, function (event) {
         _this2.progress = Math.round(100 * event.loaded / event.total);
       }).then(function (response) {
         var tokenReq = localStorage.getItem("tokenConnexion");
@@ -707,11 +784,33 @@ __webpack_require__.r(__webpack_exports__);
         _this2.message = "Could not upload the file!";
         _this2.currentFile = undefined;
       });
+    },
+    download: function download(docId, fileName) {
+      console.log("id de la doc", docId);
+      axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/v1/files/".concat(docId, "/download"), {
+        responseType: "blob",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("tokenConnexion")
+        }
+      }).then(function (response) {
+        console.log(response.data);
+        var blob = new Blob([response.data], {
+          type: "application/pdf"
+        });
+        var docUrl = document.createElement("a");
+        docUrl.href = window.URL.createObjectURL(blob);
+        docUrl.setAttribute("download", fileName);
+        document.body.appendChild(docUrl);
+        docUrl.click();
+      })["catch"](function (error) {
+        console.log(error.response); // this.$toast.error("Tache non ajoutée")
+      });
     }
   },
   components: {
     DocumentDemand: _modal_DocumentDemand_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
-  }
+  },
+  computed: _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_3__.mapFields)(['askedDocs']))
 });
 
 /***/ }),
@@ -726,6 +825,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex-map-fields */ "./node_modules/vuex-map-fields/dist/index.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -761,34 +869,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      dialog: false
+      dialog: false,
+      ask: {
+        titre: null,
+        description: null
+      }
     };
-  }
+  },
+  mounted: function mounted() {
+    this.seeAskedDocs();
+  },
+  methods: {
+    sendDemand: function sendDemand() {
+      var _this = this;
+
+      this.dialog = false;
+      axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/v1/asking-docs", this.ask, {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("tokenConnexion")
+        }
+      }).then(function (response) {
+        console.log(response.data);
+
+        _this.seeAskedDocs();
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    },
+    seeAskedDocs: function seeAskedDocs() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/v1/asking-docs", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("tokenConnexion")
+        }
+      }).then(function (response) {
+        console.log(response.data);
+        _this2.askedDocs = response.data.data;
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    }
+  },
+  computed: _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__.mapFields)(['askedDocs']))
 });
 
 /***/ }),
@@ -819,10 +947,11 @@ var UploadFilesService = /*#__PURE__*/function () {
 
   _createClass(UploadFilesService, [{
     key: "upload",
-    value: function upload(file, tokenReq, onUploadProgress) {
+    value: function upload(file, name, tokenReq, onUploadProgress) {
       console.log(tokenReq);
       var formData = new FormData();
       formData.append("file", file);
+      formData.append("name", name);
       return _http_common__WEBPACK_IMPORTED_MODULE_0__["default"].post("/api/v1/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -1985,6 +2114,25 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-list-item",
+                { attrs: { to: "/dashboard/tasks" } },
+                [
+                  _c(
+                    "v-list-item-icon",
+                    [_c("v-icon", [_vm._v("mdi-clipboard-edit-outline")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item-content",
+                    [_c("v-list-item-title", [_vm._v("Tâches")])],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-item",
                 { attrs: { to: "/dashboard/filelist" } },
                 [
                   _c(
@@ -2431,6 +2579,24 @@ var render = function () {
         [
           _c(
             "v-col",
+            [
+              _c("v-text-field", {
+                attrs: { "show-size": "", label: "Name" },
+                on: { change: _vm.selectFile },
+                model: {
+                  value: _vm.name,
+                  callback: function ($$v) {
+                    _vm.name = $$v
+                  },
+                  expression: "name",
+                },
+              }),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
             { attrs: { cols: "8" } },
             [
               _c("v-file-input", {
@@ -2452,7 +2618,7 @@ var render = function () {
                   on: { click: _vm.upload },
                 },
                 [
-                  _vm._v("\n                Upload\n                "),
+                  _vm._v("\n                  Upload\n                  "),
                   _c("v-icon", { attrs: { right: "", dark: "" } }, [
                     _vm._v("mdi-cloud-upload"),
                   ]),
@@ -2492,11 +2658,17 @@ var render = function () {
                     "v-list-item",
                     { key: index },
                     [
-                      _c("v-list-item-content", [
-                        _c("a", { attrs: { href: file.filepath } }, [
-                          _vm._v(_vm._s(file.filepath)),
-                        ]),
-                      ]),
+                      _c(
+                        "v-list-item-content",
+                        {
+                          on: {
+                            click: function ($event) {
+                              return _vm.download(file.id, file.filepath)
+                            },
+                          },
+                        },
+                        [_c("p", [_vm._v(_vm._s(file.filepath))])]
+                      ),
                     ],
                     1
                   )
@@ -2511,6 +2683,58 @@ var render = function () {
       ),
       _vm._v(" "),
       _c("DocumentDemand", { staticClass: "mt-5" }),
+      _vm._v(" "),
+      _c("v-simple-table", {
+        staticClass: "mt-4",
+        attrs: { dark: "" },
+        scopedSlots: _vm._u([
+          {
+            key: "default",
+            fn: function () {
+              return [
+                _c("thead", [
+                  _c("tr", [
+                    _c("th", { staticClass: "text-left" }, [
+                      _vm._v("\n          Titre\n        "),
+                    ]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "text-left" }, [
+                      _vm._v("\n          Description\n        "),
+                    ]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "text-left" }, [
+                      _vm._v("\n          Demande\n        "),
+                    ]),
+                  ]),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.askedDocs, function (item) {
+                    return _c("tr", { key: item.id }, [
+                      _c("td", [_vm._v(_vm._s(item.document_title))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(item.document_description))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            item.helper_user_id == null
+                              ? "Vous avez demandé"
+                              : "L'incubateur vous demande"
+                          )
+                        ),
+                      ]),
+                    ])
+                  }),
+                  0
+                ),
+              ]
+            },
+            proxy: true,
+          },
+        ]),
+      }),
     ],
     1
   )
@@ -2583,7 +2807,9 @@ var render = function () {
         "v-card",
         [
           _c("v-card-title", [
-            _c("span", { staticClass: "text-h5" }, [_vm._v("User Profile")]),
+            _c("span", { staticClass: "text-h5" }, [
+              _vm._v("Demande de document"),
+            ]),
           ]),
           _vm._v(" "),
           _c(
@@ -2597,39 +2823,16 @@ var render = function () {
                     [
                       _c(
                         "v-col",
-                        { attrs: { cols: "12", sm: "6", md: "4" } },
+                        { attrs: { cols: "12" } },
                         [
                           _c("v-text-field", {
-                            attrs: { label: "Legal first name*", required: "" },
-                          }),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", sm: "6", md: "4" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Legal middle name",
-                              hint: "example of helper text only on focus",
-                            },
-                          }),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", sm: "6", md: "4" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Legal last name*",
-                              hint: "example of persistent helper text",
-                              "persistent-hint": "",
-                              required: "",
+                            attrs: { label: "Titre*", required: "" },
+                            model: {
+                              value: _vm.ask.titre,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.ask, "titre", $$v)
+                              },
+                              expression: "ask.titre",
                             },
                           }),
                         ],
@@ -2641,61 +2844,13 @@ var render = function () {
                         { attrs: { cols: "12" } },
                         [
                           _c("v-text-field", {
-                            attrs: { label: "Email*", required: "" },
-                          }),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              label: "Password*",
-                              type: "password",
-                              required: "",
-                            },
-                          }),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", sm: "6" } },
-                        [
-                          _c("v-select", {
-                            attrs: {
-                              items: ["0-17", "18-29", "30-54", "54+"],
-                              label: "Age*",
-                              required: "",
-                            },
-                          }),
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", sm: "6" } },
-                        [
-                          _c("v-autocomplete", {
-                            attrs: {
-                              items: [
-                                "Skiing",
-                                "Ice hockey",
-                                "Soccer",
-                                "Basketball",
-                                "Hockey",
-                                "Reading",
-                                "Writing",
-                                "Coding",
-                                "Basejump",
-                              ],
-                              label: "Interests",
-                              multiple: "",
+                            attrs: { label: "Description*", required: "" },
+                            model: {
+                              value: _vm.ask.description,
+                              callback: function ($$v) {
+                                _vm.$set(_vm.ask, "description", $$v)
+                              },
+                              expression: "ask.description",
                             },
                           }),
                         ],
@@ -2722,13 +2877,9 @@ var render = function () {
                 "v-btn",
                 {
                   attrs: { color: "blue darken-1", text: "" },
-                  on: {
-                    click: function ($event) {
-                      _vm.dialog = false
-                    },
-                  },
+                  on: { click: _vm.sendDemand },
                 },
-                [_vm._v("Close")]
+                [_vm._v("Save")]
               ),
               _vm._v(" "),
               _c(
@@ -2741,7 +2892,7 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._v("Save")]
+                [_vm._v("Close")]
               ),
             ],
             1

@@ -10,6 +10,9 @@ export default {
         isLoggin: localStorage.getItem("connected") == "1",
         todoList: [],
         userData: null,
+        email: null,
+        password:null,
+        askedDocs:[]
     },
 
     getters: {
