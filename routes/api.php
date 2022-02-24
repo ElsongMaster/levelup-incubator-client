@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AskHelpController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DocumentController;
+use App\Http\Controllers\GoalController;
 use App\Http\Controllers\StartupController;
 use App\Http\Controllers\StartupUserController;
 use App\Http\Controllers\TaskController;
@@ -47,4 +49,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/v1/tasks', [TaskController::class, 'index']);
     Route::put('/v1/task/status', [TaskController::class, 'changeStatus']);
 
+<<<<<<< HEAD
+=======
+    // Goals
+    Route::get('/v1/goals', [GoalController::class, 'index']);
+    Route::get('/v1/goals/tasks/{goalTaskId}', [GoalController::class, 'validateTask']);
+
+    // Help
+    Route::post('/v1/user-help', [AskHelpController::class, 'store' ]);
+>>>>>>> c3397d2caea11985207aefecd615a11a39a9302e
 });

@@ -9,7 +9,20 @@ class Goal extends Model
 {
     use HasFactory;
 
-    public function startup(){
+    protected $fillable = [
+        'name',
+        'description',
+        'startup_id',
+        'helper_user_id',
+    ];
+
+    public function startup()
+    {
         return $this->belongsTo(Startup::class);
+    }
+
+    public function goalTasks()
+    {
+        return $this->belongsToMany(GoalTask::class, 'pivot_goal_tasks')->using(PivotGoalTask::class);
     }
 }

@@ -31,6 +31,18 @@ export const routes = [
         },
     },
     {
+        path: "/dashboard/goals",
+        name: "Goals",
+        // route level code-splitting
+        // this generates a separate chunk (profile.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import(/* webpackChunkName: "Goals" */ "./components/pages/Goals.vue"),
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
         path: "/dashboard/tasks",
         name: "Tasks",
         // route level code-splitting
@@ -64,6 +76,30 @@ export const routes = [
         // which is lazy-loaded when the route is visited.
         component: () =>
             import(/* webpackChunkName: "tasks" */ "./components/Filelist.vue"),
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
+        path: "/dashboard/goals",
+        name: "Goals",
+        // route level code-splitting
+        // this generates a separate chunk (profile.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import(/* webpackChunkName: "tasks" */ "./components/pages/Goals.vue"),
+        meta: {
+            requiresAuth: true,
+        },
+    },
+    {
+        path: "/dashboard/help",
+        name: "AdminHelp",
+        // route level code-splitting
+        // this generates a separate chunk (profile.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () =>
+            import(/* webpackChunkName: "AdminHelp" */ "./components/pages/AdminHelp.vue"),
         meta: {
             requiresAuth: true,
         },
