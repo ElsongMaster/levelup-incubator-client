@@ -5504,6 +5504,18 @@ var routes = [{
     requiresAuth: true
   }
 }, {
+  path: "/dashboard/goals",
+  name: "Goals",
+  // route level code-splitting
+  // this generates a separate chunk (profile.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: function component() {
+    return __webpack_require__.e(/*! import() | Goals */ "Goals").then(__webpack_require__.bind(__webpack_require__, /*! ./components/pages/Goals.vue */ "./resources/js/components/pages/Goals.vue"));
+  },
+  meta: {
+    requiresAuth: true
+  }
+}, {
   path: "/dashboard/tasks",
   name: "Tasks",
   // route level code-splitting
@@ -28712,7 +28724,7 @@ var render = function () {
         1
       ),
       _vm._v(" "),
-      _c("v-main", [_c("router-view")], 1),
+      _c("v-main", [_c("router-view", { key: _vm.$route.fullPath })], 1),
     ],
     1
   )
@@ -91940,7 +91952,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"profil":1,"tasks":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"profil":1,"Goals":1,"tasks":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

@@ -1294,12 +1294,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "LoginModal",
   data: function data() {
     return {
-      // email: "",
-      // password: "",
-      // dialogLogin: "",
-      // userInfo: "",
-      // token: "",
-      // userID: "",
       show4: false,
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -1365,7 +1359,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     }
   },
-  computed: _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.mapFields)(["email", "password", "dialogLogin", "userInfo", "token", "userData"]))
+  computed: _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.mapFields)(["dialogLogin", "token", "userData"]))
 });
 
 /***/ }),
@@ -4925,17 +4919,17 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-list-item",
-                { attrs: { to: "/dashboard/tasks" } },
+                { attrs: { to: "/dashboard/goals" } },
                 [
                   _c(
                     "v-list-item-icon",
-                    [_c("v-icon", [_vm._v("mdi-clipboard-edit-outline")])],
+                    [_c("v-icon", [_vm._v("mdi-clipboard-list-outline")])],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "v-list-item-content",
-                    [_c("v-list-item-title", [_vm._v("Tâches")])],
+                    [_c("v-list-item-title", [_vm._v("Goals")])],
                     1
                   ),
                 ],
