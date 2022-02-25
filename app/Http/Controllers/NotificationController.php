@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Startup;
 use App\Models\StartupNotifications;
 use Illuminate\Http\Request;
 
@@ -18,17 +19,25 @@ class NotificationController extends Controller
         ];
     }
 
-    public function notificationRead($id)
+
+
+
+    public function notificationsRead(Request $rq)
     {
-        $notification = StartupNotifications::find($id);
-        $notification->viewed = true;
-        $notification->save();
+
+        $notifications = $rq->user()->startup->startupNotifications;
+
+        foreach ($notifications as $notification) {
+            $notification->viewed = true;
+
+            $notification->save();
+        }
+
 
         return [
-            "msg" => "statut de la notification modifié avec succés",
-            "statut" => 200
+            "msg" => "statut des notifications modifié avec succés",
+            "statut" => 200,
+            'data' => $notifications
         ];
     }
-
-    
 }

@@ -147,9 +147,9 @@ export default {
                         this.fileInfos = response.data.data;
                     });
                 })
-                .then((files) => {
-                    this.fileInfos = files.data;
-                })
+                // .then((files) => {
+                //     this.fileInfos = files.data;
+                // })
                 .catch(() => {
                     this.progress = 0;
                     this.message = "Could not upload the file!";

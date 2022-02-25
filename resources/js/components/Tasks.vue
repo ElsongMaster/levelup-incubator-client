@@ -120,7 +120,7 @@
                                                             }}</v-list-item-subtitle
                                                         >
                                                     </v-list-item-content>
-                                                    <v-btn
+                                                    <!-- <v-btn
                                                         fab
                                                         ripple
                                                         small
@@ -132,7 +132,7 @@
                                                             class="white--text"
                                                             >mdi-close</v-icon
                                                         >
-                                                    </v-btn>
+                                                    </v-btn> -->
                                                 </template>
                                             </v-list-item>
                                         </v-list-item-group>

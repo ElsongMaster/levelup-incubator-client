@@ -26,15 +26,7 @@
                     <!-- Message -->
                 </v-list-item>
 
-                <v-list-item to="/dashboard/formcontact">
-                    <v-list-item-icon>
-                        <!-- <v-icon>mdi-android-messages</v-icon> -->
-                        <v-icon>mdi-face-agent</v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-content>
-                        <v-list-item-title>Service client</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
+                
                 <!--  -->
                 <!-- Goals-->
                 <v-list-item to="/dashboard/goals">

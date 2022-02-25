@@ -1,19 +1,19 @@
 <template>
     <div class="flex">
         <SideBar />
-        <v-row align="center" class="list px-3 mx-auto">
-            <v-col cols="12" md="8">
+        <v-row  class="list px-3 mx-auto">
+            <!-- <v-col cols="12" md="8">
                 <v-text-field
                     v-model="title"
                     label="Search by Title"
                 ></v-text-field>
-            </v-col>
-            <v-col cols="12" md="4">
+            </v-col> -->
+            <!-- <v-col cols="12" md="4">
                 <v-btn small @click="searchTitle"> Search </v-btn>
-            </v-col>
+            </v-col> -->
             <v-col cols="12" sm="12">
                 <v-card class="tab-center" tile>
-                    <v-card-title>Tutorials</v-card-title>
+                    <v-card-title>Taches</v-card-title>
                     <v-data-table
                         :headers="headers"
                         :items="tutorials"
@@ -30,9 +30,9 @@
                         </template>
                     </v-data-table>
                     <v-card-actions v-if="tutorials.length > 0">
-                        <v-btn small color="error" @click="removeAllTutorials">
+                        <!-- <v-btn small color="error" @click="removeAllTutorials">
                             Remove All
-                        </v-btn>
+                        </v-btn> -->
                     </v-card-actions>
                 </v-card>
             </v-col>

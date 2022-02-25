@@ -22,15 +22,8 @@
                                     ></v-file-input>
                                 </v-col>
                             </v-row>
-                            <!-- <v-avatar size="96" class="mr-4">
-                            <img :src="'/avatars/avatar_' + (form.avatar.toLowerCase()) + '.png'" alt="Avatar">
-                        </v-avatar> -->
-                            <v-btn
-                                class="mt-3"
-                                v-if="!showAvatarPicker"
-                                @click="openAvatarPicker"
-                                >Change Logo</v-btn
-                            >
+                           
+                            
                         </v-col>
                         <v-text-field
                             v-model="userData.firstname"
@@ -77,11 +70,6 @@ export default {
     mounted() {
         localStorage.setItem("email", this.form.contactEmail);
 
-        // this.form.firstName = this.$store.state.userData.firstname;
-        // this.form.lastName = this.$store.state.userData.lastname;
-        // this.form.contactEmail = this.$store.state.userData.email;
-
-        // avatar: 'MALE_CAUCASIAN_BLOND_BEARD'
     },
     data() {
         return {
