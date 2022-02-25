@@ -91,9 +91,6 @@ export default {
         });
     }
   },
-  computed: {
-    ...mapFields(['askedDocs'])
-  },
   methods: {
     submit () {
       axios
@@ -114,7 +111,7 @@ export default {
     // ...mapState([
     //   'isLoggin'
     // ]),
-    ...mapFields(["token"]),
+    ...mapFields(["token","askedDocs"]),
   },
 };
 </script>
