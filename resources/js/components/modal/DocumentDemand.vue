@@ -11,14 +11,12 @@
       <v-card-text>
         <v-container>
           <v-row>
-            
             <v-col cols="12">
               <v-text-field label="Titre*" v-model="ask.titre" required></v-text-field>
             </v-col>
             <v-col cols="12">
               <v-text-field label="Description*" v-model="ask.description" required></v-text-field>
             </v-col>
-           
           </v-row>
         </v-container>
         <small>*indicates required field</small>
@@ -40,16 +38,16 @@ import { mapFields } from "vuex-map-fields";
 export default {
   data: () => ({
     dialog: false,
-    ask:{
-      titre:null,
+    ask: {
+      titre: null,
       description: null,
     }
   }),
-  mounted() {
+  mounted () {
     this.seeAskedDocs()
   },
   methods: {
-    sendDemand(){
+    sendDemand () {
       this.dialog = false;
       axios
         .post(
@@ -63,16 +61,16 @@ export default {
         )
         .then((response) => {
           console.log(response.data);
-            this.seeAskedDocs()
+          this.seeAskedDocs()
 
         })
         .catch((error) => {
           console.log(error.response);
-       
+
         });
     },
 
-    seeAskedDocs(){
+    seeAskedDocs () {
       axios
         .get(
           `/api/v1/asking-docs`,
@@ -84,20 +82,39 @@ export default {
         )
         .then((response) => {
           console.log(response.data);
-          this.askedDocs=response.data.data
-        
+          this.askedDocs = response.data.data
+
         })
         .catch((error) => {
           console.log(error.response);
-       
+
         });
     }
   },
-  computed:{
-        ...mapFields(['askedDocs'])
-
+  computed: {
+    ...mapFields(['askedDocs'])
   },
-
-    
+  methods: {
+    submit () {
+      axios
+        .post(
+          "http://127.0.0.1:8004/api/v1/files/ask",
+          {
+            document_title: this.document_title,
+            description: this.description,
+          },
+          { headers: { Authorization: "Bearer " + this.token } }
+        )
+        .then((response) => {
+          console.log("demande de doc", response);
+        });
+    },
+  },
+  computed: {
+    // ...mapState([
+    //   'isLoggin'
+    // ]),
+    ...mapFields(["token"]),
+  },
 };
 </script>
