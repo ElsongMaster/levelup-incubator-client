@@ -26,4 +26,9 @@ class Startup extends Model
     public function documentDemands () {
         return $this->hasMany(DocumentDemand::class);
     }
+
+
+    public function startupNotifications () {
+        return $this->hasMany(StartupNotifications::class);
+    }
 }
