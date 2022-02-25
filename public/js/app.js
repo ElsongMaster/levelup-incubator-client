@@ -5739,7 +5739,10 @@ __webpack_require__.r(__webpack_exports__);
     todoList: [],
     userData: null,
     requestDocument: null,
-    notifications: null
+    notifications: null,
+    email: null,
+    password: null,
+    askedDocs: []
   },
   getters: {
     getField: vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.getField
