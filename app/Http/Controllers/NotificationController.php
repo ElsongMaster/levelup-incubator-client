@@ -23,16 +23,22 @@ class NotificationController extends Controller
     
 
 
-    public function notificationRead($id){
+    public function notificationsRead(Request $rq){
 
+        $rq->validate(([
+            "notifications"=>"required"
+        ]));
 
-        $notification = StartupNotifications::find($id);
-        $notification->viewed = true;
-        $notification->save();
+        foreach($rq->notifications as $notification ){
+
+            $notificationTmp = StartupNotifications::find($notification->id);
+            $notificationTmp->viewed = true;
+            $notificationTmp->save();
+        }
 
 
         return[
-            "msg"=>"statut de la notification modifié avec succés",
+            "msg"=>"statut des notifications modifié avec succés",
             "statut"=>200
         ];
 

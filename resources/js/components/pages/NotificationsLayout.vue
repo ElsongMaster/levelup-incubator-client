@@ -10,7 +10,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="item in desserts" :key="item.name" @click="notificationviewed" >
+                    <tr
+                        v-for="item in desserts"
+                        :key="item.name"
+                        @click="notificationviewed"
+                    >
                         <td>{{ item.name }}</td>
                         <td>{{ item.calories }}</td>
                     </tr>
@@ -79,20 +83,25 @@ export default {
 
     methods: {
         getNotificaitons() {
-            axios.get("/api/v1/notifications", {
+            axios
+                .get("/api/v1/notifications", {
+                    headers: { Authorization: "Bearer " + this.token },
+                })
+                .then((response) => {
+                    this.notifications = response.data.data;
+                    // console.log(this.notifications);
+                });
+        },
+
+        notificationViewed(id) {
+            axios.put(`/api/v1/notification/${id}`, {
                 headers: { Authorization: "Bearer " + this.token },
             });
         },
-
-        notificationViewed(id){
-                axios.put(`/api/v1/notification/${id}`, {
-                headers: { Authorization: "Bearer " + this.token },
-            });
-        }
     },
 
     computed: {
-        ...mapFields(["token","notifications"]),
+        ...mapFields(["token", "notifications"]),
     },
 };
 </script>

@@ -406,6 +406,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -453,10 +457,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     getNotificaitons: function getNotificaitons() {
+      var _this = this;
+
       axios.get("/api/v1/notifications", {
         headers: {
           Authorization: "Bearer " + this.token
         }
+      }).then(function (response) {
+        _this.notifications = response.data.data; // console.log(this.notifications);
       });
     },
     notificationViewed: function notificationViewed(id) {
