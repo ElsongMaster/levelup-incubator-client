@@ -14,7 +14,8 @@ export default {
         notifications:null,
         email: null,
         password:null,
-        askedDocs:[]
+        askedDocs:[],
+        cptNotifications:0
         
     },
 
@@ -55,7 +56,7 @@ export default {
     //Seul le token et le userID sont enregistrés automatiqument
     plugins: [
         createPersistedState({
-            paths: ["token", "userData", "notifications","tasks"],
+            paths: ["token", "userData", "notifications","tasks","cptNotifications"],
         }),
     ],
 };

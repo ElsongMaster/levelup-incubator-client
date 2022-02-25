@@ -1444,13 +1444,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
  // import AvatarPicker from '~/components/AvatarPicker'
 
 
@@ -1461,10 +1454,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     SideBar: _components_SideBar_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   mounted: function mounted() {
-    localStorage.setItem("email", this.form.contactEmail); // this.form.firstName = this.$store.state.userData.firstname;
-    // this.form.lastName = this.$store.state.userData.lastname;
-    // this.form.contactEmail = this.$store.state.userData.email;
-    // avatar: 'MALE_CAUCASIAN_BLOND_BEARD'
+    localStorage.setItem("email", this.form.contactEmail);
   },
   data: function data() {
     return {
@@ -1532,14 +1522,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -4755,17 +4737,6 @@ var render = function () {
                                 1
                               )
                             : _vm._e(),
-                          _vm._v(" "),
-                          !_vm.showAvatarPicker
-                            ? _c(
-                                "v-btn",
-                                {
-                                  staticClass: "mt-3",
-                                  on: { click: _vm.openAvatarPicker },
-                                },
-                                [_vm._v("Change Logo")]
-                              )
-                            : _vm._e(),
                         ],
                         1
                       ),
@@ -4913,25 +4884,6 @@ var render = function () {
                   _c(
                     "v-list-item-content",
                     [_c("v-list-item-title", [_vm._v("Profile")])],
-                    1
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item",
-                { attrs: { to: "/dashboard/formcontact" } },
-                [
-                  _c(
-                    "v-list-item-icon",
-                    [_c("v-icon", [_vm._v("mdi-face-agent")])],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-list-item-content",
-                    [_c("v-list-item-title", [_vm._v("Service client")])],
                     1
                   ),
                 ],

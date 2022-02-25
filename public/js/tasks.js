@@ -310,14 +310,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "SideBar",
   data: function data() {
@@ -796,9 +788,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           console.log("getFiles", response.data);
           _this2.fileInfos = response.data.data;
         });
-      }).then(function (files) {
-        _this2.fileInfos = files.data;
-      })["catch"](function () {
+      }) // .then((files) => {
+      //     this.fileInfos = files.data;
+      // })
+      ["catch"](function () {
         _this2.progress = 0;
         _this2.message = "Could not upload the file!";
         _this2.currentFile = undefined;
@@ -847,8 +840,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex-map-fields */ "./node_modules/vuex-map-fields/dist/index.esm.js");
-var _data$mounted$methods;
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -890,7 +881,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_data$mounted$methods = {
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       dialog: false,
@@ -934,21 +925,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         console.log(error.response);
       });
     }
-  }
-}, _defineProperty(_data$mounted$methods, "methods", {
-  submit: function submit() {
-    axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://127.0.0.1:8004/api/v1/files/ask", {
-      document_title: this.document_title,
-      description: this.description
-    }, {
-      headers: {
-        Authorization: "Bearer " + this.token
-      }
-    }).then(function (response) {
-      console.log("demande de doc", response);
-    });
-  }
-}), _defineProperty(_data$mounted$methods, "computed", _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__.mapFields)(["token", "askedDocs"]))), _data$mounted$methods);
+  },
+  computed: _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__.mapFields)(["token", "askedDocs"]))
+});
 
 /***/ }),
 
@@ -2298,25 +2277,6 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-list-item",
-                { attrs: { to: "/dashboard/formcontact" } },
-                [
-                  _c(
-                    "v-list-item-icon",
-                    [_c("v-icon", [_vm._v("mdi-face-agent")])],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-list-item-content",
-                    [_c("v-list-item-title", [_vm._v("Service client")])],
-                    1
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item",
                 { attrs: { to: "/dashboard/goals" } },
                 [
                   _c(
@@ -2708,44 +2668,6 @@ var render = function () {
                                                       ],
                                                       1
                                                     ),
-                                                    _vm._v(" "),
-                                                    active
-                                                      ? _c(
-                                                          "v-btn",
-                                                          {
-                                                            attrs: {
-                                                              fab: "",
-                                                              ripple: "",
-                                                              small: "",
-                                                              color: "red",
-                                                            },
-                                                            on: {
-                                                              click: function (
-                                                                $event
-                                                              ) {
-                                                                return _vm.removeTodo(
-                                                                  i
-                                                                )
-                                                              },
-                                                            },
-                                                          },
-                                                          [
-                                                            _c(
-                                                              "v-icon",
-                                                              {
-                                                                staticClass:
-                                                                  "white--text",
-                                                              },
-                                                              [
-                                                                _vm._v(
-                                                                  "mdi-close"
-                                                                ),
-                                                              ]
-                                                            ),
-                                                          ],
-                                                          1
-                                                        )
-                                                      : _vm._e(),
                                                   ]
                                                 },
                                               },

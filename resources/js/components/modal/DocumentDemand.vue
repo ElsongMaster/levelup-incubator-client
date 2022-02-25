@@ -91,22 +91,7 @@ export default {
         });
     }
   },
-  methods: {
-    submit () {
-      axios
-        .post(
-          "http://127.0.0.1:8004/api/v1/files/ask",
-          {
-            document_title: this.document_title,
-            description: this.description,
-          },
-          { headers: { Authorization: "Bearer " + this.token } }
-        )
-        .then((response) => {
-          console.log("demande de doc", response);
-        });
-    },
-  },
+
   computed: {
     // ...mapState([
     //   'isLoggin'

@@ -21,7 +21,7 @@
                 />
             </div>
             <v-spacer></v-spacer>
-            <Notifications  />
+            <Notifications   />
             <v-btn
                 v-if="this.$store.state.isLoggin"
                 succes

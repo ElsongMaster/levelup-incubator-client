@@ -148,14 +148,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "SideBar",
   data: function data() {
@@ -1416,25 +1408,6 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-list-item",
-                { attrs: { to: "/dashboard/formcontact" } },
-                [
-                  _c(
-                    "v-list-item-icon",
-                    [_c("v-icon", [_vm._v("mdi-face-agent")])],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-list-item-content",
-                    [_c("v-list-item-title", [_vm._v("Service client")])],
-                    1
-                  ),
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "v-list-item",
                 { attrs: { to: "/dashboard/goals" } },
                 [
                   _c(
@@ -1761,20 +1734,24 @@ var render = function () {
                   "tbody",
                   _vm._l(_vm.results, function (item) {
                     return _c("tr", { key: item.id }, [
-                      _c("td", [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(
-                              (item.startupNotifiable_type.includes("Task") &&
-                                "Nouvelle Tache") ||
-                                (item.startupNotifiable_type.includes(
-                                  "AskingDocs"
-                                ) &&
-                                  "Demande de Document")
-                            ) +
-                            "\n                    "
-                        ),
-                      ]),
+                      item.startupNotifiable_type
+                        ? _c("td", [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(
+                                  (item.startupNotifiable_type.includes(
+                                    "Task"
+                                  ) &&
+                                    "Nouvelle Tache") ||
+                                    (item.startupNotifiable_type.includes(
+                                      "AskingDocs"
+                                    ) &&
+                                      "Demande de Document")
+                                ) +
+                                "\n                    "
+                            ),
+                          ])
+                        : _vm._e(),
                       _vm._v(" "),
                       _c("td", [
                         _c(
@@ -1839,39 +1816,8 @@ var render = function () {
       _vm._v(" "),
       _c(
         "v-row",
-        { staticClass: "list px-3 mx-auto", attrs: { align: "center" } },
+        { staticClass: "list px-3 mx-auto" },
         [
-          _c(
-            "v-col",
-            { attrs: { cols: "12", md: "8" } },
-            [
-              _c("v-text-field", {
-                attrs: { label: "Search by Title" },
-                model: {
-                  value: _vm.title,
-                  callback: function ($$v) {
-                    _vm.title = $$v
-                  },
-                  expression: "title",
-                },
-              }),
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-col",
-            { attrs: { cols: "12", md: "4" } },
-            [
-              _c(
-                "v-btn",
-                { attrs: { small: "" }, on: { click: _vm.searchTitle } },
-                [_vm._v(" Search ")]
-              ),
-            ],
-            1
-          ),
-          _vm._v(" "),
           _c(
             "v-col",
             { attrs: { cols: "12", sm: "12" } },
@@ -1880,7 +1826,7 @@ var render = function () {
                 "v-card",
                 { staticClass: "tab-center", attrs: { tile: "" } },
                 [
-                  _c("v-card-title", [_vm._v("Tutorials")]),
+                  _c("v-card-title", [_vm._v("Taches")]),
                   _vm._v(" "),
                   _c("v-data-table", {
                     attrs: {
@@ -1918,26 +1864,7 @@ var render = function () {
                     ),
                   }),
                   _vm._v(" "),
-                  _vm.tutorials.length > 0
-                    ? _c(
-                        "v-card-actions",
-                        [
-                          _c(
-                            "v-btn",
-                            {
-                              attrs: { small: "", color: "error" },
-                              on: { click: _vm.removeAllTutorials },
-                            },
-                            [
-                              _vm._v(
-                                "\n                        Remove All\n                    "
-                              ),
-                            ]
-                          ),
-                        ],
-                        1
-                      )
-                    : _vm._e(),
+                  _vm.tutorials.length > 0 ? _c("v-card-actions") : _vm._e(),
                 ],
                 1
               ),

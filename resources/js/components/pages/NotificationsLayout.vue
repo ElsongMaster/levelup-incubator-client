@@ -11,7 +11,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="item in results" :key="item.id">
-                        <td>
+                        <td v-if="item.startupNotifiable_type">
                             {{
                                 (item.startupNotifiable_type.includes("Task") &&
                                     "Nouvelle Tache") ||
