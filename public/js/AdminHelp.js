@@ -410,6 +410,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -444,7 +455,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     notificationViewed: function notificationViewed(id) {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_2___default().put("/api/v1/notification/".concat(id), {
+      axios__WEBPACK_IMPORTED_MODULE_2___default().put("/api/v1/notification/".concat(id), {}, {
         headers: {
           Authorization: "Bearer " + this.token
         }
@@ -1752,14 +1763,16 @@ var render = function () {
                     return _c("tr", { key: item.id }, [
                       _c("td", [
                         _vm._v(
-                          _vm._s(
-                            (item.startupNotifiable_type.includes("Task") &&
-                              "Nouvelle Tache") ||
-                              (item.startupNotifiable_type.includes(
-                                "AskingDocs"
-                              ) &&
-                                "Demande de Document")
-                          )
+                          "\n                        " +
+                            _vm._s(
+                              (item.startupNotifiable_type.includes("Task") &&
+                                "Nouvelle Tache") ||
+                                (item.startupNotifiable_type.includes(
+                                  "AskingDocs"
+                                ) &&
+                                  "Demande de Document")
+                            ) +
+                            "\n                    "
                         ),
                       ]),
                       _vm._v(" "),
@@ -1775,7 +1788,7 @@ var render = function () {
                           },
                           [
                             _vm._v(
-                              "\n                        " +
+                              "\n                            " +
                                 _vm._s(item.viewed == 0 ? "Non vu" : "vu") +
                                 "\n                        "
                             ),
