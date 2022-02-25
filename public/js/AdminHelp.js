@@ -378,6 +378,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex-map-fields */ "./node_modules/vuex-map-fields/dist/index.esm.js");
 /* harmony import */ var _SideBar_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../SideBar.vue */ "./resources/js/components/SideBar.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -406,6 +408,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -418,52 +423,37 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      desserts: [{
-        name: "Frozen Yogurt",
-        calories: 159
-      }, {
-        name: "Ice cream sandwich",
-        calories: 237
-      }, {
-        name: "Eclair",
-        calories: 262
-      }, {
-        name: "Cupcake",
-        calories: 305
-      }, {
-        name: "Gingerbread",
-        calories: 356
-      }, {
-        name: "Jelly bean",
-        calories: 375
-      }, {
-        name: "Lollipop",
-        calories: 392
-      }, {
-        name: "Honeycomb",
-        calories: 408
-      }, {
-        name: "Donut",
-        calories: 452
-      }, {
-        name: "KitKat",
-        calories: 518
-      }]
+      results: []
     };
   },
   methods: {
     getNotificaitons: function getNotificaitons() {
-      axios.get("/api/v1/notifications", {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_2___default().get("/api/v1/notifications", {
         headers: {
           Authorization: "Bearer " + this.token
         }
+      }).then(function (response) {
+        console.log(response.data);
+        _this.results = response.data.data;
+      })["catch"](function (error) {
+        console.log(error.response);
       });
     },
     notificationViewed: function notificationViewed(id) {
-      axios.put("/api/v1/notification/".concat(id), {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_2___default().put("/api/v1/notification/".concat(id), {
         headers: {
           Authorization: "Bearer " + this.token
         }
+      }).then(function (response) {
+        console.log(response.data); //   this.results= response.data.data
+
+        _this2.getNotificaitons();
+      })["catch"](function (error) {
+        console.log(error.response);
       });
     }
   },
@@ -1748,26 +1738,51 @@ var render = function () {
               return [
                 _c("thead", [
                   _c("tr", [
-                    _c("th", { staticClass: "text-left" }, [_vm._v("Name")]),
-                    _vm._v(" "),
                     _c("th", { staticClass: "text-left" }, [
-                      _vm._v("Calories"),
+                      _vm._v("Type de Notificaiton"),
                     ]),
+                    _vm._v(" "),
+                    _c("th", { staticClass: "text-left" }, [_vm._v("Vue")]),
                   ]),
                 ]),
                 _vm._v(" "),
                 _c(
                   "tbody",
-                  _vm._l(_vm.desserts, function (item) {
-                    return _c(
-                      "tr",
-                      { key: item.name, on: { click: _vm.notificationviewed } },
-                      [
-                        _c("td", [_vm._v(_vm._s(item.name))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(item.calories))]),
-                      ]
-                    )
+                  _vm._l(_vm.results, function (item) {
+                    return _c("tr", { key: item.id }, [
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(
+                            (item.startupNotifiable_type.includes("Task") &&
+                              "Nouvelle Tache") ||
+                              (item.startupNotifiable_type.includes(
+                                "AskingDocs"
+                              ) &&
+                                "Demande de Document")
+                          )
+                        ),
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "button",
+                          {
+                            on: {
+                              click: function ($event) {
+                                return _vm.notificationViewed(item.id)
+                              },
+                            },
+                          },
+                          [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(item.viewed == 0 ? "Non vu" : "vu") +
+                                "\n                        "
+                            ),
+                          ]
+                        ),
+                      ]),
+                    ])
                   }),
                   0
                 ),
