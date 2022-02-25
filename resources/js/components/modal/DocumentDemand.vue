@@ -96,7 +96,7 @@ export default {
   computed:{
         ...mapFields(['askedDocs'])
 
-  }
+  },
 
     methods: {
         submit() {

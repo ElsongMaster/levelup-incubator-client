@@ -10,7 +10,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="item in desserts" :key="item.name">
+                    <tr v-for="item in desserts" :key="item.name" @click="notificationviewed" >
                         <td>{{ item.name }}</td>
                         <td>{{ item.calories }}</td>
                     </tr>
@@ -83,10 +83,16 @@ export default {
                 headers: { Authorization: "Bearer " + this.token },
             });
         },
+
+        notificationViewed(id){
+                axios.put(`/api/v1/notification/${id}`, {
+                headers: { Authorization: "Bearer " + this.token },
+            });
+        }
     },
 
     computed: {
-        ...mapFields(["token"]),
+        ...mapFields(["token","notifications"]),
     },
 };
 </script>

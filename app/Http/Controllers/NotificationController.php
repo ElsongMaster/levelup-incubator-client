@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\StartupNotifications;
 use Illuminate\Http\Request;
 
 class NotificationController extends Controller
@@ -10,7 +11,7 @@ class NotificationController extends Controller
 
         $user = $rq->user();
 
-        $notifications = $user->startup->notifications()->get();
+        $notifications = $user->startup->startupNotifications()->get();
         
         return[
             "data"=>$notifications,
@@ -19,14 +20,14 @@ class NotificationController extends Controller
 
     }
 
+    
 
-    public function notificationRead(Request $rq){
-        $rq->validate([
-            "id"=>"required"
-        ]);
 
-        $notification = Notification::find($rq->id);
-        $notification->read = true;
+    public function notificationRead($id){
+
+
+        $notification = StartupNotifications::find($id);
+        $notification->viewed = true;
         $notification->save();
 
 
