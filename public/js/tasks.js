@@ -888,8 +888,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_data$mounted$methods = {
@@ -936,8 +934,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         console.log(error.response);
       });
     }
-  },
-  computed: _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__.mapFields)(['askedDocs']))
+  }
 }, _defineProperty(_data$mounted$methods, "methods", {
   submit: function submit() {
     axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://127.0.0.1:8004/api/v1/files/ask", {
@@ -951,7 +948,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       console.log("demande de doc", response);
     });
   }
-}), _defineProperty(_data$mounted$methods, "computed", _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__.mapFields)(["token"]))), _data$mounted$methods);
+}), _defineProperty(_data$mounted$methods, "computed", _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__.mapFields)(["token", "askedDocs"]))), _data$mounted$methods);
 
 /***/ }),
 
