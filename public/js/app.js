@@ -5263,6 +5263,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Notifications_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Notifications.vue */ "./resources/js/components/Notifications.vue");
+/* harmony import */ var vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex-map-fields */ "./node_modules/vuex-map-fields/dist/index.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -5319,7 +5326,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 // import {mapState} from 'vuex';
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_defineProperty({
   name: "AppComponent",
   components: {
     Notifications: _Notifications_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -5344,20 +5352,21 @@ __webpack_require__.r(__webpack_exports__);
           Authorization: "Bearer " + tokenReq
         }
       }).then(function (response) {
-        console.log("logout", response.status);
+        console.log("logout", response.status); // if (response.status == 200) {
 
-        if (response.status == 200) {
-          localStorage.removeItem("tokenConnexion");
-          localStorage.setItem("connected", "0");
+        console.log("in the if");
+        localStorage.removeItem("tokenConnexion"); // this.token="";
 
-          _this.$store.dispatch("updateIsLoggin", false);
+        localStorage.setItem("connected", "0");
 
-          _this.$router.push("/");
-        }
+        _this.$store.dispatch("updateIsLoggin", false);
+
+        _this.$router.push("/"); // }
+
       });
     }
   }
-});
+}, "computed", _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__.mapFields)(['token']))));
 
 /***/ }),
 
@@ -5617,6 +5626,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "routes": () => (/* binding */ routes)
 /* harmony export */ });
+/* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./store/index */ "./resources/js/store/index.js");
+
+
 var routes = [{
   path: "/",
   name: "Home",
@@ -5755,7 +5767,42 @@ var routes = [{
   meta: {
     requiresAuth: true
   }
-}];
+}]; // const router = new VueRouter({
+//     routes,
+//     mode: "history",
+//   });
+
+console.log(localStorage.getItem("tokenConnexion")); // router.beforeEach((to, from, next) => {
+//     if (to.meta.requiresAuth) {
+//       if (!localStorage.getItem("tokenConnexion")){
+//         if ( store.state.token=null) {
+//           next({
+//             path: "/",
+//           });
+//         } else {
+//           next();
+//         }
+//       } else {
+//         next();
+//       }
+//     }
+//     next();
+//   });
+// router.beforeEach((to,from,next)=>{
+//     if (to.meta.requiresAuth) {
+//       if (store.state.token=null) {
+//         next({
+//           path: "/"
+//         });
+//       } else {
+//         next();
+//       }
+//     } else {
+//       next();
+//     }
+//   next();
+//   })
+//   export default router
 
 /***/ }),
 
@@ -5795,6 +5842,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   mutations: {
     updateField: vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.updateField,
+    setToken: function setToken(state) {
+      state.token = null;
+    },
     setIsLoggin: function setIsLoggin(state, isLoggin) {
       state.isLoggin = isLoggin;
     },

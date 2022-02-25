@@ -55,6 +55,8 @@
 <script>
 // import {mapState} from 'vuex';
 import Notifications from "./Notifications.vue";
+import { mapFields } from "vuex-map-fields";
+
 export default {
     name: "AppComponent",
     components: {
@@ -75,6 +77,7 @@ export default {
         logout () {
             let tokenReq = localStorage.getItem("tokenConnexion");
             console.log(tokenReq);
+            
             axios
                 .get("http://127.0.0.1:8004/api/v1/logout", {
                     headers: { Authorization: "Bearer " + tokenReq },
@@ -82,15 +85,20 @@ export default {
                 .then((response) => {
                     console.log("logout", response.status);
 
-                    if (response.status == 200) {
+                    // if (response.status == 200) {
+                        console.log("in the if");
                         localStorage.removeItem("tokenConnexion");
+                        // this.token="";
                         localStorage.setItem("connected", "0");
                         this.$store.dispatch("updateIsLoggin", false);
                         this.$router.push("/");
-                    }
+                    // }
                 });
         },
     },
+    computed:{
+        ...mapFields(['token'])
+  }
 };
 </script>
 

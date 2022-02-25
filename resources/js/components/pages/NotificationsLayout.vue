@@ -5,18 +5,16 @@
             <template v-slot:default>
                 <thead>
                     <tr>
-                        <th class="text-left">Name</th>
-                        <th class="text-left">Calories</th>
+                        <th class="text-left">Type de Notificaiton</th>
+                        <th class="text-left">Vue</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr
-                        v-for="item in desserts"
-                        :key="item.name"
-                        @click="notificationviewed"
-                    >
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.calories }}</td>
+                    <tr v-for="item in results" :key="item.id"  >
+                        <td>{{ item.startupNotifiable_type.includes('Task') && "Nouvelle Tache" || item.startupNotifiable_type.includes('AskingDocs') && "Demande de Document" }}</td>
+                        <td><button @click="notificationViewed(item.id)">
+                            {{item.viewed == 0 ? "Non vu":"vu"}}
+                            </button> </td>
                     </tr>
                 </tbody>
             </template>
@@ -27,6 +25,7 @@
 <script>
 import { mapFields } from "vuex-map-fields";
 import SideBar from "../SideBar.vue";
+import axios from 'axios'
 export default {
     name: "NotifLayout",
     components: { SideBar },
@@ -36,48 +35,7 @@ export default {
     },
     data() {
         return {
-            desserts: [
-                {
-                    name: "Frozen Yogurt",
-                    calories: 159,
-                },
-                {
-                    name: "Ice cream sandwich",
-                    calories: 237,
-                },
-                {
-                    name: "Eclair",
-                    calories: 262,
-                },
-                {
-                    name: "Cupcake",
-                    calories: 305,
-                },
-                {
-                    name: "Gingerbread",
-                    calories: 356,
-                },
-                {
-                    name: "Jelly bean",
-                    calories: 375,
-                },
-                {
-                    name: "Lollipop",
-                    calories: 392,
-                },
-                {
-                    name: "Honeycomb",
-                    calories: 408,
-                },
-                {
-                    name: "Donut",
-                    calories: 452,
-                },
-                {
-                    name: "KitKat",
-                    calories: 518,
-                },
-            ],
+            results: [],
         };
     },
 
@@ -96,8 +54,32 @@ export default {
         notificationViewed(id) {
             axios.put(`/api/v1/notification/${id}`, {
                 headers: { Authorization: "Bearer " + this.token },
-            });
+            }).then((response) => {
+          console.log(response.data);
+          this.results= response.data.data
+        
+        })
+        .catch((error) => {
+          console.log(error.response);
+        })
         },
+        
+        notificationViewed(id){
+                axios.put(`/api/v1/notification/${id}`, {
+                headers: { Authorization: "Bearer " + this.token },
+            }).then((response) => {
+          console.log(response.data);
+        //   this.results= response.data.data
+        this.getNotificaitons()
+        
+        })
+        .catch((error) => {
+          console.log(error.response);
+        })
+        }
+
+        
+
     },
 
     computed: {

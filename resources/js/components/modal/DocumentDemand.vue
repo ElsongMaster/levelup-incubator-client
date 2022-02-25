@@ -91,7 +91,6 @@ export default {
         });
     }
   },
-
   methods: {
     submit () {
       axios

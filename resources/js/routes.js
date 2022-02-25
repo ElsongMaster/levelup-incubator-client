@@ -1,3 +1,7 @@
+import VueRouter from "vue-router";
+
+import store from "./store/index";
+
 export const routes = [
     {
         path: "/",
@@ -153,3 +157,45 @@ export const routes = [
         },
     },
 ];
+// const router = new VueRouter({
+//     routes,
+//     mode: "history",
+//   });
+
+  console.log(localStorage.getItem("tokenConnexion"));
+
+// router.beforeEach((to, from, next) => {
+//     if (to.meta.requiresAuth) {
+//       if (!localStorage.getItem("tokenConnexion")){
+//         if ( store.state.token=null) {
+//           next({
+//             path: "/",
+//           });
+//         } else {
+//           next();
+//         }
+//       } else {
+//         next();
+//       }
+//     }
+//     next();
+//   });
+
+// router.beforeEach((to,from,next)=>{
+
+//     if (to.meta.requiresAuth) {
+//       if (store.state.token=null) {
+//         next({
+//           path: "/"
+//         });
+//       } else {
+//         next();
+//       }
+//     } else {
+//       next();
+//     }
+//   next();
+  
+//   })
+  
+//   export default router
