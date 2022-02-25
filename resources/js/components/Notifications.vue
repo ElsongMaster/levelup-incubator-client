@@ -65,7 +65,6 @@
 </template>
 
 <script>
-import NotificationBell from "vue-notification-bell";
 import { mapFields } from "vuex-map-fields";
 import axios from "axios";
 export default {
@@ -73,9 +72,6 @@ export default {
     data: () => ({
         closeOnClick: true,
     }),
-    components: {
-        NotificationBell,
-    },
 
     methods: {
         getNotificaitons() {
