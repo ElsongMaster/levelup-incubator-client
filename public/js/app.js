@@ -5347,8 +5347,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       var tokenReq = localStorage.getItem("tokenConnexion");
       console.log(tokenReq);
-      this.$store.commit('setToken');
-      localStorage.setItem("connected", "0");
       axios.get("http://127.0.0.1:8004/api/v1/logout", {
         headers: {
           Authorization: "Bearer " + tokenReq
