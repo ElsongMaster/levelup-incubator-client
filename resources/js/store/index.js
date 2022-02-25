@@ -22,6 +22,9 @@ export default {
     },
     mutations: {
         updateField,
+        setToken(state){
+        state.token=null
+        },
         setIsLoggin(state, isLoggin) {
             state.isLoggin = isLoggin;
         },
@@ -46,6 +49,7 @@ export default {
             console.log("dans mon dispatch user", userData);
             commit("setUserData", userData);
         },
+
     },
     //Seul le token et le userID sont enregistrés automatiqument
     plugins: [

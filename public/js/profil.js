@@ -1294,6 +1294,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "LoginModal",
   data: function data() {
     return {
+      // email:null,
+      // password:null,
       show4: false,
       headers: {
         "Access-Control-Allow-Origin": "*",
@@ -1530,6 +1532,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4861,7 +4882,7 @@ var render = function () {
                     { staticClass: "text-h6" },
                     [
                       _c("router-link", { attrs: { to: "/" } }, [
-                        _vm._v(" Home"),
+                        _vm._v("Home"),
                       ]),
                     ],
                     1
@@ -4919,17 +4940,17 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-list-item",
-                { attrs: { to: "/dashboard/tasks" } },
+                { attrs: { to: "/dashboard/goals" } },
                 [
                   _c(
                     "v-list-item-icon",
-                    [_c("v-icon", [_vm._v("mdi-clipboard-edit-outline")])],
+                    [_c("v-icon", [_vm._v("mdi-clipboard-list-outline")])],
                     1
                   ),
                   _vm._v(" "),
                   _c(
                     "v-list-item-content",
-                    [_c("v-list-item-title", [_vm._v("Tâches")])],
+                    [_c("v-list-item-title", [_vm._v("Goals")])],
                     1
                   ),
                 ],
@@ -4938,7 +4959,7 @@ var render = function () {
               _vm._v(" "),
               _c(
                 "v-list-item",
-                { attrs: { to: "/dashboard/tasks" } },
+                { attrs: { to: "/dashboard/tasks2" } },
                 [
                   _c(
                     "v-list-item-icon",
@@ -4968,6 +4989,44 @@ var render = function () {
                   _c(
                     "v-list-item-content",
                     [_c("v-list-item-title", [_vm._v("Documents")])],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-item",
+                { attrs: { to: "/dashboard/help" } },
+                [
+                  _c(
+                    "v-list-item-icon",
+                    [_c("v-icon", [_vm._v("mdi-account-question-outline")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item-content",
+                    [_c("v-list-item-title", [_vm._v("Help")])],
+                    1
+                  ),
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-list-item",
+                { attrs: { to: "/dashboard/notifications" } },
+                [
+                  _c(
+                    "v-list-item-icon",
+                    [_c("v-icon", [_vm._v("mdi-bell-circle")])],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-list-item-content",
+                    [_c("v-list-item-title", [_vm._v("Notifications")])],
                     1
                   ),
                 ],
