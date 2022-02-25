@@ -1189,6 +1189,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Landing",
@@ -2090,7 +2093,10 @@ var render = function () {
     "v-main",
     {
       staticClass: "pa-0 p-0 bg-gray-100",
-      staticStyle: { padding: "0 !important" },
+      staticStyle: {
+        padding: "0 !important",
+        "background-color": "#F3F4F6 !important",
+      },
     },
     [
       _c(

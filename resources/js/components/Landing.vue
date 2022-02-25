@@ -1,5 +1,8 @@
 <template>
-    <v-main class="pa-0 p-0 bg-gray-100" style="padding: 0 !important; ">
+    <v-main
+        class="pa-0 p-0 bg-gray-100"
+        style="padding: 0 !important; background-color: #F3F4F6 !important"
+    >
         <main
             class="bg-gray-100 font-montserrat"
             style="margin: 0; padding: 0 !important;background-color: #F3F4F6 !important;"

@@ -46,7 +46,7 @@
             </v-btn>-->
         </v-app-bar>
 
-        <v-main>
+        <v-main :style="$route.fullPath == '/' && 'background-color:#F3F4F6;' ">
             <router-view :key="$route.fullPath" />
         </v-main>
     </v-app>
