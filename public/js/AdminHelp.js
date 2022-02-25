@@ -458,9 +458,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           Authorization: "Bearer " + this.token
         }
       });
+    },
+    notificationViewed: function notificationViewed(id) {
+      axios.put("/api/v1/notification/".concat(id), {
+        headers: {
+          Authorization: "Bearer " + this.token
+        }
+      });
     }
   },
-  computed: _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.mapFields)(["token"]))
+  computed: _objectSpread({}, (0,vuex_map_fields__WEBPACK_IMPORTED_MODULE_0__.mapFields)(["token", "notifications"]))
 });
 
 /***/ }),
@@ -477,6 +484,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _services_TutorialDataService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../services/TutorialDataService */ "./resources/js/services/TutorialDataService.js");
 /* harmony import */ var vuex_map_fields__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex-map-fields */ "./node_modules/vuex-map-fields/dist/index.esm.js");
+/* harmony import */ var _SideBar_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../SideBar.vue */ "./resources/js/components/SideBar.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -522,10 +530,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Tasks2",
+  components: {
+    SideBar: _SideBar_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   data: function data() {
     return {
       tutorials: [],
@@ -1744,11 +1759,15 @@ var render = function () {
                 _c(
                   "tbody",
                   _vm._l(_vm.desserts, function (item) {
-                    return _c("tr", { key: item.name }, [
-                      _c("td", [_vm._v(_vm._s(item.name))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(item.calories))]),
-                    ])
+                    return _c(
+                      "tr",
+                      { key: item.name, on: { click: _vm.notificationviewed } },
+                      [
+                        _c("td", [_vm._v(_vm._s(item.name))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(item.calories))]),
+                      ]
+                    )
                   }),
                   0
                 ),
@@ -1785,106 +1804,115 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-row",
-    { staticClass: "list px-3 mx-auto", attrs: { align: "center" } },
+    "div",
+    { staticClass: "flex" },
     [
-      _c(
-        "v-col",
-        { attrs: { cols: "12", md: "8" } },
-        [
-          _c("v-text-field", {
-            attrs: { label: "Search by Title" },
-            model: {
-              value: _vm.title,
-              callback: function ($$v) {
-                _vm.title = $$v
-              },
-              expression: "title",
-            },
-          }),
-        ],
-        1
-      ),
+      _c("SideBar"),
       _vm._v(" "),
       _c(
-        "v-col",
-        { attrs: { cols: "12", md: "4" } },
+        "v-row",
+        { staticClass: "list px-3 mx-auto", attrs: { align: "center" } },
         [
           _c(
-            "v-btn",
-            { attrs: { small: "" }, on: { click: _vm.searchTitle } },
-            [_vm._v(" Search ")]
-          ),
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-col",
-        { attrs: { cols: "12", sm: "12" } },
-        [
-          _c(
-            "v-card",
-            { staticClass: "mx-auto", attrs: { tile: "" } },
+            "v-col",
+            { attrs: { cols: "12", md: "8" } },
             [
-              _c("v-card-title", [_vm._v("Tutorials")]),
-              _vm._v(" "),
-              _c("v-data-table", {
-                attrs: {
-                  headers: _vm.headers,
-                  items: _vm.tutorials,
-                  "disable-pagination": "",
-                  "hide-default-footer": true,
+              _c("v-text-field", {
+                attrs: { label: "Search by Title" },
+                model: {
+                  value: _vm.title,
+                  callback: function ($$v) {
+                    _vm.title = $$v
+                  },
+                  expression: "title",
                 },
-                scopedSlots: _vm._u(
-                  [
-                    {
-                      key: "item.actions",
-                      fn: function (ref) {
-                        var item = ref.item
-                        return [
-                          _c(
-                            "v-icon",
-                            {
-                              staticClass: "mr-2",
-                              attrs: { small: "" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.editTutorial(item.id)
-                                },
-                              },
-                            },
-                            [_vm._v("mdi-pencil")]
-                          ),
-                        ]
-                      },
-                    },
-                  ],
-                  null,
-                  true
-                ),
               }),
-              _vm._v(" "),
-              _vm.tutorials.length > 0
-                ? _c(
-                    "v-card-actions",
-                    [
-                      _c(
-                        "v-btn",
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "12", md: "4" } },
+            [
+              _c(
+                "v-btn",
+                { attrs: { small: "" }, on: { click: _vm.searchTitle } },
+                [_vm._v(" Search ")]
+              ),
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "v-col",
+            { attrs: { cols: "12", sm: "12" } },
+            [
+              _c(
+                "v-card",
+                { staticClass: "tab-center", attrs: { tile: "" } },
+                [
+                  _c("v-card-title", [_vm._v("Tutorials")]),
+                  _vm._v(" "),
+                  _c("v-data-table", {
+                    attrs: {
+                      headers: _vm.headers,
+                      items: _vm.tutorials,
+                      "disable-pagination": "",
+                      "hide-default-footer": true,
+                    },
+                    scopedSlots: _vm._u(
+                      [
                         {
-                          attrs: { small: "", color: "error" },
-                          on: { click: _vm.removeAllTutorials },
+                          key: "item.actions",
+                          fn: function (ref) {
+                            var item = ref.item
+                            return [
+                              _c(
+                                "v-icon",
+                                {
+                                  staticClass: "mr-2",
+                                  attrs: { small: "" },
+                                  on: {
+                                    click: function ($event) {
+                                      return _vm.editTutorial(item.id)
+                                    },
+                                  },
+                                },
+                                [_vm._v("mdi-pencil")]
+                              ),
+                            ]
+                          },
                         },
+                      ],
+                      null,
+                      true
+                    ),
+                  }),
+                  _vm._v(" "),
+                  _vm.tutorials.length > 0
+                    ? _c(
+                        "v-card-actions",
                         [
-                          _vm._v(
-                            "\n                    Remove All\n                "
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: { small: "", color: "error" },
+                              on: { click: _vm.removeAllTutorials },
+                            },
+                            [
+                              _vm._v(
+                                "\n                        Remove All\n                    "
+                              ),
+                            ]
                           ),
-                        ]
-                      ),
-                    ],
-                    1
-                  )
-                : _vm._e(),
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                ],
+                1
+              ),
             ],
             1
           ),

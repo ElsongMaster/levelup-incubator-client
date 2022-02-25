@@ -1,47 +1,52 @@
 <template>
-    <v-row align="center" class="list px-3 mx-auto">
-        <v-col cols="12" md="8">
-            <v-text-field
-                v-model="title"
-                label="Search by Title"
-            ></v-text-field>
-        </v-col>
-        <v-col cols="12" md="4">
-            <v-btn small @click="searchTitle"> Search </v-btn>
-        </v-col>
-        <v-col cols="12" sm="12">
-            <v-card class="mx-auto" tile>
-                <v-card-title>Tutorials</v-card-title>
-                <v-data-table
-                    :headers="headers"
-                    :items="tutorials"
-                    disable-pagination
-                    :hide-default-footer="true"
-                >
-                    <template v-slot:[`item.actions`]="{ item }">
-                        <v-icon
-                            small
-                            class="mr-2"
-                            @click="editTutorial(item.id)"
-                            >mdi-pencil</v-icon
-                        >
-                    </template>
-                </v-data-table>
-                <v-card-actions v-if="tutorials.length > 0">
-                    <v-btn small color="error" @click="removeAllTutorials">
-                        Remove All
-                    </v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-col>
-    </v-row>
+    <div class="flex">
+        <SideBar />
+        <v-row align="center" class="list px-3 mx-auto">
+            <v-col cols="12" md="8">
+                <v-text-field
+                    v-model="title"
+                    label="Search by Title"
+                ></v-text-field>
+            </v-col>
+            <v-col cols="12" md="4">
+                <v-btn small @click="searchTitle"> Search </v-btn>
+            </v-col>
+            <v-col cols="12" sm="12">
+                <v-card class="tab-center" tile>
+                    <v-card-title>Tutorials</v-card-title>
+                    <v-data-table
+                        :headers="headers"
+                        :items="tutorials"
+                        disable-pagination
+                        :hide-default-footer="true"
+                    >
+                        <template v-slot:[`item.actions`]="{ item }">
+                            <v-icon
+                                small
+                                class="mr-2"
+                                @click="editTutorial(item.id)"
+                                >mdi-pencil</v-icon
+                            >
+                        </template>
+                    </v-data-table>
+                    <v-card-actions v-if="tutorials.length > 0">
+                        <v-btn small color="error" @click="removeAllTutorials">
+                            Remove All
+                        </v-btn>
+                    </v-card-actions>
+                </v-card>
+            </v-col>
+        </v-row>
+    </div>
 </template>
 
 <script>
 import TutorialDataService from "../../services/TutorialDataService";
 import { mapFields } from "vuex-map-fields";
+import SideBar from "../SideBar.vue";
 export default {
     name: "Tasks2",
+    components: { SideBar },
     data() {
         return {
             tutorials: [],

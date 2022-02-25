@@ -15,6 +15,7 @@ export default {
         email: null,
         password:null,
         askedDocs:[]
+        
     },
 
     getters: {
@@ -54,7 +55,7 @@ export default {
     //Seul le token et le userID sont enregistrés automatiqument
     plugins: [
         createPersistedState({
-            paths: ["token", "userData"],
+            paths: ["token", "userData", "notifications","tasks"],
         }),
     ],
 };

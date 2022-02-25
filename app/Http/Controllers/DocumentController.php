@@ -6,6 +6,7 @@ use App\Models\AskingDocs;
 use App\Models\Document;
 use App\Models\DocumentDemand;
 use App\Models\Startup;
+use App\Models\StartupNotifications;
 use App\Models\StartupUser;
 
 use Illuminate\Http\Request;
@@ -60,21 +61,22 @@ class DocumentController extends Controller
         $rq->file('file')->storePublicly('modules/incubator/' . $folderName, 'public');
         $newDocument->filepath = $rq->file('file')->hashName();
         $newDocument->startup_id = $startup->id;
-        $newDocument->name= $rq->name;
+        $newDocument->name = $rq->name;
         $newDocument->save();
 
 
         return  [
             "message" => "le document a été correctement stocké",
-            "nameFile"=>$newDocument->filepath,
-            "docId"=>$newDocument->id,
+            "nameFile" => $newDocument->filepath,
+            "docId" => $newDocument->id,
             "status" => 200,
         ];
     }
 
-    public function askFiles(Request $rq){
+    public function askFiles(Request $rq)
+    {
         $rq->validate([
-            "document_title"=>"required"
+            "document_title" => "required"
         ]);
 
         $user = $rq->user();
@@ -92,18 +94,18 @@ class DocumentController extends Controller
         $newAskingDocument->description = $rq->description;
         $newAskingDocument->save();
 
-        return[
+        //création de la notifications
+        // $newNotifications = new StartupNotifications;
+
+
+        return [
             "msg" => "Demande reçu avec succès",
             "status" => 200
         ];
-
-
-
-        
     }
 
     //Download
-    public function download($docId,Request $rq)
+    public function download($docId, Request $rq)
     {
         // dd($docId);
         $user = $rq->user();
@@ -118,7 +120,7 @@ class DocumentController extends Controller
     }
 
     //Demande de document
-    public function askDoc( Request $rq)
+    public function askDoc(Request $rq)
     {
         $user = $rq->user();
         $startupId = $user->startup->id;
@@ -134,13 +136,14 @@ class DocumentController extends Controller
 
         $store->save();
         return response()->json([
-            'message' =>'Demande Ajoutée avec succès',
+            'message' => 'Demande Ajoutée avec succès',
             'data' => $store
-        ],201);
+        ], 201);
     }
 
     //Voir les documents demandés
-    public function seeAskedDocs(Request $rq){
+    public function seeAskedDocs(Request $rq)
+    {
         $user = $rq->user();
         $startupId = $user->startup->id;
 
@@ -151,9 +154,8 @@ class DocumentController extends Controller
         // $documents = Document::where('startup_id', $startupId)->get();
 
         return response()->json([
-            "message"=>"Documents demandés récupérés avec succès",
-            "data"=>$askedStartupDocs
+            "message" => "Documents demandés récupérés avec succès",
+            "data" => $askedStartupDocs
         ]);
-
     }
 }
